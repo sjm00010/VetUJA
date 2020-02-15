@@ -30,14 +30,20 @@
 }
 
 /* Distribucion del contenido*/
-.principal{
+.espaciado{
     margin: 3rem auto;
 }
+
 .registro{
     margin: 3rem auto;
 }
 
-.registro a{
+.eBoton{
+    text-decoration:none;
+    color: white;
+}
+
+.eBoton:hover{
     text-decoration:none;
     color: white;
 }

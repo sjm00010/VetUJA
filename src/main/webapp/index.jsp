@@ -35,7 +35,7 @@
                         <a class="menu nav-link" href="#">Contácta con nostros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary" href="#" role="button">Iniciar sesión</a>
+                        <a class="nav-link btn btn-outline-primary" href="login.jsp" role="button">Iniciar sesión</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user/registro_user.jsp">Registrarse</a>
@@ -46,7 +46,7 @@
     </nav>
 
     <body>
-        <main class="principal">
+        <main class="espaciado">
             <div class="container">
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">

@@ -35,12 +35,15 @@
                     <li class="nav-item">
                         <a class="menu nav-link" href="#">Contácta con nostros</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary" href="../login.jsp" role="button">Iniciar sesión</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container principal">
+    <div class="container espaciado">
         <form>
             <h1 class="text-center"><u>Registro</u></h1>
             <h2><small class="text-muted">Datos personales</small></h2>
@@ -107,7 +110,7 @@
             </div>
             <div class="registro">
                 <button type="submit" class="btn btn-secondary btn-lg btn-block">
-                    <a href="../index.jsp">Registrarse</a>
+                    <a class="eBoton" href="../index.jsp">Registrarse</a>
                 </button>
             </div>
         </form>

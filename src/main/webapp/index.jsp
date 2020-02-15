@@ -35,10 +35,10 @@
                         <a class="menu nav-link" href="#">Contácta con nostros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="login.jsp" role="button">Iniciar sesión</a>
+                        <a class="nav-link btn btn-outline-secondary" href="jsp/login.jsp" role="button">Iniciar sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user/registro_user.jsp">Registrarse</a>
+                        <a class="nav-link" href="jsp/user/registro_user.jsp">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -89,13 +89,7 @@
             </div>
         </main>   
 
-        <div class="fixed-bottom">
-            <footer id="sticky-footer" class="py-2 bg-dark text-white-50">
-                <div class="container text-center">
-                    <small>Copyright &copy; VetUJA</small>
-                </div>
-            </footer>
-        </div>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>
 

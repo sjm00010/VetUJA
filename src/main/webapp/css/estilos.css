@@ -3,75 +3,41 @@
     Author     : sjm00010
 */
 
-/* Parrafos */
-p{
-    margin-bottom: 1.6em;
+/* Cabecera */
+.navbar{
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
+    min-height: 100px;
 }
 
-/* Alineacion para menu y registro */
-.logo-reg{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 97%;
-}
-
-/* Inicio de sesion */
-.user_icon{
-    margin: 1rem;
-}
-
-/* Fondo de la barra */
-.barra-menu{
-    background: #D8D8D8;
-    padding: 0.5rem 0;
-}
-
-/* Distribucion de la barra */
-.barra{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 97%;
-}
-
-/* Distribucion del menu */
-.menu ul{
-    margin: 0 2rem;
-    padding: 0;
-    list-style: none;
-}
-
-/* Distribucion de las opciones del menu */
-.menu ul li{
-    display: inline-block;
-}
-
-/* Distribucion de las opciones del menu */
-.menu ul li a{
+.menu{ 
+    color: #1a1a1a;
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
+    margin: 0 0.5rem;
     transition: all 0.3s linear;
     border-radius: 5px;
 }
-
-/* Animacion del menu */
-.menu ul li a:hover{
+.menu:hover{ 
+    color: #1a1a1a;
     background: #424242;
     color: white;
 }
 
+.logo-brand{
+    min-height: 70px;
+    max-height: 80px; 
+}
+
 /* Distribucion del contenido*/
 .principal{
-    width: 85%;
-    max-width: 85%;
+    margin: 3rem auto;
+}
+.registro{
     margin: 3rem auto;
 }
 
-.pie{
-    background: #2E2E2E;
-    padding: 2rem 0;
-    text-align: center;
-    margin-top: 4rem;
+.registro a{
+    text-decoration:none;
     color: white;
 }

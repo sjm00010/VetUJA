@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="registro">
-                <!--para el formulario type="submit"-->
+                <!--para el formulario hace falta boton type="submit"-->
                 <a class="eBoton btn btn-secondary btn-lg btn-block" href="../../index.jsp">Registrarse</a>
             </div>
         </form>

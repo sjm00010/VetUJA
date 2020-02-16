@@ -47,3 +47,10 @@
     text-decoration:none;
     color: white;
 }
+
+.user{
+    margin: 0 0.5rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}

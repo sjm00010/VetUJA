@@ -52,9 +52,8 @@
                     <h3 class="text-center"><label for="exampleInputPassword1">Contraseña</label></h3>
                     <input type="password" class="form-control" id="InputPassword">
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block espaciado">
-                    <a class="eBoton" href="#">Iniciar sesión</a>
-                </button>
+                <!--para el formulario hace falta boton type="submit"-->
+                <a class="eBoton btn btn-primary btn-lg btn-block espaciado" href="user/index_user.jsp">Iniciar sesión</a>
             </form>
         </div>
         

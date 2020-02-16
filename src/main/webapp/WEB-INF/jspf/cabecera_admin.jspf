@@ -14,13 +14,13 @@
                     <a class="menu nav-link" href="inicio_admin.jsp">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu nav-link" href="#">Mascotas</a>
+                    <a class="menu nav-link" href="mascotas.jsp">Mascotas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu nav-link" href="#">Citas</a>
+                    <a class="menu nav-link" href="citas.jsp">Citas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu nav-link" href="#">Clientes</a>
+                    <a class="menu nav-link" href="clientes.jsp">Clientes</a>
                 </li>
                 <li class="nav-item">
                     <a class="menu nav-link" href="#">Contácta con nostros</a>

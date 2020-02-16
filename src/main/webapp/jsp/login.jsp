@@ -54,7 +54,7 @@
                 </div>
                 <!--para el formulario hace falta boton type="submit"-->
                 <a class="eBoton btn btn-primary btn-lg btn-block espaciado" href="user/inicio_user.jsp">Iniciar sesión</a>
-                <a class="eBoton btn btn-secondary btn-lg btn-block espaciado" href="admin/inicio_admin.jsp">Iniciar sesión veterinario</a>
+                <a class="eBoton btn btn-secondary btn-lg btn-block" href="admin/inicio_admin.jsp">Iniciar sesión veterinario</a>
             </form>
         </div>
         

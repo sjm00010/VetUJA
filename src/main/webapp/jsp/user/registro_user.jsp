@@ -73,11 +73,15 @@
                         <input class="form-control" type="date" value="2020-02-15" id="example-date-input">
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                     <div class="form-group">
                         <label for="FormControlInput">Dirección</label>
                         <input type="text" class="form-control" id="direccion" placeholder="Ej. Avenida de Madrid, 5">
                     </div>
+                </div>
+                <div class="col-6">
+                    <label for="foto">Foto</label>
+                    <input type="file" class="form-control-file" id="foto">
                 </div>
             </div>
             <h2><small class="text-muted">Datos de usuario</small></h2>
@@ -90,19 +94,19 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="FormControlInput">Correo electrónico</label>
+                        <label for="email">Correo electrónico</label>
                         <input type="text" class="form-control" id="email" placeholder="nombre@ejemplo.es">
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="FormControlInput">Contraseña</label>
+                        <label for="pass">Contraseña</label>
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Contraseña">
+                                <input type="text" class="form-control" id="pass" placeholder="Contraseña">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Repite la contraseña">
+                                <input type="text" class="form-control" id="pass2" placeholder="Repite la contraseña">
                             </div>
                         </div>
                     </div>

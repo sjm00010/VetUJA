@@ -1,0 +1,33 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <a class="navbar-brand" href="index_user.jsp"><img src="../../img/Logo.png" alt="Logo" class="logo-brand"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><img src="../../img/menu.png" alt="menu_bar"/></span>   
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="menu nav-link" href="index_user.jsp">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="menu nav-link" href="mascotas.jsp">Mascotas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="menu nav-link" href="citas.jsp">Citas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="menu nav-link" href="#">Contácta con nostros</a>
+                </li>
+            </ul>
+            <div class="user">
+                <img class="logo-brand rounded-circle" src="../../img/algarcia.jpg" alt="user_foto"/> 
+                <h5 class="user">¡Hola Angel Luis!</h5>
+                <a href="../../index.jsp"><img src="../../img/logout.png" alt="Logo"/></a>
+            </div>
+        </div>
+    </div>
+</nav>

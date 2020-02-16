@@ -30,14 +30,27 @@
 }
 
 /* Distribucion del contenido*/
-.principal{
-    margin: 3rem auto;
-}
-.registro{
+.espaciado{
     margin: 3rem auto;
 }
 
-.registro a{
+.espMen{
+    margin: 1.5rem auto;
+}
+
+.eBoton{
     text-decoration:none;
     color: white;
+}
+
+.eBoton:hover{
+    text-decoration:none;
+    color: white;
+}
+
+.user{
+    margin: 0 0.5rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
 }

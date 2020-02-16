@@ -33,7 +33,7 @@
                         <a class="menu nav-link" href="../../index.jsp">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="menu nav-link" href="#">Contácta con nostros</a>
+                        <a class="menu nav-link" href="../contacto.jsp">Contácta con nostros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-secondary" href="../login.jsp" role="button">Iniciar sesión</a>

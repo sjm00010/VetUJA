@@ -24,14 +24,15 @@
     <body>
         <div class="container espaciado">
             <div class="user">
+
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Fecha, mascota, ..." aria-label="Search">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
                 <div>
                     <a class="btn btn-outline-success" href="#">Nueva cita</a>
                     <a class="btn btn-outline-danger" href="#">Borrar cita</a>
                 </div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Fecha, mascota, ..." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
             </div>
             <table class="table espMen">
                 <thead class="thead-dark">

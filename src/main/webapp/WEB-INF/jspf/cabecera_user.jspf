@@ -20,7 +20,7 @@
                     <a class="menu nav-link" href="citas.jsp">Citas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu nav-link" href="contacto.jsp">Contácta con nostros</a>
+                    <a class="menu nav-link" href="contacto.jsp">Contácta con nosotros</a>
                 </li>
             </ul>
             <div class="user">

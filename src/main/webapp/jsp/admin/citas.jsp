@@ -1,6 +1,6 @@
-<%--
+<%-- 
     Document   : citas
-    Created on : 16-feb-2020, 21:46:43
+    Created on : 16-feb-2020, 13:01:52
     Author     : sjm00010
 --%>
 
@@ -19,29 +19,27 @@
     </head>
 
     <!--Cabecera-->
-    <%@include file="../../WEB-INF/jspf/cabecera_user.jspf" %>
+    <%@include file="../../WEB-INF/jspf/cabecera_admin.jspf" %>
 
     <body>
         <div class="container espaciado">
             <div class="user">
-
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Fecha, mascota, ..." aria-label="Search">
                     <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
                 <div>
-                    <a class="btn btn-outline-success" href="#">Nueva cita</a>
                     <a class="btn btn-outline-danger" href="#">Borrar cita</a>
                 </div>
             </div>
-            <table class="table espMen">
+            <table class="table table-striped espMen">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Hora</th>
                         <th scope="col">Veterinario</th>
-                        <th scope="col">Mascota</th>
+                        <th scope="col">Cliente</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,35 +48,56 @@
                         <td>08/02/2020</td>
                         <td>16:30</td>
                         <td>José Ramón</td>
-                        <td>Remy</td>
+                        <td>Angel Luis</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>06/05/2020</td>
                         <td>10:30</td>
                         <td>Flo</td>
-                        <td>Remy</td>
+                        <td>Angel Luis</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
                         <td>15/07/2020</td>
                         <td>9:00</td>
                         <td>José Rámon</td>
-                        <td>Misifu</td>
+                        <td>Angel Luis</td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
                         <td>15/07/2020</td>
                         <td>17:10</td>
                         <td>José Rámon</td>
-                        <td></td>
+                        <td>Angel Luis</td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
                         <td>01/09/2020</td>
                         <td>12:15</td>
                         <td>Flo</td>
-                        <td>Misifu</td>
+                        <td>Angel Luis</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>15/07/2020</td>
+                        <td>11:00</td>
+                        <td>José Rámon</td>
+                        <td>Paco</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>15/07/2020</td>
+                        <td>17:10</td>
+                        <td>Flo</td>
+                        <td>Juan</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>05/09/2020</td>
+                        <td>12:00</td>
+                        <td>Flo</td>
+                        <td>Sergio</td>
                     </tr>
                 </tbody>
             </table>

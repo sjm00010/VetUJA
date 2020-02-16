@@ -1,14 +1,14 @@
 <%-- 
-    Document   : login
-    Created on : 15-feb-2020, 23:14:06
-    Author     : PC
+    Document   : contacto
+    Created on : 16-feb-2020, 13:43:30
+    Author     : sjm00010
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Iniciar sesión</title>
+        <title>VetUJA</title>
         <link rel="icon" type="image/vnd.microsoft.icon" href="../img/icono.png">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -32,7 +32,7 @@
                         <a class="menu nav-link" href="../index.jsp">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="menu nav-link" href="contacto.jsp">Contácta con nostros</a>
+                        <a class="nav-link btn btn-outline-secondary" href="login.jsp" role="button">Iniciar sesión</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user/registro_user.jsp">Registrarse</a>
@@ -41,23 +41,24 @@
             </div>
         </div>
     </nav>
+
     <body>
-        <div class="container espaciado">
-            <form>
-                <div class="form-group">
-                    <h3 class="text-center"><label for="InputUser">Usuario</label></h3>
-                    <input type="text" class="form-control" id="InputUser" aria-describedby="Usuario">
-                </div>
-                <div class="form-group">
-                    <h3 class="text-center"><label for="exampleInputPassword1">Contraseña</label></h3>
-                    <input type="password" class="form-control" id="InputPassword">
-                </div>
-                <!--para el formulario hace falta boton type="submit"-->
-                <a class="eBoton btn btn-primary btn-lg btn-block espaciado" href="user/inicio_user.jsp">Iniciar sesión</a>
-                <a class="eBoton btn btn-secondary btn-lg btn-block" href="admin/inicio_admin.jsp">Iniciar sesión veterinario</a>
-            </form>
+        <div class="card bg-dark" style="max-width: 100%">
+            <img src="../img/contacto.png" class="card-img" alt="mapa">
+            <div class="card-img-overlay">
+                <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                    <div class="card-header text-dark"><strong>VetUJA</strong></div>
+                        <div class="card-body text-dark">
+                            <h5 class="card-title">Visitanos</h5>
+                            <p class="card-text">Campus Las Lagunillas</p>
+                            <p class="card-text">Jaén (Jaén) 23009</p>
+                            <p class="card-text">Email: vetuja@ujaen.es</p>
+                            <p class="card-text">Tlf: 953 111 111</p>
+                        </div>
+                    </div>
+            </div>
         </div>
-        
-        <%@include file="../WEB-INF/jspf/footer.jspf" %>
     </body>
+
+    <%@include file="../WEB-INF/jspf/footer.jspf" %>
 </html>

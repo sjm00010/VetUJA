@@ -53,7 +53,8 @@
                     <input type="password" class="form-control" id="InputPassword">
                 </div>
                 <!--para el formulario hace falta boton type="submit"-->
-                <a class="eBoton btn btn-primary btn-lg btn-block espaciado" href="user/index_user.jsp">Iniciar sesión</a>
+                <a class="eBoton btn btn-primary btn-lg btn-block espaciado" href="user/inicio_user.jsp">Iniciar sesión</a>
+                <a class="eBoton btn btn-secondary btn-lg btn-block espaciado" href="admin/inicio_admin.jsp">Iniciar sesión veterinario</a>
             </form>
         </div>
         

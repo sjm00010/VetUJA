@@ -33,7 +33,23 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Localidad :</strong> Jáen</li>
+                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
+                        <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="modifCliente.jsp" class="card-link btn btn-outline-primary">Editar</a>
+                        <a href="#" class="card-link btn btn-outline-danger">Borrar</a>
+                    </div>
+                </div>
+                <div class="card col-sm-5 carta" style="width: 18rem;">
+                    <img src="../../img/algarcia.jpg" class="card-img-top" alt="foto usuario">         
+                    <div class="card-body">
+                        <h5 class="card-title">Ángel Luis</h5>
+                        <p class="card-text">García Fernández</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
+                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
                         <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
                     </ul>
                     <div class="card-body">
@@ -49,7 +65,7 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Localidad :</strong> Jáen</li>
+                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
                         <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
                     </ul>
                     <div class="card-body">
@@ -65,23 +81,7 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Localidad :</strong> Jáen</li>
-                        <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link btn btn-outline-primary">Editar</a>
-                        <a href="#" class="card-link btn btn-outline-danger">Borrar</a>
-                    </div>
-                </div>
-                <div class="card col-sm-5 carta" style="width: 18rem;">
-                    <img src="../../img/algarcia.jpg" class="card-img-top" alt="foto usuario">         
-                    <div class="card-body">
-                        <h5 class="card-title">Ángel Luis</h5>
-                        <p class="card-text">García Fernández</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Localidad :</strong> Jáen</li>
+                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
                         <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
                     </ul>
                     <div class="card-body">

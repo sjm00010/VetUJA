@@ -28,9 +28,6 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Fecha, mascota, ..." aria-label="Search">
                     <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
-                <div>
-                    <a class="btn btn-outline-danger" href="#">Borrar cita</a>
-                </div>
             </div>
             <table class="table table-striped espMen">
                 <thead class="thead-dark">
@@ -40,6 +37,8 @@
                         <th scope="col">Hora</th>
                         <th scope="col">Veterinario</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col"></th>
+                
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +48,7 @@
                         <td>16:30</td>
                         <td>José Ramón</td>
                         <td>Angel Luis</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -56,6 +56,7 @@
                         <td>10:30</td>
                         <td>Flo</td>
                         <td>Angel Luis</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
@@ -63,6 +64,7 @@
                         <td>9:00</td>
                         <td>José Rámon</td>
                         <td>Angel Luis</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
@@ -70,6 +72,7 @@
                         <td>17:10</td>
                         <td>José Rámon</td>
                         <td>Angel Luis</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
@@ -77,6 +80,7 @@
                         <td>12:15</td>
                         <td>Flo</td>
                         <td>Angel Luis</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">6</th>
@@ -84,6 +88,7 @@
                         <td>11:00</td>
                         <td>José Rámon</td>
                         <td>Paco</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">7</th>
@@ -91,6 +96,7 @@
                         <td>17:10</td>
                         <td>Flo</td>
                         <td>Juan</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                     <tr>
                         <th scope="row">8</th>
@@ -98,6 +104,7 @@
                         <td>12:00</td>
                         <td>Flo</td>
                         <td>Sergio</td>
+                        <td><img src="../../img/borrar.png" alt="Borrar"/></td>
                     </tr>
                 </tbody>
             </table>

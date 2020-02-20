@@ -3,6 +3,10 @@
     Author     : sjm00010
 */
 
+.container {
+  max-width: 70%;
+}
+
 /* Cabecera */
 .navbar{
     background-color: #ffffff;
@@ -31,7 +35,7 @@
 
 /* Distribucion del contenido*/
 .espaciado{
-    margin: 3rem auto;
+    margin: 2rem auto;
 }
 
 .espMen{

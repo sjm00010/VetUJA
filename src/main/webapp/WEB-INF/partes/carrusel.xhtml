@@ -1,0 +1,41 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <h:graphicImage value = "#{resource['img/otros/carrusel1.png']}" class="d-block w-100" alt="noticia"/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Llega el coronavirus</h5>
+                        <p>Protege a tu mascocota contra el coronavirus, consulta con nuestros especialistas.</p>
+                    </div>
+            </div>
+            <div class="carousel-item">
+                <h:graphicImage value = "#{resource['img/otros/carrusel2.png']}" class="d-block w-100" alt="noticia"/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Un equipo de profesionales</h5>
+                        <p>En nuestra clínica tu mascota solo recibira los mejores cuidados.</p>
+                    </div>
+            </div>
+            <div class="carousel-item">
+                <h:graphicImage value = "#{resource['img/otros/carrusel3.png']}" class="d-block w-100" alt="noticia"/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>¡Registrate!</h5>
+                        <p>Empieza a disfrutar de los servicios que tiene nuestra web.</p>
+                    </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</ui:composition>

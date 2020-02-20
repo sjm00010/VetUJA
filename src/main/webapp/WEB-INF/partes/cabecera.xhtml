@@ -3,28 +3,29 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
 
-            <a class="navbar-brand" href="index.jsp">
+            <h:link class="navbar-brand" outcome="inicio.xhtml">
                 <h:graphicImage value = "#{resource['img/iconos/logo.png']}" alt="Logo" class="logo-brand"/>
-            </a>
+            </h:link>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
-                    <h:graphicImage value = "#{resource['img/iconos/menu.png']}"/>
+                    <h:graphicImage value = "#{resource['img/iconos/menu.png']}" alt="icono menu"/>
                 </span>   
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="menu nav-link" href="index.jsp">Inicio</a>
+                        <h:link class="menu nav-link" outcome="inicio.xhtml">Inicio</h:link>
                     </li>
                     <li class="nav-item">
-                        <a class="menu nav-link" href="jsp/contacto.jsp">Contacta con nosotros</a>
+                        <h:link class="menu nav-link" outcome="contacto.xhtml">Contacta con nosotros</h:link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary" href="jsp/login.jsp" role="button">Iniciar sesión</a>
+                        <h:link class="nav-link btn btn-outline-secondary" outcome="inicio.xhtml" role="button">Iniciar sesión</h:link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="jsp/user/registro_user.jsp">Registrarse</a>
+                        <h:link class="nav-link" outcome="inicio.xhtml">Registrarse</h:link>
                     </li>
                 </ul>
             </div>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="nomPag">
+        Registro
+    </ui:define>
+
+    <ui:define name="cuerpo">
+        <h:form enctype="multipart/form-data">
+            <h1 class="text-center"><u>Registro</u></h1>
+            <h2><small class="text-muted">Datos personales</small></h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <div class="row">
+                            <div class="col">
+                                <h:inputText class="form-control" id="nombre" a:placeholder="Nombre"/>
+                            </div>
+                            <div class="col">
+                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="date">Fecha de nacimiento</label>
+                        <h:inputText class="form-control" a:type="date" id="fnac" value="2020-02-15"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="foto">Foto</label>
+                    <h:inputFile class="form-control-file" id="foto" />
+                </div>
+            </div>
+            <h2><small class="text-muted">Datos de usuario</small></h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="FormControlInput">Usuario</label>
+                        <h:inputText class="form-control" id="usuario" a:placeholder="Usuario"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <h:inputText class="form-control" a:type="date" id="email" a:placeholder="nombre@ejemplo.es"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="pass">Contraseña</label>
+                        <div class="row">
+                            <div class="col">
+                                <h:inputText class="form-control" id="pass" a:placeholder="Contraseña"/>
+                            </div>
+                            <div class="col">
+                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="espMen">
+                <!--para el formulario hace falta boton type="submit"-->
+                <h:link class="eBoton btn btn-secondary btn-lg btn-block" outcome="inicio.xhtml">Registrarse</h:link>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

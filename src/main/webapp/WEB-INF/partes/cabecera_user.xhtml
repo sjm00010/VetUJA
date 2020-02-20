@@ -6,7 +6,7 @@
             <h:link class="navbar-brand" outcome="inicio.xhtml">
                 <h:graphicImage value = "#{resource['img/iconos/logo.png']}" alt="Logo" class="logo-brand"/>
             </h:link>
-            
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <h:graphicImage value = "#{resource['img/iconos/menu.png']}" alt="icono menu"/>
@@ -15,19 +15,26 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <h:link class="menu nav-link" outcome="inicio.xhtml">Inicio</h:link>
                     </li>
                     <li class="nav-item">
-                        <h:link class="menu nav-link" outcome="contacto.xhtml">Contacta con nosotros</h:link>
+                        <h:link class="menu nav-link" outcome="inicio.xhtml">Mascotas</h:link>
                     </li>
                     <li class="nav-item">
-                        <h:link class="nav-link btn btn-outline-secondary" outcome="login.xhtml" role="button">Iniciar sesión</h:link>
+                        <h:link class="menu nav-link" outcome="inicio.xhtml">Citas</h:link>
                     </li>
                     <li class="nav-item">
-                        <h:link class="nav-link" outcome="registro.xhtml">Registrarse</h:link>
+                        <h:link class="menu nav-link" outcome="inicio.xhtml">Contacta con nosotros</h:link>
                     </li>
                 </ul>
+                <div class="user">
+                    <h:graphicImage value = "#{resource['img/usuarios/algarcia.jpg']}" alt="user_foto" class="logo-brand rounded-circle"/>
+                    <h5 class="user">¡Hola Ángel Luis!</h5>
+                    <h:link class="nav-link" outcome="/inicio/inicio.xhtml">
+                        <h:graphicImage value = "#{resource['img/iconos/logout.png']}" alt="logout"/>
+                    </h:link>
+                </div>
             </div>
         </div>
     </nav>

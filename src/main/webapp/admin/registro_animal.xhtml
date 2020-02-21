@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="nomPag">
+        Registro animal
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <ui:include src="../WEB-INF/partes/cabecera_admin.xhtml" />
+    </ui:define>
+
+    <ui:define name="cuerpo">
+        <h:form enctype="multipart/form-data">
+            <h1 class="text-center"><u>Registro animal</u></h1>
+            <h2><small class="text-muted">Datos de la mascota</small></h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="ci">Código de identificacion</label>
+                        <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Pipo"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="raza">Raza</label>
+                        <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="sexo">Sexo</label>
+                    
+                    <h:selectOneMenu>
+                        <f:selectItem itemValue="1" itemLabel="Macho" />
+                        <f:selectItem itemValue="2" itemLabel="Hembra" />
+                    </h:selectOneMenu>
+
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="fechanac">Fecha de nacimiento</label>
+                        <h:inputText class="form-control" a:type="date" id="fechanac" value="2000-01-01"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="foto">Foto de la mascota</label>
+                    <h:inputFile class="form-control-file" id="foto"/>
+                </div>
+            </div>
+            <h2><small class="text-muted">Datos del dueño</small></h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <h:inputText class="form-control" id="dni" a:placeholder="1111111A"/>
+                    </div>
+                </div>
+            </div>
+            <div class="espMen">
+                <!--para el formulario hace falta boton type="submit"-->
+                <h:link class="eBoton btn btn-secondary btn-lg btn-block" outcome="inicio.xhtml">Registrar animal</h:link>
+            </div>
+        </h:form>
+
+        <ui:include src="../WEB-INF/partes/footer.xhtml" />
+    </ui:define>
+
+</ui:composition>

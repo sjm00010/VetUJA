@@ -14,11 +14,8 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <div>
-            <a class="btn btn-outline-success" href="registro_animal.jsp">Nueva mascota</a>
-            <a class="btn btn-outline-danger" href="#">Eliminar mascota</a>
-        </div>
-        <div class="card mb-3 espMen" style="max-width: 100%;">
+        <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="mascotas.xhtml" value="Nueva mascota" />
+        <div class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img"/>
@@ -29,7 +26,8 @@
                         <p class="card-text h4"><strong>Código de identificación :</strong> 938000000455987</p>
                         <p class="card-text h4"><strong>Edad :</strong> 5 años</p>
                         <p class="card-text h4"><strong>Especie :</strong> Rata</p>
-                        <h:link class="espaciado btn btn-info btn-lg btn-block" outcome="detalle_mascota">+ Información</h:link>
+                        <h:link class="espaciado btn btn-info btn-lg btn-block" outcome="detalle_mascota" value="+ Información"/>
+                        <h:link class="btn btn-outline-danger" outcome="mascotas.xhtml" value="Eliminar mascota" />
                     </div>
                 </div>
             </div>
@@ -45,7 +43,8 @@
                         <p class="card-text h4"><strong>Código de identificación :</strong> 938000159457532</p>
                         <p class="card-text h4"><strong>Edad :</strong> 10 años</p>
                         <p class="card-text h4"><strong>Raza :</strong> Gato siames</p>
-                        <a href="#" class="espaciado btn btn-info btn-lg btn-block">+ Información</a>
+                        <h:link class="espaciado btn btn-info btn-lg btn-block" outcome="mascotas.xhtml" value="+ Información" />
+                        <h:link class="btn btn-outline-danger" outcome="mascotas.xhtml" value="Eliminar mascota" />
                     </div>
                 </div>
             </div>
@@ -61,7 +60,8 @@
                         <p class="card-text h4"><strong>Código de identificación :</strong> 938000777000666</p>
                         <p class="card-text h4"><strong>Edad :</strong> 4 años</p>
                         <p class="card-text h4"><strong>Raza :</strong> Perro Gambino</p>
-                        <a href="#" class="espaciado btn btn-info btn-lg btn-block">+ Información</a>
+                        <h:link class="espaciado btn btn-info btn-lg btn-block" outcome="mascotas.xhtml" value="+ Información" />
+                        <h:link class="btn btn-outline-danger" outcome="mascotas.xhtml" value="Eliminar mascota" />
                     </div>
                 </div>
             </div>

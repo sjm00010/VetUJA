@@ -13,7 +13,7 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <div class="card mb-3 espMen" style="max-width: 100%;">
+        <div class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img"/>
@@ -32,24 +32,27 @@
                 </div>
             </div>
         </div>
-        <div class="card border-info mb-3" style="max-width: 100%;">
-            <div class="card-header">Datos del dueño</div>
-            <div class="card-body text-info">
-                <h5 class="card-title">Ángel Luis García Fernández</h5>
-                <p class="card-text"><strong>Dirección :</strong> Campus Las Lagunillas</p>
-                <p class="card-text"><strong>Localidad :</strong> Jaén</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card border-info mb-3">
+                    <div class="card-header">Datos del dueño</div>
+                    <div class="card-body text-info">
+                        <h5 class="card-title">Ángel Luis García Fernández</h5>
+                        <p class="card-text"><strong>Dirección :</strong> Campus Las Lagunillas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card border-success mb-3">
+                    <div class="card-header">Datos del veterinario</div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">José Ramón Balsas Almagro</h5>
+                        <p class="card-text"><strong>Nº Colegiado :</strong> AS0489</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card border-success mb-3" style="max-width: 100%;">
-            <div class="card-header">Datos del veterinario</div>
-            <div class="card-body text-success">
-                <h5 class="card-title">José Ramón Balsas Almagro</h5>
-                <p class="card-text"><strong>Nº Colegiado :</strong> AS0489</p>
-            </div>
-        </div>
-        <div class="col-md-8" style="max-width: 100%;">
-            <h:link class="espaciado btn btn-info btn-lg btn-block" outcome="mascotas.xhtml"> Volver a Mascotas</h:link>
-        </div>
+        <h:link class="espPie btn btn-outline-dark float-right" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
     </ui:define>
 
 </ui:composition>

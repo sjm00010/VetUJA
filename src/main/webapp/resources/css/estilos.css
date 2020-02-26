@@ -36,11 +36,16 @@
 
 /* Distribucion del contenido*/
 .espaciado{
-    margin: 2rem auto;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
 }
 
-.espMen{
-    margin: 1.5rem auto;
+.espTop{
+    margin-top: 2rem;
+}
+
+.espPie{
+    margin-bottom: 3rem;
 }
 
 .eBoton{

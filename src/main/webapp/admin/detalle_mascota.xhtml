@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="../WEB-INF/template/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="nomPag">
+        Detalle Mascota
+    </ui:define>
+
+    <ui:define name="cabecera">
+        <ui:include src="../WEB-INF/partes/cabecera_admin.xhtml" />
+    </ui:define>
+
+    <ui:define name="cuerpo">
+        <h:link class="btn btn-outline-secondary btn-lg mb-3" outcome="detalle_mascota.xhtml">Editar información</h:link>
+        <div class="card mb-3" style="max-width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">Remy</h3>
+                        <p class="card-text h4"><strong>Código de identificación :</strong> 938000000455987</p>
+                        <p class="card-text h4"><strong>Fecha de nacimiento :</strong> 14/02/2015</p>
+                        <p class="card-text h4"><strong>Especie :</strong> Rata</p>
+                        <p class="card-text h4"><strong>Raza :</strong> Doméstica</p>
+                        <p class="card-text h4"><strong>Sexo :</strong> Macho</p>
+                        <p class="card-text h4"><strong>Altura :</strong> 34cm</p> 
+                        <p class="card-text h4"><strong>Peso :</strong> 1300g</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card border-info mb-3">
+                    <div class="card-header">Datos del dueño</div>
+                    <div class="card-body text-info">
+                        <h5 class="card-title">Ángel Luis García Fernández</h5>
+                        <p class="card-text"><strong>Dirección :</strong> Campus Las Lagunillas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card border-success mb-3">
+                    <div class="card-header">Datos del veterinario</div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">José Ramón Balsas Almagro</h5>
+                        <p class="card-text"><strong>Nº Colegiado :</strong> AS0489</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h:link class="espPie btn btn-outline-dark float-right" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
+    </ui:define>
+
+</ui:composition>

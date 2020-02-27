@@ -1,4 +1,4 @@
-package com.uja.vetuja.resources;
+package com.vetuja.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

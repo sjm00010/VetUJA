@@ -23,25 +23,25 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="ci">Código de identificacion</label>
-                        <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" />
+                        <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" value="938000000455987" />
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Pipo"/>
+                        <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Pipo" value="Remy"/>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="raza">Especie</label>
-                        <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés"/>
+                        <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés" value="Rata"/>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="sexo">Sexo</label>
-                        <h:selectOneMenu class="form-control" id="sexo">
+                        <label for="sexo"> Sexo </label>
+                        <h:selectOneMenu class="form-control" id="sexo" value="1">
                             <f:selectItem itemValue="1" itemLabel="Macho" />
                             <f:selectItem itemValue="2" itemLabel="Hembra" />
                         </h:selectOneMenu>
@@ -50,7 +50,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="fechanac">Fecha de nacimiento</label>
-                        <h:inputText class="form-control" a:type="date" id="fechanac"/>
+                        <h:inputText class="form-control" a:type="date" id="fechanac" value="2015-02-14"/>
                     </div>
                 </div>
                 <div class="col-6">
@@ -68,13 +68,13 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="dni">DNI (sin letra)</label>
-                        <h:inputText class="form-control" id="dni" a:placeholder="12345678"/>
+                        <h:inputText class="form-control" id="dni" a:placeholder="12345678" value="54215624"/>
                     </div>
                 </div>
             </div>
             <div class="espMen">
                 <!--para el formulario hace falta boton type="submit"-->
-                <h:link class="eBoton btn btn-secondary btn-lg btn-block" outcome="mascotas.xhtml">Registrar animal</h:link>
+                <h:link class="eBoton btn btn-secondary btn-lg btn-block" outcome="detalle_mascota.xhtml">Registrar animal</h:link>
             </div>
         </h:form>
 

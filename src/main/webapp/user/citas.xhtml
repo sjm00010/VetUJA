@@ -14,14 +14,12 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <div class="user">
-            <h:form class="form-inline my-2 my-lg-0">
+        <div class="user mb-3">
+            <h:form class="form-inline my-2 my-lg-0 user">
                 <h:inputText class="form-control mr-sm-2" a:type="search" a:placeholder="Fecha, mascota, ..." a:aria-label="Search"/>
                 <h:button class="btn btn-outline-secondary my-2 my-sm-0" value="Buscar"/>
             </h:form>
-            <div>
-                <h:link class="btn btn-outline-success btn-lg" outcome="citas.xhtml">Nueva cita</h:link>
-            </div>
+            <h:link class="btn btn-outline-success btn-lg" outcome="citas.xhtml">Nueva cita</h:link>
         </div>
         <!--Hace falta cambiar la tabla a jsf cuando tengamos DAO -->
         <table class="table espMen">

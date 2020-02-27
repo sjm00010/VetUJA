@@ -16,78 +16,83 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-            <h:form enctype="multipart/form-data">
-                <h1 class="text-center"><u>Modificación de datos de usuario</u></h1>
-                <h2><small class="text-muted">Datos personales</small></h2>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="FormControlInput">Nombre completo</label>
-                            <div class="row">
-                                <div class="col">
-                                    <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="Ángel Luis" />
-                                </div>
-                                <div class="col">
-                                    <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="García Fernández" />
-                                </div>
+        <h:form enctype="multipart/form-data">
+            <h1 class="text-center"><u>Modificación de datos de usuario</u></h1>
+            <h2><small class="text-muted">Datos personales</small></h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="FormControlInput">Nombre completo</label>
+                        <div class="row">
+                            <div class="col">
+                                <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="Ángel Luis" />
+                            </div>
+                            <div class="col">
+                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="García Fernández" />
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="FormControlInput">DNI</label>
-                            <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value ="54215624R" />
-                        </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="FormControlInput">DNI</label>
+                        <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value ="54215624R" />
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="FormControlInput">Fecha de nacimiento</label>
-                            <h:inputText class="form-control" a:type="date" id="example-date-input" value="1978-06-17"/>
-                        </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="FormControlInput">Fecha de nacimiento</label>
+                        <h:inputText class="form-control" a:type="date" id="example-date-input" value="1978-06-17"/>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="FormControlInput">Dirección</label>
-                            <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="Campus Las Lagunillas"/>
-                        </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="FormControlInput">Dirección</label>
+                        <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="Campus Las Lagunillas"/>
                     </div>
-                    <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <div>
                         <label for="foto">Foto</label>
-                        <h:inputFile class="form-control-file" id="foto" />
+                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
+                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
+                                        style="margin-left: 1%;"/>
+                    </div>
+                    <h:inputFile class="form-control-file" id="foto" />
+                </div>
+            </div>
+            <h2><small class="text-muted">Datos de usuario</small></h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="FormControlInput">Usuario</label>
+                        <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="algarcia"/>
                     </div>
                 </div>
-                <h2><small class="text-muted">Datos de usuario</small></h2>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="FormControlInput">Usuario</label>
-                            <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="algarcia"/>
-                        </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="algarcia@ujaen.es"/>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="algarcia@ujaen.es"/>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="pass">Contraseña</label>
-                            <div class="row">
-                                <div class="col">
-                                    <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="contrasenaDificil2"/>
-                                </div>
-                                <div class="col">
-                                    <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="contrasenaDificil2"/>
-                                </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="pass">Contraseña</label>
+                        <div class="row">
+                            <div class="col">
+                                <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="contrasena"/>
+                            </div>
+                            <div class="col">
+                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="contrasena"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="espMen">
-                    <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml"> Guardar </h:link>
-                </div>
-            </h:form>
+            </div>
+            <div class="espMen">
+                <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml"> Guardar </h:link>
+            </div>
+        </h:form>
     </ui:define>
 
 </ui:composition>

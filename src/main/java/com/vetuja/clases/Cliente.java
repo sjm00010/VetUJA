@@ -17,6 +17,7 @@ public class Cliente {
     private String apellidos;
     private String direccion;
     private Date fnac;
+    private String foto;
     private String user;
     private String email;
     private String pass;
@@ -25,14 +26,15 @@ public class Cliente {
      * 
      */
     public Cliente() {
-        DNI = 0;
-        nombre = null;
-        apellidos = null;
-        direccion = null;
+        DNI = 00000000;
+        nombre = "Desconocido";
+        apellidos = "Desconocidos";
+        direccion = "Desconocida";
         fnac = null;
-        user = null;
-        email = null;
-        pass = null;
+        foto = "user-default";
+        user = "user";
+        email = "user@user.user";
+        pass = "user";
     }
 
     /**
@@ -41,16 +43,21 @@ public class Cliente {
      * @param apellidos Apellidos del usuario
      * @param direccion Direccion del usuario, local sin provincia y demas
      * @param fnac Fecha de nacimiento
+     * @param foto Nombre de la foto de usuario, dentro de la carpeta 'usuarios'
      * @param user Usuario
+     * @param email Correo electronico
      * @param pass Contraseña
      */
-    public Cliente(int DNI, String nombre, String apellidos, String direccion, Date fnac, String user, String pass) {
+    public Cliente(int DNI, String nombre, String apellidos, String direccion,
+            Date fnac, String foto, String user, String email, String pass) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.fnac = fnac;
+        this.foto = foto;
         this.user = user;
+        this.email = email;
         this.pass = pass;
     }
 
@@ -164,6 +171,20 @@ public class Cliente {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return Nombre de la foto de usuario, dentro de la carpeta 'usuarios'
+     */
+    public String getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto Nombre de la foto de usuario, dentro de la carpeta 'usuarios'
+     */
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
 }

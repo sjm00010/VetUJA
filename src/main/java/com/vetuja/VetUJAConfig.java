@@ -1,4 +1,4 @@
-package com.uja.vetuja;
+package com.vetuja;
 import javax.faces.annotation.FacesConfig;
 
 /**

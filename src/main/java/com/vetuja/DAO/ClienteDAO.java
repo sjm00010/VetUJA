@@ -27,6 +27,18 @@ public class ClienteDAO {
                     54215624, "Ángel Luis", "García Fernández",
                     "Campus Las Lagunillas", fnac, "algarcia.jpg",
                     "algarcia", "algarcia@ujaen.es","contrasena"));
+            clientes.put(53914392, new Cliente(
+                    53914392, "Francis", "Ortega López",
+                    "La lloreria", fnac, "default-user.png",
+                    "fol00008", "fol00008@ujaen.es","paco"));
+            clientes.put(24315522, new Cliente(
+                    24315522, "Alejandro", "Expósito Pontiveros",
+                    "Avenida Andalucía, 1", fnac, "default-user.pngg",
+                    "algarcia", "aep00042@ujaen.es","erasmus"));
+            clientes.put(34209621, new Cliente(
+                    34209621, "ElRisas", "Joker",
+                    "En su casa", fnac, "default-user.png",
+                    "ElPrisas", "algarcia@ujaen.es","sanic"));
         }
     }
 

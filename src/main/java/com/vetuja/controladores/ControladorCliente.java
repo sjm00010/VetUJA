@@ -31,15 +31,15 @@ public class ControladorCliente implements Serializable {
         cliente = new Cliente();
     }
 
-    public Cliente getLibro() {
-        return cliente;
+    public Cliente getCliente(int dni) {
+        return clientesDAO.buscaDNI(dni);
     }
 
-    public void setLibro(Cliente cliente) {
+    public void setSliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public List<Cliente> getLibros() {
+    public List<Cliente> getClientes() {
         return clientesDAO.buscaTodos();
     }
 }

@@ -42,7 +42,7 @@ public class ClienteDAO {
         }
     }
 
-    public Cliente buscaDNI(Integer dni) {
+    public Cliente buscaDNI(int dni) {
         return clientes.get(dni);
     }
 

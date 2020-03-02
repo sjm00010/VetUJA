@@ -33,7 +33,7 @@ public class ClienteDAO {
                     "fol00008", "fol00008@ujaen.es","paco"));
             clientes.put(24315522, new Cliente(
                     24315522, "Alejandro", "Expósito Pontiveros",
-                    "Avenida Andalucía, 1", fnac, "default-user.pngg",
+                    "Avenida Andalucía, 1", fnac, "default-user.png",
                     "algarcia", "aep00042@ujaen.es","erasmus"));
             clientes.put(34209621, new Cliente(
                     34209621, "ElRisas", "Joker",

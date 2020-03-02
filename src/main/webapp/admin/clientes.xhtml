@@ -17,7 +17,7 @@
         <div class="row">
             <ui:repeat value="#{ctrlClientes.clientes}" var="cli">
                 <div class="card col-sm-3 carta mb-3">
-                    <h:graphicImage class="card-img-top" value = "#{resource['img/usuarios/' + cli.foto]}" alt="foto usuario"/>      
+                    <h:graphicImage class="card-img-top" value = "#{resource['img/usuarios/' += cli.foto]}" alt="foto usuario"/>      
                     <div class="card-body">
                         <h5 class="card-title">#{cli.nombre}</h5>
                         <p class="card-text">#{cli.apellidos}</p>

@@ -26,12 +26,12 @@ public class Cliente {
      * 
      */
     public Cliente() {
-        DNI = 00000000;
+        DNI = 11111111;
         nombre = "Desconocido";
         apellidos = "Desconocidos";
         direccion = "Desconocida";
         fnac = null;
-        foto = "user-default";
+        foto = "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png";
         user = "user";
         email = "user@user.user";
         pass = "user";

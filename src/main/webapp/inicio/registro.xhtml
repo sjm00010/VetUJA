@@ -39,20 +39,11 @@
                         <h:inputText class="form-control" a:type="date" id="fnac"/>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="direccion">Dirección</label>
                         <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5"/>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div>
-                        <label for="foto">Foto</label>
-                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
-                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
-                                        style="margin-left: 1%;"/>
-                    </div>
-                    <h:inputText class="form-control" id="foto" a:placeholder="URL"/>
                 </div>
             </div>
             <h2><small class="text-muted">Datos de usuario</small></h2>
@@ -82,8 +73,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div>
+                        <label for="foto">Foto</label>
+                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
+                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
+                                        style="margin-left: 1%;" height="18"/>
+                    </div>
+                    <h:inputText class="form-control" id="foto" a:placeholder="URL"/>
+                </div>
             </div>
-            <div class="espMen">
+            <div class="espaciado">
                 <!--para el formulario hace falta boton type="submit"-->
                 <h:link class="eBoton btn btn-secondary btn-lg btn-block" outcome="inicio.xhtml">Registrarse</h:link>
             </div>

@@ -31,6 +31,9 @@ public class ControladorCliente implements Serializable {
         cliente = new Cliente();
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
     public Cliente getCliente(int dni) {
         return clientesDAO.buscaDNI(dni);
     }
@@ -41,5 +44,9 @@ public class ControladorCliente implements Serializable {
 
     public List<Cliente> getClientes() {
         return clientesDAO.buscaTodos();
+    }
+
+    public void recupera() {
+        cliente = clientesDAO.buscaDNI(cliente.getDNI());
     }
 }

@@ -3,8 +3,16 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <h:head>
+        <f:metadata>
+            <f:viewParam name="isbn" required="true"
+                         value="#{ ctrlClientes.cliente.DNI }"/>
+            <f:viewAction action="#{ ctrlClientes.recupera() }"/>
+        </f:metadata>
+    </h:head>
 
 
     <ui:define name="nomPag">
@@ -20,45 +28,39 @@
             <h1 class="text-center"><u>Modificación de datos de usuario</u></h1>
             <h2><small class="text-muted">Datos personales</small></h2>
             <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="FormControlInput">Nombre completo</label>
-                        <div class="row">
-                            <div class="col">
-                                <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="Ángel Luis" />
-                            </div>
-                            <div class="col">
-                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="García Fernández" />
+                <div class="col-6">
+                    <h:graphicImage class="rounded float-left" value = "#{cli.foto}" alt="foto usuario" height="300"/>
+                </div>
+                <div class="col-6">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="FormControlInput">Nombre completo</label>
+                            <div class="row">
+                                <div class="col">
+                                    <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlClientes.cliente.nombre}" />
+                                </div>
+                                <div class="col">
+                                    <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlClientes.cliente.apellidos}" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">DNI</label>
-                        <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value ="54215624R" />
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="FormControlInput">DNI (sin letra)</label>
+                            <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678" a:value ="#{ctrlClientes.cliente.DNI}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="FormControlInput">Fecha de nacimiento</label>
+                            <h:inputText class="form-control" a:type="date" id="example-date-input" value="#{ctrlClientes.cliente.fnac}" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">Fecha de nacimiento</label>
-                        <h:inputText class="form-control" a:type="date" id="example-date-input" value="1978-06-17"/>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="FormControlInput">Dirección</label>
+                            <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlClientes.cliente.direccion}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">Dirección</label>
-                        <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="Campus Las Lagunillas"/>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div>
-                        <label for="foto">Foto</label>
-                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
-                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
-                                        style="margin-left: 1%;"/>
-                    </div>
-                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="https://www.ujaen.es/departamentos/dinformatica/sites/departamento_dinformatica/files/styles/contact_photo/public/uploads/node_contacto_persona/2019-06/algarcia.jpg?itok=VjL78gZO"/>
                 </div>
             </div>
             <h2><small class="text-muted">Datos de usuario</small></h2>
@@ -88,8 +90,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div>
+                        <label for="foto">Foto</label>
+                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
+                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
+                                        style="margin-left: 1%;"/>
+                    </div>
+                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlClientes.cliente.foto}"/>
+                </div>
             </div>
-            <div class="espMen">
+            <div class="espaciado">
                 <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml"> Guardar </h:link>
             </div>
         </h:form>

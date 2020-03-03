@@ -13,49 +13,53 @@
     <ui:define name="cabecera">
         <ui:include src="../WEB-INF/partes/cabecera_user.xhtml" />
     </ui:define>
-    
-    <ui:define name="cuerpo">
-        <h:form enctype="multipart/form-data">
-            <h1 class="text-center"><u>Nueva cita</u></h1>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="dia">Dia de la cita</label>
-                        <h:inputText class="form-control" a:type="date" id="dia"/>
+
+    <ui:define name="background">
+        <div class="row justify-content-center"
+             style="background-image:url(#{resource['img/otros/cita_background.jpg']}); 
+             background-size: cover; height: 100%; width: 100%">
+            <h:form class="card mt-5" style="height: 430px">
+                <h1 class="text-center display-3 my-2"><u>Nueva cita</u></h1>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group mx-3">
+                            <label for="dia"><strong>Día de la cita</strong></label>
+                            <h:inputText class="form-control" a:type="date" id="dia"/>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group mx-3">
+                            <label for="vet"><strong>Veterinario</strong></label>
+                            <h:selectOneMenu class="form-control" id="vet">
+                                <f:selectItem itemValue="1" itemLabel="José Ramón" />
+                                <f:selectItem itemValue="2" itemLabel="Flo" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group mx-3">
+                            <label for="hora"><strong>Hora</strong></label>
+                            <h:selectOneMenu class="form-control" id="hora">
+                                <f:selectItem itemValue="1" itemLabel="9:00" />
+                                <f:selectItem itemValue="2" itemLabel="10:00" />
+                                <f:selectItem itemValue="2" itemLabel="11:00" />
+                                <f:selectItem itemValue="2" itemLabel="12:00" />
+                                <f:selectItem itemValue="2" itemLabel="13:00" />
+                                <f:selectItem itemValue="2" itemLabel="16:00" />
+                                <f:selectItem itemValue="2" itemLabel="17:00" />
+                                <f:selectItem itemValue="2" itemLabel="18:00" />
+                                <f:selectItem itemValue="2" itemLabel="19:00" />
+                                <f:selectItem itemValue="2" itemLabel="20:00" />
+                            </h:selectOneMenu>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="vet">Veterinario</label>
-                        <h:selectOneMenu class="form-control" id="vet">
-                            <f:selectItem itemValue="1" itemLabel="José Ramón" />
-                            <f:selectItem itemValue="2" itemLabel="Flo" />
-                        </h:selectOneMenu>
-                    </div>
+                <div class="mx-3">
+                    <!--para el formulario hace falta boton type="submit"-->
+                    <h:link class="eBoton btn btn-success btn-lg btn-block" outcome="citas.xhtml">Crear cita</h:link>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="hora">Hora</label>
-                        <h:selectOneMenu class="form-control" id="hora">
-                            <f:selectItem itemValue="1" itemLabel="9:00" />
-                            <f:selectItem itemValue="2" itemLabel="10:00" />
-                            <f:selectItem itemValue="2" itemLabel="11:00" />
-                            <f:selectItem itemValue="2" itemLabel="12:00" />
-                            <f:selectItem itemValue="2" itemLabel="13:00" />
-                            <f:selectItem itemValue="2" itemLabel="16:00" />
-                            <f:selectItem itemValue="2" itemLabel="17:00" />
-                            <f:selectItem itemValue="2" itemLabel="18:00" />
-                            <f:selectItem itemValue="2" itemLabel="19:00" />
-                            <f:selectItem itemValue="2" itemLabel="20:00" />
-                        </h:selectOneMenu>
-                    </div>
-                </div>
-            </div>
-            <div class="espMen">
-                <!--para el formulario hace falta boton type="submit"-->
-                <h:link class="eBoton btn btn-success btn-lg btn-block" outcome="citas.xhtml">Crear cita</h:link>
-            </div>
-        </h:form>
+            </h:form>
+        </div>
     </ui:define>
 
 </ui:composition>

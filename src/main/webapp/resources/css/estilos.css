@@ -34,20 +34,6 @@
     max-height: 80px; 
 }
 
-/* Distribucion del contenido*/
-.espaciado{
-    margin-top: 2rem;
-    margin-bottom: 4.5rem;
-}
-
-.espTop{
-    margin-top: 2rem;
-}
-
-.espPie{
-    margin-bottom: 4rem;
-}
-
 .eBoton{
     text-decoration:none;
     color: white;

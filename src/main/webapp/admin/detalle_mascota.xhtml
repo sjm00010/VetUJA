@@ -15,9 +15,10 @@
     <ui:define name="cuerpo">
         <h:link class="btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml">Editar información</h:link>
         <div class="card mb-3" style="max-width: 100%;">
+            <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img"/>
+                    <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img" style="height: 100%"/>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -36,7 +37,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="card border-info mb-3">
-                    <div class="card-header">Datos del dueño</div>
+                    <div class="card-header lead"><strong>Datos del dueño</strong></div>
                     <div class="card-body text-info">
                         <h5 class="card-title">Ángel Luis García Fernández</h5>
                         <p class="card-text"><strong>Dirección :</strong> Campus Las Lagunillas</p>
@@ -45,7 +46,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="card border-success mb-3">
-                    <div class="card-header">Datos del veterinario</div>
+                    <div class="card-header lead"><strong>Datos del veterinario</strong></div>
                     <div class="card-body text-success">
                         <h5 class="card-title">José Ramón Balsas Almagro</h5>
                         <p class="card-text"><strong>Nº Colegiado :</strong> AS0489</p>
@@ -53,7 +54,9 @@
                 </div>
             </div>
         </div>
-        <h:link class="espPie btn btn-outline-dark float-right" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
+        <div class="justify-content-end">
+            <h:link class="btn btn-outline-dark" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
+        </div>
     </ui:define>
 
 </ui:composition>

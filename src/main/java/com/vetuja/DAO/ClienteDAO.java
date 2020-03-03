@@ -36,7 +36,7 @@ public class ClienteDAO {
             clientes.put(24315522, new Cliente(
                     24315522, "Alejandro", "Expósito Pontiveros",
                     "Avenida Andalucía, 1", fnac,
-                    "https://lh3.googleusercontent.com/proxy/awJOZdGfuF3X3Qf1pgZ2T8lTpPz-aAyWCbb4knCWY-y07VKOlZI028CnF5cQIFP8fYolENs_fBCWnUf2N3SBko701XsMO_3EW-040Iv6ow",
+                    "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png",
                     "aep00047", "aep00042@ujaen.es","erasmus"));
             clientes.put(34209621, new Cliente(
                     34209621, "ElRisas", "Joker",

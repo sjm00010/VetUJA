@@ -4,6 +4,7 @@ import com.vetuja.DAO.ClienteDAO;
 import com.vetuja.clases.Cliente;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -22,6 +23,7 @@ public class ControladorCliente implements Serializable {
 
     //View-Model
     private Cliente cliente;
+    private static final Logger logger = Logger.getLogger(ControladorCliente.class.getName());
 
     public ControladorCliente() {
     }
@@ -47,6 +49,7 @@ public class ControladorCliente implements Serializable {
     }
 
     public void recupera() {
+        logger.info(Integer.toString(cliente.getDNI()));
         cliente = clientesDAO.buscaDNI(cliente.getDNI());
     }
 }

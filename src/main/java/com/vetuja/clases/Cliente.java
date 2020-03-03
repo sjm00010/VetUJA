@@ -6,13 +6,14 @@
 package com.vetuja.clases;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  *
  * @author sjm00010
  */
 public class Cliente {
-    private int DNI;
+    private Integer DNI;
     private String nombre;
     private String apellidos;
     private String direccion;
@@ -21,11 +22,12 @@ public class Cliente {
     private String user;
     private String email;
     private String pass;
-
+    private static final Logger logger = Logger.getLogger(Cliente.class.getName());
     /**
      * 
      */
     public Cliente() {
+        
         DNI = 11111111;
         nombre = "Desconocido";
         apellidos = "Desconocidos";
@@ -64,14 +66,15 @@ public class Cliente {
     /**
      * @return El DNI
      */
-    public int getDNI() {
+    public Integer getDNI() {
         return DNI;
     }
 
     /**
      * @param DNI El DNI a cambiar
      */
-    public void setDNI(int DNI) {
+    public void setDNI(Integer DNI) {
+        logger.info(Integer.toString(DNI));
         this.DNI = DNI;
     }
 

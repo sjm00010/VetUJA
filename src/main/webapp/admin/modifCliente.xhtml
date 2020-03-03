@@ -6,14 +6,6 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:head>
-        <f:metadata>
-            <f:viewParam name="isbn" required="true"
-                         value="#{ ctrlClientes.cliente.DNI }"/>
-            <f:viewAction action="#{ ctrlClientes.recupera() }"/>
-        </f:metadata>
-    </h:head>
-
 
     <ui:define name="nomPag">
         Modificar Cliente
@@ -24,73 +16,75 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+        <h:head>
+            <f:metadata>
+                <f:viewParam name="dni" required="true"
+                             value="#{ ctrlClientes.cliente.DNI }"/>
+                <f:viewAction action="#{ ctrlClientes.recupera() }"/>
+            </f:metadata>
+        </h:head>
         <h:form enctype="multipart/form-data">
             <h1 class="text-center"><u>Modificación de datos de usuario</u></h1>
-            <h2><small class="text-muted">Datos personales</small></h2>
             <div class="row">
-                <div class="col-6">
-                    <h:graphicImage class="rounded float-left" value = "#{cli.foto}" alt="foto usuario" height="300"/>
+                <div class="col-sm-4">
+                    <h:graphicImage class="img-fluid" value = "#{ctrlClientes.cliente.foto}" alt="foto usuario" height="300"/>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-8">
+                    <h2><small class="text-muted">Datos personales</small></h2>
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="FormControlInput">Nombre completo</label>
+                            <label for="nombre">Nombre completo</label>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-sm mb-2">
                                     <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlClientes.cliente.nombre}" />
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlClientes.cliente.apellidos}" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <label for="FormControlInput">DNI (sin letra)</label>
                             <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678" a:value ="#{ctrlClientes.cliente.DNI}" />
                         </div>
+                    </div>
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <label for="FormControlInput">Fecha de nacimiento</label>
                             <h:inputText class="form-control" a:type="date" id="example-date-input" value="#{ctrlClientes.cliente.fnac}" />
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="FormControlInput">Dirección</label>
-                            <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlClientes.cliente.direccion}"/>
-                        </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="FormControlInput">Dirección</label>
+                        <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlClientes.cliente.direccion}"/>
                     </div>
                 </div>
             </div>
             <h2><small class="text-muted">Datos de usuario</small></h2>
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label for="FormControlInput">Usuario</label>
-                        <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="algarcia"/>
+                        <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="#{ctrlClientes.cliente.user}"/>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label for="email">Correo electrónico</label>
-                        <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="algarcia@ujaen.es"/>
+                        <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlClientes.cliente.email}"/>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label for="pass">Contraseña</label>
-                        <div class="row">
-                            <div class="col">
-                                <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="contrasena"/>
-                            </div>
-                            <div class="col">
-                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="contrasena"/>
-                            </div>
-                        </div>
+                        <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlClientes.cliente.pass}"/>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-sm-12">
                     <div>
                         <label for="foto">Foto</label>
                         <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"

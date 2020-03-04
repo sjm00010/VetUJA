@@ -10,7 +10,7 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <h:form enctype="multipart/form-data">
+        <h:form>
             <h1 class="text-center display-3"><u>Registro</u></h1>
             <div class="row card my-3">
                 <h2 class="mb-2 card-header"><small>Datos personales</small></h2>
@@ -39,26 +39,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-2">
-                    <div class="form-group">
+                <div class="col-12 my-2">
                         <label for="direccion">Dirección</label>
                         <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5"/>
-                    </div>
                 </div>
             </div>
             <div class="row card my-3">
                 <h2 class="mb-2 card-header"><small>Datos de usuario</small></h2>
-                <div class="col-12">
+                <div class="col-12 mt-2">
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col">
-                            <label for="FormControlInput">Usuario</label>
-                            <h:inputText class="form-control" id="usuario" a:placeholder="Usuario"/>
+                            <label for="usuario">Usuario</label>
+                            <h:inputText class="form-control mb-2" id="usuario" a:placeholder="Usuario"/>
                         </div>
                         <div class="col">
-                            <div class="form-group">
                                 <label for="email">Correo electrónico</label>
                                 <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es"/>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,11 +73,11 @@
                     </div>
                 </div>
 
-                <div class="col-12 mb-3">
+                <div class="col-12 mb-2">
                     <div>
                         <label for="foto">Foto</label>
                         <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
-                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 200 x 200 píxeles"
+                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
                                         style="margin-left: 0.5rem;" height="18"/>
                     </div>
                     <h:inputText class="form-control" id="foto" a:placeholder="URL"/>

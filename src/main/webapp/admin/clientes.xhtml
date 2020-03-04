@@ -2,7 +2,8 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="nomPag">
         Clientes
@@ -13,73 +14,29 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-       
-            <div class="row">
+
+        <div class="row">
+            <ui:repeat value="#{ctrlClientes.clientes}" var="cli">
                 <div class="card col-sm-3 carta mb-3">
-                    <h:graphicImage class="card-img-top" value = "#{resource['img/usuarios/algarcia.jpg']}" alt="foto usuario"/>      
+                    <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="300"/>      
                     <div class="card-body">
-                        <h5 class="card-title">Ángel Luis</h5>
-                        <p class="card-text">García Fernández</p>
+                        <h5 class="card-title">#{cli.nombre}</h5>
+                        <p class="card-text">#{cli.apellidos}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
-                        <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
+                        <li class="list-group-item"><strong>DNI : </strong>#{cli.DNI}</li>
+                        <li class="list-group-item"><strong>Dirección : </strong>#{cli.direccion}</li>
+                        <li class="list-group-item"><strong>Usuario : </strong>#{cli.user}</li>
                     </ul>
                     <div class="card-body">
-                        <h:link class="card-link btn btn-outline-primary" outcome="/admin/modifCliente.xhtml"> Editar </h:link>
+                        <h:button styleClass="card-link btn btn-outline-primary" value="Editar" outcome="modifCliente.xhtml" >
+                            <f:param name="dni" value="#{cli.DNI}" />
+                        </h:button>
                         <h:link class="card-link btn btn-outline-danger" outcome = "/admin/clientes.xhtml"> Borrar </h:link>
                     </div>
                 </div>
-                <div class="card col-sm-3 carta mb-3">
-                    <h:graphicImage class="card-img-top" value = "#{resource['img/usuarios/algarcia.jpg']}" alt="foto usuario"/>      
-                    <div class="card-body">
-                        <h5 class="card-title">Ángel Luis</h5>
-                        <p class="card-text">García Fernández</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
-                        <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
-                    </ul>
-                    <div class="card-body">
-                        <h:link class="card-link btn btn-outline-primary" outcome="/admin/modifCliente.xhtml"> Editar </h:link>
-                        <h:link class="card-link btn btn-outline-danger" outcome = "/admin/inicio.xhtml"> Borrar </h:link>
-                    </div>
-                </div>
-                <div class="card col-sm-3 carta mb-3">
-                    <h:graphicImage class="card-img-top" value = "#{resource['img/usuarios/algarcia.jpg']}" alt="foto usuario"/>      
-                    <div class="card-body">
-                        <h5 class="card-title">Ángel Luis</h5>
-                        <p class="card-text">García Fernández</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
-                        <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
-                    </ul>
-                    <div class="card-body">
-                        <h:link class="card-link btn btn-outline-primary" outcome="/admin/modifCliente.xhtml"> Editar </h:link>
-                        <h:link class="card-link btn btn-outline-danger" outcome = "/admin/inicio.xhtml"> Borrar </h:link>
-                    </div>
-                </div>
-                <div class="card col-sm-3 carta mb-3">
-                    <h:graphicImage class="card-img-top" value = "#{resource['img/usuarios/algarcia.jpg']}" alt="foto usuario"/>      
-                    <div class="card-body">
-                        <h5 class="card-title">Ángel Luis</h5>
-                        <p class="card-text">García Fernández</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>DNI :</strong> 54215624R</li>
-                        <li class="list-group-item"><strong>Dirección :</strong> Campus Las Lagunillas</li>
-                        <li class="list-group-item"><strong>Usuario :</strong> algarcia</li>
-                    </ul>
-                    <div class="card-body">
-                        <h:link class="card-link btn btn-outline-primary" outcome="/admin/modifCliente.xhtml"> Editar </h:link>
-                        <h:link class="card-link btn btn-outline-danger" outcome = "/admin/inicio.xhtml"> Borrar </h:link>
-                    </div>
-                </div>
-            </div>
+            </ui:repeat>
+        </div>
     </ui:define>
 
 </ui:composition>

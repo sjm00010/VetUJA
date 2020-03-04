@@ -3,8 +3,8 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <ui:define name="nomPag">
@@ -16,82 +16,85 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <h:form enctype="multipart/form-data">
-            <h1 class="text-center"><u>Modificación de datos de usuario</u></h1>
-            <h2><small class="text-muted">Datos personales</small></h2>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="FormControlInput">Nombre completo</label>
-                        <div class="row">
-                            <div class="col">
-                                <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="Ángel Luis" />
+        <h:head>
+            <f:metadata>
+                <f:viewParam name="dni" required="true"
+                             value="#{ ctrlClientes.cliente.DNI }"/>
+                <f:viewAction action="#{ ctrlClientes.recupera() }"/>
+            </f:metadata>
+        </h:head>
+
+        <h:form>
+            <h1 class="text-center display-3"><u>Modificación de datos del cliente</u></h1>
+            <div class="card my-3">
+                <h2 class="card-header"><small>Datos personales</small></h2>
+                <div class="row row-cols-1 row-cols-md-2 my-3">
+                    <div class="col col-md-3">
+                        <h:graphicImage value = "#{ctrlClientes.cliente.foto}" alt="foto usuario" class="card-img ml-2" style="height: 100%;"/>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="col-12 mt-2">
+                            <div class="form-group">
+                                <label for="nombre">Nombre completo</label>
+                                <div class="row row-cols-1 row-cols-md-2">
+                                    <div class="col">
+                                        <h:inputText class="form-control mb-2" id="nombre" a:placeholder="Nombre" a:value="#{ctrlClientes.cliente.nombre}" />
+                                    </div>
+                                    <div class="col">
+                                        <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlClientes.cliente.apellidos}" />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col">
-                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="García Fernández" />
+                        </div>
+                        <div class="col-12">
+                            <div class="row row-cols-1 row-cols-md-2">
+                                <div class="col">
+                                    <label for="dni">DNI (sin letra)</label>
+                                    <h:inputText class="form-control mb-2" id="dni" a:placeholder="Ej. 12345678" a:value ="#{ctrlClientes.cliente.DNI}" />
+                                </div>
+                                <div class="col">
+                                    <label for="fnac">Fecha de nacimiento</label>
+                                    <h:inputText class="form-control" a:type="date" id="fnac" value="#{ctrlClientes.cliente.fnac}" />
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label for="direccion">Dirección</label>
+                            <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlClientes.cliente.direccion}"/>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">DNI</label>
-                        <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value ="54215624R" />
+            </div>
+            <div class="row card my-3 mx-0">
+                <h2 class="mb-2 card-header"><small>Datos de usuario</small></h2>
+                <div class="col-12 mt-2">
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <label for="usuario">Usuario</label>
+                            <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="#{ctrlClientes.cliente.user}"/>
+                        </div>
+                        <div class="col">
+                            <label for="email">Correo electrónico</label>
+                            <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlClientes.cliente.email}"/>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">Fecha de nacimiento</label>
-                        <h:inputText class="form-control" a:type="date" id="example-date-input" value="1978-06-17"/>
-                    </div>
+                <div class="col-12 mt-2">
+                    <label for="pass">Contraseña</label>
+                    <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlClientes.cliente.pass}"/>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">Dirección</label>
-                        <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="Campus Las Lagunillas"/>
-                    </div>
-                </div>
-                <div class="col-6">
+
+                <div class="col-12 my-2">
                     <div>
                         <label for="foto">Foto</label>
                         <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
-                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 210 píxeles"
+                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
                                         style="margin-left: 1%;"/>
                     </div>
-                    <h:inputFile class="form-control-file" id="foto" />
+                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlClientes.cliente.foto}"/>
                 </div>
             </div>
-            <h2><small class="text-muted">Datos de usuario</small></h2>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="FormControlInput">Usuario</label>
-                        <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="algarcia"/>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="algarcia@ujaen.es"/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="pass">Contraseña</label>
-                        <div class="row">
-                            <div class="col">
-                                <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="contrasena"/>
-                            </div>
-                            <div class="col">
-                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="contrasena"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="espMen">
-                <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml"> Guardar </h:link>
-            </div>
+            <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml">Modificar cliente</h:link>
         </h:form>
     </ui:define>
 

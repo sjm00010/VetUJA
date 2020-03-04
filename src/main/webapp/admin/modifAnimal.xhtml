@@ -16,68 +16,84 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <h:form enctype="multipart/form-data">
-            <h1 class="text-center"><u>Registro animal</u></h1>
-            <h2><small class="text-muted">Datos de la mascota</small></h2>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="ci">Código de identificacion</label>
-                        <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" value="938000000455987" />
+        <h:form>
+            <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col col-md-9">
+                    <div class="card my-3">
+                        <h2 class="card-header"><small>Datos de la mascota</small></h2>
+                        <div class="row row-cols-1 row-cols-md-2 my-3">
+                            <div class="col col-md-3">
+                                <h:graphicImage value="#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img mx-2" style="height: 100%"/>
+                            </div>
+                            <div class="col col-md-9">
+                                <div class="col-12 mt-2">
+                                    <div class="row row-cols-1 row-cols-md-2">
+                                        <div class="col">
+                                            <label for="ci">Código de identificación</label>
+                                            <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" value="938000000455987"/>
+                                        </div>
+                                        <div class="col">
+                                            <label for="nombre">Nombre</label>
+                                            <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Firulais" value="Remy"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 my-2">
+                                    <div class="row row-cols-1 row-cols-md-2">
+                                        <div class="col mb-2">
+                                            <label for="raza">Especie</label>
+                                            <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés" value="Rata"/>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="sexo">Sexo</label>
+                                                <h:selectOneMenu class="form-control" id="sexo" value="1">
+                                                    <f:selectItem itemValue="1" itemLabel="Macho" />
+                                                    <f:selectItem itemValue="2" itemLabel="Hembra" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <div class="row row-cols-1 row-cols-md-2">
+                                        <div class="col">
+                                            <label for="fechanac">Fecha de nacimiento</label>
+                                            <h:inputText class="form-control" a:type="date" id="fechanac" value="2015-02-14"/>
+                                        </div>
+                                        <div class="col">
+                                            <label for="foto">Foto</label>
+                                            <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
+                                                            a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 300 x 300 píxeles"
+                                                            style="margin-left: 0.5rem;" height="18"/>
+                                            <h:inputText class="form-control" id="foto" a:placeholder="URL" value="https://used.forsale/sh-img/il_794xN.867612417_94no_ratatouille%2Bremy.jpg"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Pipo" value="Remy"/>
+                <div class="col col-md-2">
+                    <div class="card my-3" style="width: 18rem;">
+                        <h2 class="mb-2 card-header"><small>Datos del dueño</small></h2>
+                        <div class="col my-2">
+                            <label for="dni">DNI (sin letra)</label>
+                            <h:inputText class="form-control" id="dni" a:placeholder="12345678"/>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="raza">Especie</label>
-                        <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés" value="Rata"/>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="sexo"> Sexo </label>
-                        <h:selectOneMenu class="form-control" id="sexo" value="1">
-                            <f:selectItem itemValue="1" itemLabel="Macho" />
-                            <f:selectItem itemValue="2" itemLabel="Hembra" />
-                        </h:selectOneMenu>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="fechanac">Fecha de nacimiento</label>
-                        <h:inputText class="form-control" a:type="date" id="fechanac" value="2015-02-14"/>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div>
-                        <label for="foto">Foto de la mascota</label>
-                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
-                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 320 x 320 píxeles"
-                                        style="margin-left: 1%;"/>
-                    </div>
-                    <h:inputFile class="form-control-file" id="foto"/>
                 </div>
             </div>
-            <h2><small class="text-muted">Datos del dueño</small></h2>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="dni">DNI (sin letra)</label>
-                        <h:inputText class="form-control" id="dni" a:placeholder="12345678" value="54215624"/>
-                    </div>
-                </div>
-            </div>
-            <div class="espMen">
+            <div class="row row-cols-1 row-cols-md-2">
                 <!--para el formulario hace falta boton type="submit"-->
-                <h:link class="eBoton btn btn-secondary btn-lg btn-block" outcome="detalle_mascota.xhtml">Registrar animal</h:link>
+                <div class="col">
+                    <h:link class="eBoton btn btn-success btn-lg btn-block mb-2" outcome="mascotas.xhtml">Modificar datos</h:link>
+                </div>
+                <div class="col">
+                    <h:link class="eBoton btn btn-danger btn-lg btn-block" outcome="mascotas.xhtml">Cancelar</h:link>
+                </div>
             </div>
         </h:form>
-
     </ui:define>
-
 </ui:composition>

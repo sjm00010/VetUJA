@@ -47,8 +47,8 @@ public class ClienteDAO implements DAOgenerico <Cliente, String>, DAOcrud <Clien
     }
     
     @Override
-    public Cliente buscaId(String dni) {
-        return clientes.get(dni);
+    public Cliente buscaId(String id) {
+        return clientes.get(id);
     }
 
     @Override

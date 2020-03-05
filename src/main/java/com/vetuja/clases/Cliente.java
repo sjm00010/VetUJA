@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author sjm00010
  */
 public class Cliente {
-    private Integer DNI;
+    private String DNI;
     private String nombre;
     private String apellidos;
     private String direccion;
@@ -28,7 +28,7 @@ public class Cliente {
      */
     public Cliente() {
         
-        DNI = 11111111;
+        DNI = "11111111A";
         nombre = "Desconocido";
         apellidos = "Desconocidos";
         direccion = "Desconocida";
@@ -50,7 +50,7 @@ public class Cliente {
      * @param email Correo electronico
      * @param pass Contraseña
      */
-    public Cliente(int DNI, String nombre, String apellidos, String direccion,
+    public Cliente(String DNI, String nombre, String apellidos, String direccion,
             Date fnac, String foto, String user, String email, String pass) {
         this.DNI = DNI;
         this.nombre = nombre;
@@ -66,15 +66,14 @@ public class Cliente {
     /**
      * @return El DNI
      */
-    public Integer getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
     /**
      * @param DNI El DNI a cambiar
      */
-    public void setDNI(Integer DNI) {
-        logger.info(Integer.toString(DNI));
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 

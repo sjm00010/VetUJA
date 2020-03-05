@@ -23,7 +23,6 @@ public class ControladorCliente implements Serializable {
 
     //View-Model
     private Cliente cliente;
-    private static final Logger logger = Logger.getLogger(ControladorCliente.class.getName());
 
     public ControladorCliente() {
     }
@@ -36,8 +35,8 @@ public class ControladorCliente implements Serializable {
     public Cliente getCliente() {
         return cliente;
     }
-    public Cliente getCliente(int dni) {
-        return clientesDAO.buscaDNI(dni);
+    public Cliente getCliente(String dni) {
+        return clientesDAO.buscaId(dni);
     }
 
     public void setSliente(Cliente cliente) {
@@ -49,7 +48,6 @@ public class ControladorCliente implements Serializable {
     }
 
     public void recupera() {
-        logger.info(Integer.toString(cliente.getDNI()));
-        cliente = clientesDAO.buscaDNI(cliente.getDNI());
+        cliente = clientesDAO.buscaId(cliente.getDNI());
     }
 }

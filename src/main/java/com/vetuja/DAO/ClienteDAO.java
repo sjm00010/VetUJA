@@ -4,6 +4,7 @@ import com.vetuja.clases.Cliente;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ import javax.enterprise.context.ApplicationScoped;
  * @author sjm00010
  */
 @ApplicationScoped
-public class ClienteDAO implements DAOgenerico <Cliente, String>, DAOcrud <Cliente, String> {
+public class ClienteDAO implements DAOgenerico <Cliente, String>{
 
     private Map<String, Cliente> clientes=null;
 
@@ -69,5 +70,15 @@ public class ClienteDAO implements DAOgenerico <Cliente, String>, DAOcrud <Clien
     @Override
     public boolean borra(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Cliente buscaUser(String user) {
+        List<Cliente> listaClientes = buscaTodos();
+        for (Cliente next : listaClientes) {
+            if (user.equals(next.getUser())){
+                return next;
+            }
+        }
+        return null;
     }
 }

@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author sjm00010
  */
+@ApplicationScoped
 public class VeterinarioDAO implements DAOgenerico<Veterinario, String>{
     
     // Estructura de soporte
@@ -36,6 +38,31 @@ public class VeterinarioDAO implements DAOgenerico<Veterinario, String>{
     public List<Veterinario> buscaTodos() {
         return veterinarios.values().stream().collect(Collectors.toList());
     }
+
+    public Veterinario buscaUser(String user) {
+        List<Veterinario> listaVet = buscaTodos();
+        for (Veterinario next : listaVet) {
+            if (user.equals(next.getUser())){
+                return next;
+            }
+        }
+        return null;
+    }
     
-    
+    // NO SON USADAS, pero si la aplicación creciera se deberian implementar
+    @Override
+    public boolean crea(Veterinario c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean guarda(Veterinario c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean borra(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     
 }

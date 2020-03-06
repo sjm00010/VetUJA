@@ -1,5 +1,7 @@
 package com.vetuja.clases;
 
+import java.util.Objects;
+
 /**
  *
  * @author sjm00010
@@ -113,5 +115,11 @@ public class Veterinario {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
+
+        @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.codCol);
+        return hash;
+    }
 }

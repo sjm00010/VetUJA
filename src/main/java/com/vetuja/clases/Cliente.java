@@ -6,6 +6,7 @@
 package com.vetuja.clases;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -188,5 +189,5 @@ public class Cliente {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
+
 }

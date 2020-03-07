@@ -7,7 +7,8 @@ import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.ApplicationScoped; // Netbeans recomienda que sea este
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,20 +17,23 @@ import javax.inject.Named;
  * @author sjm00010
  */
 @Named("ctrlClientes")
-@ViewScoped
+@ApplicationScoped // Para que los datos se amntengan mientras la aplicación este iniciada
 public class ControladorCliente implements Serializable {
 
     @Inject
     private ClienteDAO clientesDAO;
-    
+
     @Inject
     private VeterinarioDAO veterinariosDAO;
 
+    @Inject
+    FacesContext fc;
+    
     //View-Model
     private Cliente cliente;
     private Veterinario veterinario;
-    private String user;
-    private String pass;
+    private String user; // Una vez logeado guarda el nombre
+    private String pass; // Una vez logeado guarda la foto
 
     public ControladorCliente() {
     }
@@ -45,12 +49,11 @@ public class ControladorCliente implements Serializable {
     public Cliente getCliente() {
         return cliente;
     }
-    
+
     public Cliente getCliente(String dni) {
         return clientesDAO.buscaId(dni);
     }
 
-    
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -62,11 +65,11 @@ public class ControladorCliente implements Serializable {
     public void recupera() {
         cliente = clientesDAO.buscaId(cliente.getDNI());
     }
-    
+
     public Veterinario getVeterinario() {
         return veterinario;
     }
-    
+
     public Veterinario getVeterinario(String id) {
         return veterinariosDAO.buscaId(id);
     }
@@ -82,28 +85,36 @@ public class ControladorCliente implements Serializable {
     public void recuperaVet() {
         veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
     }
-    
-    public String login(){
-        if(user != null && pass != null){
-            if(user.length() > 6) { // La longitud del codCol es de 6
-                Cliente comprueba = clientesDAO.buscaUser(cliente.getUser());
-                if(comprueba != null){
-                    if(pass.equals(comprueba.getPass()) && comprueba != null){
-                        cliente = comprueba;
-                        return "/user/inicio.jsf";
-                    }
+
+    public String login() {
+        if (!"".equals(user) && !"".equals(pass)) {
+            Cliente comprueba = clientesDAO.buscaUser(user);
+            if (comprueba != null) {
+                if (pass.equals(comprueba.getPass())) {
+                    cliente = comprueba;
+                    user = cliente.getNombre();
+                    pass = cliente.getFoto();
+                    return "/user/inicio.jsf?faces-redirect=true";
                 }
-            }else{
-                Veterinario comprueba = veterinariosDAO.buscaUser(veterinario.getUser());
-                if(comprueba != null){
-                    if(pass.equals(comprueba.getPass())){
-                        veterinario = comprueba;
-                        return "/admin/inicio.jsf";
+            } else {
+                Veterinario comprueba2 = veterinariosDAO.buscaUser(user);
+                if (comprueba != null) {
+                    if (pass.equals(comprueba.getPass())) {
+                        veterinario = comprueba2;
+                        user = veterinario.getNombre();
+                        pass = veterinario.getFoto();
+                        return "/admin/inicio.jsf?faces-redirect=true";
                     }
                 }
             }
         }
-        return "/inicio/login.jsf";
+        return "";
+    }
+    
+    public String logout(){
+        user = null;
+        pass = null;
+        return "/inicio/inicio.jsf?faces-redirect=true";
     }
 
     /**

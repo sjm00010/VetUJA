@@ -10,22 +10,29 @@
     </ui:define>
 
     <ui:define name="background">
-        <div class="row justify-content-center mx-0"
-             style="background-image:url(#{resource['img/otros/background.png']}); 
-             background-size: cover; height: 87%; width: 100%">
-            <h:form class="card bg-light text-center mt-5" style="width: 20rem; height: 380px">
-                <h2 class="mb-2 card-header"><small>Iniciar sesión</small></h2>
-                <div class="form-group mx-3">
-                    <h3><label for="user">Usuario</label></h3>
-                    <h:inputText class="form-control" id="user" a:placeholder="Usuario" value="#{ctrlClientes.user}"/>
-                </div>
-                <div class="form-group mx-3">
-                    <h3><label for="pass">Contraseña</label></h3>
-                    <h:inputSecret class="form-control" id="pass" a:placeholder="Contraseña" value="#{ctrlClientes.pass}"/>
-                </div>
-                <!--para el formulario hace falta boton type="submit"-->
-                <h:commandButton class="btn btn-primary mx-3 mb-3" action="#{ctrlClientes.login()}" value="Iniciar sesión" />
-            </h:form>
+        <div style="background-image:url(#{resource['img/otros/background.png']}); 
+             background-size: cover; height: 87%;">
+            <div class="row justify-content-center mx-0" style="height: 87%;">
+                <h:form class="col-4 px-0 align-self-center card bg-light text-center">
+                    <h2 class="mb-3 card-header">Iniciar sesión</h2>
+                    <div class="form-group px-4">
+                        <h3 class="text-left ml-1"><label for="user">Usuario</label></h3>
+                        <h:inputText class="form-control" id="user" a:placeholder="Usuario" 
+                                     value="#{ctrlClientes.user}"  required="true"
+                                     requiredMessage="Se debe introducir un usuario"/>
+                        <h:message for="user" class="text-danger"/>
+                    </div>
+                    <div class="form-group px-4">
+                        <h3 class="text-left ml-1"><label for="pass">Contraseña</label></h3>
+                        <h:inputSecret class="form-control" id="pass" a:placeholder="Contraseña" 
+                                       value="#{ctrlClientes.pass}" required="true"
+                                       requiredMessage="La contraseña no puede estar vacía"/>
+                        <h:message for="pass" class="text-danger"/>
+                    </div>
+                    <!--para el formulario hace falta boton type="submit"-->
+                    <h:commandButton class="btn btn-primary mx-4 mb-3" action="#{ctrlClientes.login()}" value="Iniciar sesión" />
+                </h:form>
+            </div>
         </div>
     </ui:define>
 

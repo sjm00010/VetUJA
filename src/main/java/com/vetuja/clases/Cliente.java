@@ -64,6 +64,18 @@ public class Cliente {
         this.pass = pass;
     }
 
+    public Cliente(Cliente c) {
+        this.DNI = c.DNI;
+        this.nombre = c.nombre;
+        this.apellidos = c.apellidos;
+        this.direccion = c.direccion;
+        this.fnac = c.fnac;
+        this.foto = c.foto;
+        this.user = c.user;
+        this.email = c.email;
+        this.pass = c.pass;
+    }
+
     /**
      * @return El DNI
      */

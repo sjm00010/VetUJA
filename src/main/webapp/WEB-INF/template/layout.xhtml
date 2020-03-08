@@ -21,19 +21,19 @@
     </h:head>
 
     <h:body>
-
-        <div id="top" class="top">
+        <div id="top" class="top shadow-lg">
             <ui:insert name="cabecera">
                 <ui:include src="../partes/cabecera.xhtml" />
             </ui:insert>
 
         </div>
-
-        <div id="content" class="container espaciado">
-            <ui:insert name="cuerpo">
-                <ui:include src="../partes/carrusel.xhtml"/>
-            </ui:insert>
-        </div>
+        <ui:insert name="background">
+            <div id="content" class="container pt-4 pb-5">
+                <ui:insert name="cuerpo">
+                    <ui:include src="../partes/carrusel.xhtml"/>
+                </ui:insert>
+            </div>
+        </ui:insert>
         <ui:include src="../partes/footer.xhtml"/>
     </h:body>
 

@@ -19,7 +19,7 @@
         <ui:include src="../partes/icono.xhtml" />
     </h:head>
 
-    <h:body>
+    <h:body class="d-flex flex-column h-100">
         <div id="top" class="top shadow-lg">
             <ui:insert name="cabecera">
                 <ui:include src="../partes/cabecera.xhtml" />
@@ -27,9 +27,10 @@
 
         </div>
         <ui:insert name="background">
-            <div id="content" class="container pt-4 pb-5">
+            <div id="content" class="container-xl py-4">
                 <ui:insert name="cuerpo">
                     <ui:include src="../partes/carrusel.xhtml"/>
+                    <ui:include src="../partes/contacto.xhtml"/>
                 </ui:insert>
             </div>
         </ui:insert>

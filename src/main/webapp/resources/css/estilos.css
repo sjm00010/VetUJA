@@ -3,15 +3,12 @@
     Author     : sjm00010
 */
 
-.container {
-  max-width: 70%;
-}
-
 /* Cabecera */
-.navbar{
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
-    min-height: 100px;
+.user{
+    margin: 0 0.5rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
 }
 
 .menu{ 
@@ -31,7 +28,7 @@
 
 .logo-brand{
     min-height: 70px;
-    max-height: 80px; 
+    max-height: 70px; 
 }
 
 .eBoton{
@@ -42,19 +39,6 @@
 .eBoton:hover{
     text-decoration:none;
     color: white;
-}
-
-.user{
-    margin: 0 0.5rem;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-}
-
-.pie{
-    justify-content: space-between;
-    display: flex;
-    align-items: baseline;
 }
 
 .carta{

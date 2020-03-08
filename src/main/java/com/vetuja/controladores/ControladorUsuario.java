@@ -16,9 +16,9 @@ import javax.inject.Named;
  *
  * @author sjm00010
  */
-@Named("ctrlClientes")
+@Named("ctrlUser")
 @ApplicationScoped // Para que los datos se amntengan mientras la aplicación este iniciada
-public class ControladorCliente implements Serializable {
+public class ControladorUsuario implements Serializable {
 
     @Inject
     private ClienteDAO clientesDAO;
@@ -35,7 +35,7 @@ public class ControladorCliente implements Serializable {
     private String user; // Una vez logeado guarda el nombre
     private String pass; // Una vez logeado guarda la foto
 
-    public ControladorCliente() {
+    public ControladorUsuario() {
     }
 
     @PostConstruct
@@ -87,7 +87,7 @@ public class ControladorCliente implements Serializable {
     }
 
     public String login() {
-        if (!"".equals(user) && !"".equals(pass)) {
+        if ( user != null && pass != null){
             Cliente comprueba = clientesDAO.buscaUser(user);
             if (comprueba != null) {
                 if (pass.equals(comprueba.getPass())) {
@@ -108,7 +108,7 @@ public class ControladorCliente implements Serializable {
                 }
             }
         }
-        return "";
+        return null;
     }
     
     public String logout(){

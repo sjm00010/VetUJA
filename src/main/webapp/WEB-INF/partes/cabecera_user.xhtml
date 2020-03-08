@@ -26,12 +26,13 @@
                     </li>
                 </ul>
                 <div class="user">
-                    <h:graphicImage value = "#{resource['img/usuarios/algarcia.jpg']}" alt="user_foto" class="logo-brand rounded-circle"
-                                    style="min-width: 90px;"/>
-                    <h5 class="user">¡Hola Ángel Luis!</h5>
-                    <h:link class="nav-link" outcome="/inicio/inicio.xhtml">
+                    <h:graphicImage value = "#{ctrlUser.pass}" alt="user_foto" class="logo-brand rounded-circle"
+                                    style="width: 80px; width: 80px;"/>
+                    <h5 class="user">¡Hola #{ctrlUser.user}!</h5>
+                    <h:link class="nav-link" outcome="#{ctrlUser.logout()}">
                         <h:graphicImage value = "#{resource['img/iconos/logout.png']}" alt="logout"/>
                     </h:link>
+                    
                 </div>
             </div>
         </div>

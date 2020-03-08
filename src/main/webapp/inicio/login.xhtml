@@ -18,19 +18,19 @@
                     <div class="form-group px-4">
                         <h3 class="text-left ml-1"><label for="user">Usuario</label></h3>
                         <h:inputText class="form-control" id="user" a:placeholder="Usuario" 
-                                     value="#{ctrlClientes.user}"  required="true"
+                                     value="#{ctrlUser.user}"  required="true"
                                      requiredMessage="Se debe introducir un usuario"/>
                         <h:message for="user" class="text-danger"/>
                     </div>
                     <div class="form-group px-4">
                         <h3 class="text-left ml-1"><label for="pass">Contraseña</label></h3>
                         <h:inputSecret class="form-control" id="pass" a:placeholder="Contraseña" 
-                                       value="#{ctrlClientes.pass}" required="true"
+                                       value="#{ctrlUser.pass}" required="true"
                                        requiredMessage="La contraseña no puede estar vacía"/>
                         <h:message for="pass" class="text-danger"/>
                     </div>
                     <!--para el formulario hace falta boton type="submit"-->
-                    <h:commandButton class="btn btn-primary mx-4 mb-3" action="#{ctrlClientes.login()}" value="Iniciar sesión" />
+                    <h:commandButton class="btn btn-primary mx-4 mb-3" action="#{ctrlUser.login()}" value="Iniciar sesión" />
                 </h:form>
             </div>
         </div>

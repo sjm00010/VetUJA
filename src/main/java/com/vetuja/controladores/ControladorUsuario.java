@@ -8,9 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped; // Netbeans recomienda que sea este
-import javax.faces.context.FacesContext;
+import javax.faces.validator.Validator;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.AssertFalse;
 
 /**
  *
@@ -25,9 +26,6 @@ public class ControladorUsuario implements Serializable {
 
     @Inject
     private VeterinarioDAO veterinariosDAO;
-
-    @Inject
-    FacesContext fc;
     
     //View-Model
     private Cliente cliente;
@@ -87,6 +85,10 @@ public class ControladorUsuario implements Serializable {
     }
 
     public String login() {
+        @AssertFalse(message = "Los datos introducidos son incorrectos.")
+        boolean error = false;
+        System.out.println(user);
+        System.out.println(pass);
         if ( user != null && pass != null){
             Cliente comprueba = clientesDAO.buscaUser(user);
             if (comprueba != null) {
@@ -98,8 +100,8 @@ public class ControladorUsuario implements Serializable {
                 }
             } else {
                 Veterinario comprueba2 = veterinariosDAO.buscaUser(user);
-                if (comprueba != null) {
-                    if (pass.equals(comprueba.getPass())) {
+                if (comprueba2 != null) {
+                    if (pass.equals(comprueba2.getPass())) {
                         veterinario = comprueba2;
                         user = veterinario.getNombre();
                         pass = veterinario.getFoto();
@@ -108,6 +110,7 @@ public class ControladorUsuario implements Serializable {
                 }
             }
         }
+        error = true;
         return null;
     }
     

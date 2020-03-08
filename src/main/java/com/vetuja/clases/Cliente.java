@@ -8,36 +8,56 @@ package com.vetuja.clases;
 import java.util.Date;
 import java.util.Objects;
 import java.util.logging.Logger;
+import javax.validation.constraints.*;
 
 /**
  *
  * @author sjm00010
  */
 public class Cliente {
+    @Pattern(regexp="\\d{8}[A-Z]",message="DNI incorrecto, debe tener 8 números y la letra debe estar en mayúscula.")
     private String DNI;
+    
+    @Size(min=3,max=12,message="El nombre debe tener una longitud entre {min} y {max} caracteres.")
     private String nombre;
+
+    @Size(min=6,max=15, message="Los apellidos deben tener una longitud entre {min} y {max} caracteres.")
     private String apellidos;
+
+    @Size(min=6,max=20, message="La direción debe tener una longitud entre {min} y {max} caracteres.")
     private String direccion;
+
+    @Past(message="Si no has nacido, ¿que haces registrandote? Revisa la fecha de nacimiento.")
     private Date fnac;
+    
+    @NotEmpty(message="Introduce una foto para que podamos conocerte")
     private String foto;
+    
+    @Size(min=3,max=10, message="El usuario debe tener una longitud entre {min} y {max} caracteres.")
     private String user;
+    
+    @Pattern(regexp="[a-zA-Z0-9._+-]+@[a-zA-Z]+\\.[a-zA-Z.]{2,}", message="El correo introducido no es valido, debe tener el formato email@email.com")
     private String email;
+
+    @Size(min=6,max=8, message="La contraseña debe tener una longitud entre {min} y {max} caracteres.")
     private String pass;
+    
+    //Loger para errores
     private static final Logger logger = Logger.getLogger(Cliente.class.getName());
+    
     /**
      * 
      */
     public Cliente() {
-        
-        DNI = "11111111A";
-        nombre = "Desconocido";
-        apellidos = "Desconocidos";
-        direccion = "Desconocida";
+        DNI = "";
+        nombre = "";
+        apellidos = "";
+        direccion = "";
         fnac = null;
-        foto = "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png";
-        user = "user";
-        email = "user@user.user";
-        pass = "user";
+        foto = "";
+        user = "";
+        email = "";
+        pass = "";
     }
 
     /**

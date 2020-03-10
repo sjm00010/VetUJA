@@ -26,7 +26,7 @@ public class ControladorUsuario implements Serializable {
 
     @Inject
     private VeterinarioDAO veterinariosDAO;
-    
+
     //View-Model
     private Cliente cliente;
     private Veterinario veterinario;
@@ -89,7 +89,7 @@ public class ControladorUsuario implements Serializable {
         boolean error = false;
         System.out.println(user);
         System.out.println(pass);
-        if ( user != null && pass != null){
+        if (user != null && pass != null) {
             Cliente comprueba = clientesDAO.buscaUser(user);
             if (comprueba != null) {
                 if (pass.equals(comprueba.getPass())) {
@@ -113,8 +113,8 @@ public class ControladorUsuario implements Serializable {
         error = true;
         return null;
     }
-    
-    public String logout(){
+
+    public String logout() {
         user = null;
         pass = null;
         return "/inicio/inicio.jsf?faces-redirect=true";
@@ -147,4 +147,5 @@ public class ControladorUsuario implements Serializable {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
 }

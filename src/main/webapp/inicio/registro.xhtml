@@ -19,10 +19,10 @@
                         <label for="nombre">Nombre completo</label>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col">
-                                <h:inputText class="form-control mb-2" id="nombre" a:placeholder="Nombre"/>
+                                <h:inputText class="form-control mb-2" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
                             </div>
                             <div class="col">
-                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos"/>
+                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
                             </div>
                         </div>
                     </div>
@@ -31,17 +31,17 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col">
                             <label for="dni">DNI</label>
-                            <h:inputText class="form-control mb-2" id="dni" a:placeholder="Ej. 12345678A"/>
+                            <h:inputText class="form-control mb-2" id="dni" a:placeholder="Ej. 12345678A" a:value="#{ctrlUser.cliente.DNI}"/>
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>
-                            <h:inputText class="form-control" a:type="date" id="fnac"/>
+                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 my-2">
-                        <label for="direccion">Dirección</label>
-                        <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5"/>
+                    <label for="direccion">Dirección</label>
+                    <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
                 </div>
             </div>
             <div class="row card my-3">
@@ -50,11 +50,11 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col">
                             <label for="usuario">Usuario</label>
-                            <h:inputText class="form-control mb-2" id="usuario" a:placeholder="Usuario"/>
+                            <h:inputText class="form-control mb-2" id="usuario" a:placeholder="Usuario" a:value="#{ctrlUser.cliente.user}"/>
                         </div>
                         <div class="col">
-                                <label for="email">Correo electrónico</label>
-                                <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es"/>
+                            <label for="email">Correo electrónico</label>
+                            <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
                         </div>
                     </div>
                 </div>
@@ -64,10 +64,10 @@
                         <label for="pass">Contraseña</label>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col">
-                                <h:inputText class="form-control mb-2" id="pass" a:placeholder="Contraseña"/>
+                                <h:inputText class="form-control mb-2" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
                             </div>
                             <div class="col">
-                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña"/>
+                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.pass}"/>
                             </div>
                         </div>
                     </div>
@@ -78,13 +78,13 @@
                         <label for="foto">Foto</label>
                         <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
                                         a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
-                                        style="margin-left: 0.5rem;" height="18"/>
+                                        style="margin-left: 0.5rem;" height="18" a:value="#{ctrlUser.cliente.foto}"/>
                     </div>
                     <h:inputText class="form-control" id="foto" a:placeholder="URL"/>
                 </div>
             </div>
             <!--para el formulario hace falta boton type="submit"-->
-            <h:link class="eBoton btn btn-success btn-lg btn-block" outcome="inicio.xhtml">Registrarse</h:link>
+            <h:link class="eBoton btn btn-success btn-lg btn-block" type="submit" outcome="inicio.xhtml">Registrarse</h:link>
         </h:form>
     </ui:define>
 

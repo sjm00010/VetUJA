@@ -14,133 +14,128 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <div class="mb-3">
-            <h:form class="form-inline my-2 my-lg-0 mb-3">
-                <h:inputText class="form-control mr-sm-2" id="nombre" a:type="search" a:placeholder="Fecha, mascota, ..." a:aria-label="Search"/>
-                <h:button class="btn btn-outline-secondary my-2 my-sm-0" value="Buscar"/>
-            </h:form>
-        </div>
-        <!--Hace falta cambiar la tabla a jsf cuando tengamos DAO -->
-        <table class="table table-striped espMen">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Veterinario</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Mascota</th>
-                    <th scope="col"></th>
+        <div class="table-responsive">
+            <table class="table table-striped mt-3" style="min-width: 660px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Veterinario</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Mascota</th>
+                        <th scope="col">Borrar</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>08/02/2020</td>
-                    <td>16:30</td>
-                    <td>José Ramón</td>
-                    <td>Angel Luis</td>
-                    <td>Remy</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>06/05/2020</td>
-                    <td>10:30</td>
-                    <td>Flo</td>
-                    <td>Angel Luis</td>
-                    <td>Remy</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>15/07/2020</td>
-                    <td>9:00</td>
-                    <td>José Rámon</td>
-                    <td>Angel Luis</td>
-                    <td>Misifu</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>15/07/2020</td>
-                    <td>17:10</td>
-                    <td>José Rámon</td>
-                    <td>Angel Luis</td>
-                    <td>Desconocida</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>01/09/2020</td>
-                    <td>12:15</td>
-                    <td>Flo</td>
-                    <td>Angel Luis</td>
-                    <td>Misifu</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>15/07/2020</td>
-                    <td>11:00</td>
-                    <td>José Rámon</td>
-                    <td>Paco</td>
-                    <td>Pipo</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>15/07/2020</td>
-                    <td>17:10</td>
-                    <td>Flo</td>
-                    <td>Juan</td>
-                    <td>Berta</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>05/09/2020</td>
-                    <td>12:00</td>
-                    <td>Flo</td>
-                    <td>Sergio</td>
-                    <td>Fransi</td>
-                    <td>
-                        <h:link outcome="citas.xhtml">
-                            <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
-                        </h:link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>08/02/2020</td>
+                        <td>16:30</td>
+                        <td>José Ramón</td>
+                        <td>Angel Luis</td>
+                        <td>Remy</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>06/05/2020</td>
+                        <td>10:30</td>
+                        <td>Flo</td>
+                        <td>Angel Luis</td>
+                        <td>Remy</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>15/07/2020</td>
+                        <td>9:00</td>
+                        <td>José Rámon</td>
+                        <td>Angel Luis</td>
+                        <td>Misifu</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>15/07/2020</td>
+                        <td>17:10</td>
+                        <td>José Rámon</td>
+                        <td>Angel Luis</td>
+                        <td>Desconocida</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>01/09/2020</td>
+                        <td>12:15</td>
+                        <td>Flo</td>
+                        <td>Angel Luis</td>
+                        <td>Misifu</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>15/07/2020</td>
+                        <td>11:00</td>
+                        <td>José Rámon</td>
+                        <td>Paco</td>
+                        <td>Pipo</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>15/07/2020</td>
+                        <td>17:10</td>
+                        <td>Flo</td>
+                        <td>Juan</td>
+                        <td>Berta</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>05/09/2020</td>
+                        <td>12:00</td>
+                        <td>Flo</td>
+                        <td>Sergio</td>
+                        <td>Fransi</td>
+                        <td>
+                            <h:link outcome="citas.xhtml">
+                                <h:graphicImage value = "#{resource['img/iconos/borrar.png']}" alt="Borrar"/>
+                            </h:link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </ui:define>
 
 </ui:composition>

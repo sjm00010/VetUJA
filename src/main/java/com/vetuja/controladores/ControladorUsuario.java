@@ -148,4 +148,16 @@ public class ControladorUsuario implements Serializable {
         this.pass = pass;
     }
 
+    public String creaCliente() {
+        boolean registro = false;
+        if (cliente.getPass() == pass) {
+
+            registro = clientesDAO.crea(cliente);
+        }
+        if (registro) {
+            return " detalle?faces-redirect=true&user=" + cliente.getUser();
+        } else {
+            return "/inicio/inicio.jsf?faces-redirect=true";
+        }
+    }
 }

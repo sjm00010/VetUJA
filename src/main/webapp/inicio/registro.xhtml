@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="nomPag">
         Registro
@@ -36,7 +37,9 @@
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>
-                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}"/>
+                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
+                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                            </h:inputText>
                         </div>
                     </div>
                 </div>

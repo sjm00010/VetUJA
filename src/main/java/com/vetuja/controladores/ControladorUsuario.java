@@ -155,9 +155,9 @@ public class ControladorUsuario implements Serializable {
             registro = clientesDAO.crea(cliente);
         }
         if (registro) {
-            return " detalle?faces-redirect=true&user=" + cliente.getUser();
-        } else {
             return "/inicio/inicio.jsf?faces-redirect=true";
+        } else {
+            return "";
         }
     }
 }

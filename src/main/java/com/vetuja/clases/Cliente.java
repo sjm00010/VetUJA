@@ -6,7 +6,6 @@
 package com.vetuja.clases;
 
 import java.util.Date;
-import java.util.Objects;
 import java.util.logging.Logger;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;

@@ -5,10 +5,11 @@ import com.vetuja.DAO.VeterinarioDAO;
 import com.vetuja.clases.Cliente;
 import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped; // Netbeans recomienda que sea este
-import javax.faces.validator.Validator;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.AssertFalse;
@@ -32,6 +33,7 @@ public class ControladorUsuario implements Serializable {
     private Veterinario veterinario;
     private String user; // Una vez logeado guarda el nombre
     private String pass; // Una vez logeado guarda la foto
+    private String fecha; // Fecha de nacimiento
 
     public ControladorUsuario() {
     }
@@ -42,6 +44,7 @@ public class ControladorUsuario implements Serializable {
         veterinario = new Veterinario();
         user = null;
         pass = null;
+        setFecha(null);
     }
 
     public Cliente getCliente() {
@@ -148,16 +151,29 @@ public class ControladorUsuario implements Serializable {
         this.pass = pass;
     }
 
-    public String creaCliente() {
-        boolean registro = false;
-        if (cliente.getPass() == pass) {
+    public String creaCliente() throws ParseException {
+        if (cliente.getPass().equals(pass)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date fnac = sdf.parse(getFecha());
+            cliente.setFnac(fnac);
+            if(clientesDAO.crea(cliente))
+                return "/inicio/inicio.jsf?faces-redirect=true";
+                
+        }
+        return null;
+    }
 
-            registro = clientesDAO.crea(cliente);
-        }
-        if (registro) {
-            return "/inicio/inicio.jsf?faces-redirect=true";
-        } else {
-            return "";
-        }
+    /**
+     * @return the fecha
+     */
+    public String getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }

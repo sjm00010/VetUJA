@@ -62,15 +62,15 @@ public class ControladorCitas implements Serializable {
         cita = citasDAO.buscaId((cita.getId()));
     }
 
-    public String borra() {
+    public String borra(Citas c) {
         boolean registro = false;
-        if (cita.getId() == this.getId()) {
-            registro = citasDAO.borra(cita.getId());
+        if (cita.getId() == this.getId()){
+            registro = citasDAO.borra(c.getId());
         }
         if (registro) {
-            return "";
+            return "citas.xhtml?faces-redirect=true";
         } else {
-            return "/user/citas.xhtml?faces-redirect=true";
+            return "inicio.xhtml?faces-redirect=true";
         }
     }
 
@@ -87,21 +87,6 @@ public class ControladorCitas implements Serializable {
         }
 
     }
-
-//    /**
-//     * @return the prueba
-//     */
-//    public String getPrueba() {
-//        return prueba;
-//    }
-//
-//    /**
-//     * @param prueba the prueba to set
-//     */
-//    public void setPrueba(String prueba) {
-//        System.out.println(prueba);
-//        this.prueba = prueba;
-//    }
 
     /**
      * @return the id

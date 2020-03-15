@@ -32,7 +32,10 @@
                         <h:button styleClass="card-link btn btn-outline-primary" value="Editar" outcome="modifCliente.xhtml" >
                             <f:param name="dni" value="#{cli.DNI}" />
                         </h:button>
-                        <h:commandButton class="card-link btn btn-outline-danger" action="#{ctrlUser.borraCliente()}" value="Borrar" />
+                        <h:link outcome="clientes.xhtml">
+                            <h:commandButton class="card-link btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli)}" value="Borrar" />
+                        </h:link>
+
                     </div>
                 </div>
             </ui:repeat>

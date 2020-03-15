@@ -164,17 +164,17 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public String borraCliente() throws ParseException {
-        @AssertFalse(message = "El cliente no ha podido ser borrado.")
+    public String borraCliente(Cliente cli) {
 
         boolean borrado = false;
-
-        borrado = clientesDAO.borra(cliente.getDNI());
-        if (borrado) {
-            return "/inicio/inicio.jsf?faces-redirect=true";
-
+        if (cliente.getUser() == this.user) {
+            borrado = clientesDAO.borra(cli.getDNI());
         }
-        return null;
+        if (borrado) {
+            return "clientes.xhtml?faces-redirect=true";
+        } else {
+            return "inicio.xhtml?faces-redirect=true";
+        }
     }
 
     /**

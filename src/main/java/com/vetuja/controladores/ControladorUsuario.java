@@ -167,7 +167,7 @@ public class ControladorUsuario implements Serializable {
     public String borraCliente(Cliente cli) {
 
         boolean borrado = false;
-        if (cliente.getDNI() == cli.getDNI()) {
+        if (cliente.getDNI() == this.getDNI()) {
             borrado = clientesDAO.borra(cli.getDNI());
         }
         if (borrado) {
@@ -189,5 +189,9 @@ public class ControladorUsuario implements Serializable {
      */
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getDNI() {
+        return cliente.getDNI();
     }
 }

@@ -156,9 +156,23 @@ public class ControladorUsuario implements Serializable {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date fnac = sdf.parse(getFecha());
             cliente.setFnac(fnac);
-            if(clientesDAO.crea(cliente))
+            if (clientesDAO.crea(cliente)) {
                 return "/inicio/inicio.jsf?faces-redirect=true";
-                
+            }
+
+        }
+        return null;
+    }
+
+    public String borraCliente() throws ParseException {
+        @AssertFalse(message = "El cliente no ha podido ser borrado.")
+
+        boolean borrado = false;
+
+        borrado = clientesDAO.borra(cliente.getDNI());
+        if (borrado) {
+            return "/inicio/inicio.jsf?faces-redirect=true";
+
         }
         return null;
     }

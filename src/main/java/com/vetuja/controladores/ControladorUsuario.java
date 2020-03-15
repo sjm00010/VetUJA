@@ -164,8 +164,8 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public String borraCliente(Cliente cli) {
-
+    public String borraCliente(Cliente cli) throws ParseException {
+         @AssertFalse(message = "El cliente no ha sido borrado.")
         boolean borrado = false;
         if (cliente.getUser()== this.user) {
             borrado = clientesDAO.borra(cli.getDNI());

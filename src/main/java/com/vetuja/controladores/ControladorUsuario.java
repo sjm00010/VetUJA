@@ -167,7 +167,7 @@ public class ControladorUsuario implements Serializable {
     public String borraCliente(Cliente cli) {
 
         boolean borrado = false;
-        if (cliente.getUser() == this.user) {
+        if (cliente.getDNI() == cli.getDNI()) {
             borrado = clientesDAO.borra(cli.getDNI());
         }
         if (borrado) {

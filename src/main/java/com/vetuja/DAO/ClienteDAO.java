@@ -21,7 +21,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
     public ClienteDAO() throws ParseException {
         if (clientes == null) {
             clientes = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
             java.util.Date fnac = sdf.parse("1992-07-26");
             clientes.put("54215624R", new Cliente(
                     "54215624R", "Ángel Luis", "García Fernández",
@@ -32,7 +32,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
                     "53914392T", "Francis", "Ortega López",
                     "La lloreria", fnac,
                     "https://i.pinimg.com/originals/d9/e9/7d/d9e97d15c8aefb3067372c36fa2abc26.png",
-                    "fol00008", "fol00008@ujaen.es", "paco"));
+                    "fol00008", "fol00008@ujaen.es", "paco00008"));
             clientes.put("24315522B", new Cliente(
                     "24315522B", "Alejandro", "Expósito Pontiveros",
                     "Avenida Andalucía, 1", fnac,
@@ -42,7 +42,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
                     "34209621C", "ElRisas", "Joker",
                     "En su casa", fnac,
                     "https://img-cdn.hipertextual.com/files/2019/09/hipertextual-warner-no-tiene-planes-secuela-joker-ahora-2019170034.jpg?strip=all&lossy=1&quality=65&resize=740%2C490&ssl=1",
-                    "ElPrisas", "algarcia@ujaen.es", "sanic"));
+                    "ElPrisas", "algarcia@ujaen.es", "sanicgo"));
         }
     }
 
@@ -66,7 +66,6 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
     public boolean guarda(Cliente c) {
         boolean result = false;
         if (clientes.containsKey(c.getDNI())) {
-            Cliente nc = new Cliente(c);
             clientes.replace(c.getDNI(), c);
             result = true;
         }

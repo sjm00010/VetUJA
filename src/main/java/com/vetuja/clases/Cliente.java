@@ -43,7 +43,7 @@ public class Cliente {
     @Pattern(regexp = "[a-zA-Z0-9._+-]+@[a-zA-Z]+\\.[a-zA-Z.]{2,}", message = "El correo introducido no es valido, debe tener el formato email@email.com")
     private String email;
 
-    @Size(min = 6, max = 8, message = "La contraseña debe tener una longitud entre {min} y {max} caracteres.")
+    @Size(min = 6, max = 10, message = "La contraseña debe tener una longitud entre {min} y {max} caracteres.")
     private String pass;
 
     //Loger para errores

@@ -5,6 +5,7 @@ import com.vetuja.DAO.VeterinarioDAO;
 import com.vetuja.clases.Cliente;
 import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -67,6 +68,11 @@ public class ControladorUsuario implements Serializable {
 
     public void recupera() {
         cliente = clientesDAO.buscaId(cliente.getDNI());
+        this.dni = cliente.getDNI();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        this.fecha = dateFormat.format(cliente.getFnac());
+        System.out.println("Recuperando fecha");
+        System.out.println(fecha);
     }
 
     public Veterinario getVeterinario() {
@@ -127,7 +133,7 @@ public class ControladorUsuario implements Serializable {
 
     public String creaCliente() throws ParseException {
         if (cliente.getPass().equals(pass)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
             java.util.Date fnac = sdf.parse(getFecha());
             cliente.setFnac(fnac);
             if (clientesDAO.crea(cliente)) {
@@ -139,17 +145,18 @@ public class ControladorUsuario implements Serializable {
     }
 
     public String modificaCliente() throws ParseException {
-        if (!cliente.getDNI().equals(dni)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date fnac = sdf.parse(getFecha());
-            cliente.setFnac(fnac);
+        // Transformo la fecha para hacerla compatible
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        java.util.Date fnac = sdf.parse(this.fecha);
+        cliente.setFnac(fnac);
+        
+        if (!cliente.getDNI().equals(dni) && clientesDAO.buscaId(cliente.getDNI()) != null) {
             clientesDAO.crea(cliente);
             clientesDAO.borra(dni);
-
-            return "clientes.jsf?faces-redirect=true";
+        }else{
+            clientesDAO.guarda(cliente);
         }
-        clientesDAO.guarda(cliente);
-        return "clientes.jsf?faces-redirect=true";
+        return "/admin/clientes.xhtml?faces-redirect=true";
 
     }
 

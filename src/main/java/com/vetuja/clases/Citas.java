@@ -111,10 +111,5 @@ public Citas(Integer id,String fecha, String hora, String nombreVet, String nomb
     public void setNombreMascota(String nombreMascota) {
         this.nombreMascota = nombreMascota;
     }
-
-    
-
-  
-
 }
 

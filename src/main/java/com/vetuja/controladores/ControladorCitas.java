@@ -63,11 +63,7 @@ public class ControladorCitas implements Serializable {
     }
 
     public String borra(Citas c) {
-        boolean registro = false;
-        if (cita.getId() == this.getId()){
-            registro = citasDAO.borra(c.getId());
-        }
-        if (registro) {
+        if (citasDAO.borra(c.getId())) {
             return "citas.xhtml?faces-redirect=true";
         } else {
             return "inicio.xhtml?faces-redirect=true";
@@ -75,15 +71,10 @@ public class ControladorCitas implements Serializable {
     }
 
     public String creaCita() {
-        boolean registro = false;
-        if (cita.getId() == this.getId()) {
-
-            registro = citasDAO.crea(cita);
-        }
-        if (registro) {
-            return "/user/citas.xhtml?faces-redirect=true&user=" + cita.getId();
+        if (citasDAO.crea(cita)) {
+            return "citas.xhtml?faces-redirect=true";
         } else {
-            return "/user/registro_cita.xhtml?faces-redirect=true";
+            return "registro_cita.xhtml?faces-redirect=true";
         }
 
     }

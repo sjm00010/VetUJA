@@ -81,14 +81,12 @@
                         <label for="foto">Foto</label>
                         <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
                                         a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
-                                        style="margin-left: 0.5rem;" height="18" a:value="#{ctrlUser.cliente.foto}"/>
+                                        style="margin-left: 0.5rem;" height="18"/>
                     </div>
-                    <h:inputText class="form-control" id="foto" a:placeholder="URL"/>
+                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
                 </div>
             </div>
             <h:commandButton class="eBoton btn btn-success btn-lg btn-block" action="#{ctrlUser.creaCliente()}" value="Registrarse" />
-
         </h:form>
     </ui:define>
-
 </ui:composition>

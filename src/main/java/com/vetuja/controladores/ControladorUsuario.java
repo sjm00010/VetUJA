@@ -9,17 +9,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped; // Netbeans recomienda que sea este
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.AssertFalse;
 
 /**
  *
  * @author sjm00010
  */
 @Named("ctrlUser")
-@ApplicationScoped // Para que los datos se amntengan mientras la aplicación este iniciada
+@ViewScoped // Para que los datos se amntengan mientras la aplicación este iniciada
 public class ControladorUsuario implements Serializable {
 
     @Inject
@@ -88,38 +87,10 @@ public class ControladorUsuario implements Serializable {
     }
 
     public String login() {
-        @AssertFalse(message = "Los datos introducidos son incorrectos.")
-        boolean error = false;
-        System.out.println(user);
-        System.out.println(pass);
-        if (user != null && pass != null) {
-            Cliente comprueba = clientesDAO.buscaUser(user);
-            if (comprueba != null) {
-                if (pass.equals(comprueba.getPass())) {
-                    cliente = comprueba;
-                    user = cliente.getNombre();
-                    pass = cliente.getFoto();
-                    return "/user/inicio.jsf?faces-redirect=true";
-                }
-            } else {
-                Veterinario comprueba2 = veterinariosDAO.buscaUser(user);
-                if (comprueba2 != null) {
-                    if (pass.equals(comprueba2.getPass())) {
-                        veterinario = comprueba2;
-                        user = veterinario.getNombre();
-                        pass = veterinario.getFoto();
-                        return "/admin/inicio.jsf?faces-redirect=true";
-                    }
-                }
-            }
-        }
-        error = true;
-        return null;
+        return "/user/inicio.jsf?faces-redirect=true";
     }
 
     public String logout() {
-        user = null;
-        pass = null;
         return "/inicio/inicio.jsf?faces-redirect=true";
     }
 
@@ -164,17 +135,9 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public String borraCliente(Cliente cli) throws ParseException {
-         @AssertFalse(message = "El cliente no ha sido borrado.")
-        boolean borrado = false;
-        if (cliente.getUser()== this.user) {
-            borrado = clientesDAO.borra(cli.getDNI());
-        }
-        if (borrado) {
-            return "clientes.xhtml?faces-redirect=true";
-        } else {
-            return "inicio.xhtml?faces-redirect=true";
-        }
+    public String borraCliente(String id){
+        if(clientesDAO.borra(id));
+        return null;
     }
 
     /**

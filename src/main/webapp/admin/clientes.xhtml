@@ -14,10 +14,10 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-
         <div class="row">
+
             <ui:repeat value="#{ctrlUser.clientes}" var="cli">
-                <div class="card col-sm-3 carta mb-3">
+                <h:form class="card col-sm-3 carta mb-3">
                     <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="300"/>      
                     <div class="card-body">
                         <h5 class="card-title">#{cli.nombre}</h5>
@@ -32,14 +32,10 @@
                         <h:button styleClass="card-link btn btn-outline-primary" value="Editar" outcome="modifCliente.xhtml" >
                             <f:param name="dni" value="#{cli.DNI}" />
                         </h:button>
-                        <h:link outcome="clientes.xhtml">
-                            <h:commandButton class="card-link btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli)}" value="Borrar" />
-                        </h:link>
-
+                        <h:commandButton styleClass="card-link btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="Borrar" />
                     </div>
-                </div>
+                </h:form>
             </ui:repeat>
         </div>
     </ui:define>
-
 </ui:composition>

@@ -31,6 +31,7 @@ public class Cliente {
 
     @Past(message = "Si no has nacido, ¿que haces registrandote? Revisa la fecha de nacimiento.")
     @Temporal(TemporalType.DATE)
+    @NotNull(message = "La fecha de nacimiento es requerida.")
     private Date fnac;
 
     @NotEmpty(message = "Introduce una foto para que podamos conocerte")

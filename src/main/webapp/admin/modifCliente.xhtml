@@ -94,7 +94,7 @@
                     <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
                 </div>
             </div>
-            <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml">Modificar cliente</h:link>
+            <h:commandButton styleClass="eBoton btn btn-success btn-lg btn-block" action="#{ctrlUser.modificaCliente()}"  value="Modificar cliente" />
         </h:form>
     </ui:define>
 

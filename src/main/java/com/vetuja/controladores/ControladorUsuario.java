@@ -33,6 +33,7 @@ public class ControladorUsuario implements Serializable {
     private String user; // Una vez logeado guarda el nombre
     private String pass; // Una vez logeado guarda la foto
     private String fecha; // Fecha de nacimiento
+    private String dni;
     private Integer id;
 
     public ControladorUsuario() {
@@ -44,6 +45,7 @@ public class ControladorUsuario implements Serializable {
         veterinario = new Veterinario();
         user = null;
         pass = null;
+        dni = null;
         setFecha(null);
     }
 
@@ -136,7 +138,22 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public String borraCliente(String id){
+    public String modificaCliente() throws ParseException {
+        if (!cliente.getDNI().equals(dni)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date fnac = sdf.parse(getFecha());
+            cliente.setFnac(fnac);
+            clientesDAO.crea(cliente);
+            clientesDAO.borra(dni);
+
+            return "clientes.jsf?faces-redirect=true";
+        }
+        clientesDAO.guarda(cliente);
+        return "clientes.jsf?faces-redirect=true";
+
+    }
+
+    public String borraCliente(String id) {
         clientesDAO.borra(id);
         return null;
     }
@@ -154,4 +171,19 @@ public class ControladorUsuario implements Serializable {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    /**
+     * @param dni the dni to set
+     */
+    public void setDNI(String dni) {
+        this.dni = dni;
+    }
+
+    /**
+     * @return the DNI
+     */
+    public String getDNI() {
+        return dni;
+    }
+
 }

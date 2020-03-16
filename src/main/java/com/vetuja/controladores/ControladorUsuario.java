@@ -33,6 +33,7 @@ public class ControladorUsuario implements Serializable {
     private String user; // Una vez logeado guarda el nombre
     private String pass; // Una vez logeado guarda la foto
     private String fecha; // Fecha de nacimiento
+    private Integer id;
 
     public ControladorUsuario() {
     }
@@ -136,7 +137,7 @@ public class ControladorUsuario implements Serializable {
     }
 
     public String borraCliente(String id){
-        if(clientesDAO.borra(id));
+        clientesDAO.borra(id);
         return null;
     }
 

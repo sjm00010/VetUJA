@@ -15,6 +15,7 @@
     </ui:define>
 
     <ui:define name="background">
+        <h:messages class="alert alert-danger"/>
         <div class="row justify-content-center mx-0"
              style="background-image:url(#{resource['img/otros/cita_background.jpg']}); 
              background-size: cover; height: 87%; width: 100%">
@@ -24,7 +25,7 @@
                     <div class="col-12">
                         <div class="form-group mx-3">
                             <label for="dia"><strong>Día de la cita</strong></label>
-                            <h:inputText class="form-control" a:type="date" id="dia" value="#{ctrlCitas.cita.fecha}"/>                               
+                            <h:inputText class="form-control" a:type="date" id="dia" value="#{ctrlCitas.cita.fecha}"/> 
                         </div>
                     </div>
                     <div class="col-12">
@@ -36,34 +37,34 @@
                             </h:selectOneMenu>
                         </div>
                     </div>
-                        <div class="col-12">
-                            <div class="form-group mx-3">
-                                <label for="vet"><strong>Mascota</strong></label>
-                                <h:selectOneMenu class="form-control" id="mascot" value ="#{ctrlCitas.cita.nombreMascota}" >
-                                    <f:selectItem itemValue="Remy" itemLabel="Remy" />
-                                    <f:selectItem itemValue="Misifu" itemLabel="Misifu" />
-                                </h:selectOneMenu>
-                            </div>
+                    <div class="col-12">
+                        <div class="form-group mx-3">
+                            <label for="vet"><strong>Mascota</strong></label>
+                            <h:selectOneMenu class="form-control" id="mascot" value ="#{ctrlCitas.cita.nombreMascota}" >
+                                <f:selectItem itemValue="Remy" itemLabel="Remy" />
+                                <f:selectItem itemValue="Misifu" itemLabel="Misifu" />
+                            </h:selectOneMenu>
                         </div>
+                    </div>
 
 
-                        <div class="col-12">
-                            <div class="form-group mx-3">
-                                <label for="hora"><strong>Hora</strong></label>
-                                <h:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
-                                    <f:selectItem itemValue="9:00" itemLabel="9:00" />
-                                    <f:selectItem itemValue="10:00" itemLabel="10:00" />
-                                    <f:selectItem itemValue="11:00" itemLabel="11:00" />
-                                    <f:selectItem itemValue="12:00" itemLabel="12:00" />
-                                    <f:selectItem itemValue="13:00" itemLabel="13:00" />
-                                    <f:selectItem itemValue="16:00" itemLabel="16:00" />
-                                    <f:selectItem itemValue="17:00" itemLabel="17:00" />
-                                    <f:selectItem itemValue="18:00" itemLabel="18:00" />
-                                    <f:selectItem itemValue="19:00" itemLabel="19:00" />
-                                    <f:selectItem itemValue="20:00" itemLabel="20:00" />
-                                </h:selectOneMenu>
-                            </div>
+                    <div class="col-12">
+                        <div class="form-group mx-3">
+                            <label for="hora"><strong>Hora</strong></label>
+                            <h:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
+                                <f:selectItem itemValue="9:00" itemLabel="9:00" />
+                                <f:selectItem itemValue="10:00" itemLabel="10:00" />
+                                <f:selectItem itemValue="11:00" itemLabel="11:00" />
+                                <f:selectItem itemValue="12:00" itemLabel="12:00" />
+                                <f:selectItem itemValue="13:00" itemLabel="13:00" />
+                                <f:selectItem itemValue="16:00" itemLabel="16:00" />
+                                <f:selectItem itemValue="17:00" itemLabel="17:00" />
+                                <f:selectItem itemValue="18:00" itemLabel="18:00" />
+                                <f:selectItem itemValue="19:00" itemLabel="19:00" />
+                                <f:selectItem itemValue="20:00" itemLabel="20:00" />
+                            </h:selectOneMenu>
                         </div>
+                    </div>
                 </div>
 
                 <div class="mx-3">

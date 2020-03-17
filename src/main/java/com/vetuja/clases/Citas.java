@@ -6,6 +6,8 @@
 package com.vetuja.clases;
 
 import java.util.Date;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -13,9 +15,13 @@ import java.util.Date;
  */
 public class Citas {
     private Integer id;
+    @NotEmpty(message="La fecha no puede estar vacía.")
     private String fecha;
+    @NotEmpty(message="La hora no puede estar vacía.")
     private String hora;
+    @NotEmpty(message="El nombre del veterinario no puede estar vacío.")
     private String nombreVet;
+    @NotEmpty(message="El nombre de la mascota no puede estar vacío.")
     private String nombreMascota;
     
     

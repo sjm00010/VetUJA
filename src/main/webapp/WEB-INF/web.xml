@@ -3,7 +3,7 @@
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <!-- Activa los mensajes de error -->
-        <param-value>Development</param-value>
+        <param-value>Production</param-value>
         <!-- Otros valores: Production, SystemTest, UnitTest -->
     </context-param>
     <session-config>
@@ -12,6 +12,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>inicio/inicio.jsf</welcome-file>
     </welcome-file-list>
 </web-app>

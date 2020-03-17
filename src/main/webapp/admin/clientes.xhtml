@@ -14,29 +14,29 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-
         <div class="row">
-            <ui:repeat value="#{ctrlClientes.clientes}" var="cli">
-                <div class="card col-sm-3 carta mb-3">
-                    <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="300"/>      
-                    <div class="card-body">
-                        <h5 class="card-title">#{cli.nombre}</h5>
-                        <p class="card-text">#{cli.apellidos}</p>
+            <ui:repeat value="#{ctrlUser.clientes}" var="cli">
+                <h:form class="col-sm-4 mb-3 px-0">
+                    <div class="card mx-2">
+                        <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="300"/>      
+                        <div class="card-body">
+                            <h5 class="card-title">#{cli.nombre}</h5>
+                            <p class="card-text">#{cli.apellidos}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>DNI : </strong>#{cli.DNI}</li>
+                            <li class="list-group-item"><strong>Dirección : </strong>#{cli.direccion}</li>
+                            <li class="list-group-item"><strong>Usuario : </strong>#{cli.user}</li>
+                        </ul>
+                        <div class="card-body">
+                            <h:button styleClass="card-link btn btn-outline-primary" value="Editar" outcome="modifCliente.xhtml" >
+                                <f:param name="dni" value="#{cli.DNI}" />
+                            </h:button>
+                            <h:commandButton styleClass="card-link btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="Borrar" />
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>DNI : </strong>#{cli.DNI}</li>
-                        <li class="list-group-item"><strong>Dirección : </strong>#{cli.direccion}</li>
-                        <li class="list-group-item"><strong>Usuario : </strong>#{cli.user}</li>
-                    </ul>
-                    <div class="card-body">
-                        <h:button styleClass="card-link btn btn-outline-primary" value="Editar" outcome="modifCliente.xhtml" >
-                            <f:param name="dni" value="#{cli.DNI}" />
-                        </h:button>
-                        <h:link class="card-link btn btn-outline-danger" outcome = "/admin/clientes.xhtml"> Borrar </h:link>
-                    </div>
-                </div>
+                </h:form>
             </ui:repeat>
         </div>
     </ui:define>
-
 </ui:composition>

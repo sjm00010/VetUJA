@@ -7,7 +7,6 @@ package com.vetuja.DAO;
 
 import com.vetuja.clases.Citas;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,7 @@ import javax.enterprise.context.ApplicationScoped;
  * @author juanc
  */
 @ApplicationScoped
-public class CitasDAO implements DAOgenerico <Citas, Integer>, DAOcrud <Citas, Integer>{
+public class CitasDAO implements DAOgenerico <Citas, Integer>{
     private Map<Integer, Citas> citas = null;
     private Integer idCliente = 6;
     public CitasDAO() throws ParseException {

@@ -24,7 +24,7 @@
                             #{cit.id} </h:column>
 
                         <h:column> <f:facet name ="header"> Fecha </f:facet>
-                            #{cit.fecha} </h:column>
+                            #{cit.leerFecha()} </h:column>
 
                         <h:column> <f:facet name ="header"> Hora </f:facet>
                             #{cit.hora} </h:column> 
@@ -39,7 +39,7 @@
                             #{cit.nombreMascota} </h:column>
 
                         <h:column> <f:facet name ="header"> Borrar </f:facet>
-                            <h:commandButton value="Borrar" action="#{ctrlCitas.borra(cit)}" />
+                            <h:commandButton image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>
                         </h:column>
                     </thead>
 

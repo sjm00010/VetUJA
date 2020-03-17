@@ -7,6 +7,7 @@ package com.vetuja.DAO;
 
 import com.vetuja.clases.Citas;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,20 +25,16 @@ public class CitasDAO implements DAOgenerico <Citas, Integer>{
     public CitasDAO() throws ParseException {
         if(citas == null) {
             citas = new HashMap<>();
-//            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//            java.util.Date fecha = sdf.parse("08-02-2020");
-//            java.util.Date fecha2 = sdf.parse("06-05-2020");
-//            java.util.Date fecha3 = sdf.parse("15-07-2020");
-//            java.util.Date fecha4 = sdf.parse("01-09-2020");
-            citas.put(1, new Citas(1,"2020-02-08","16:30","José Ramón","Remy"));
-            citas.put(2, new Citas(2,"2020-05-06","10:30","Flo","Remy"));
-            citas.put(3, new Citas(3,"2020-07-15","9:00","José Ramón","Misifu"));
-            citas.put(4, new Citas(4,"2020-07-15","17:10","José Ramón","Desconocida"));
-            citas.put(5, new Citas(5,"2020-09-01","12:15","Flo","Misifu"));
-
-
-
-        
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+            java.util.Date fecha = sdf.parse("08-02-2020");
+            java.util.Date fecha2 = sdf.parse("06-05-2020");
+            java.util.Date fecha3 = sdf.parse("15-07-2020");
+            java.util.Date fecha4 = sdf.parse("01-09-2020");
+            citas.put(1, new Citas(1,fecha,"16:30","José Ramón","Remy"));
+            citas.put(2, new Citas(2,fecha2,"10:30","Flo","Remy"));
+            citas.put(3, new Citas(3,fecha3,"9:00","José Ramón","Misifu"));
+            citas.put(4, new Citas(4,fecha3,"17:10","José Ramón","Desconocida"));
+            citas.put(5, new Citas(5,fecha4,"12:15","Flo","Misifu"));  
     }
 }
 

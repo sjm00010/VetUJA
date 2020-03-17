@@ -5,35 +5,48 @@
  */
 package com.vetuja.clases;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author juanc
  */
 public class Citas {
+    @NotEmpty(message="El ID no puede estar vacío.")
     private Integer id;
-    @NotEmpty(message="La fecha no puede estar vacía.")
-    private String fecha;
+    
+    @Future(message="La fecha debe ser posterior a hoy.")
+    @NotNull(message="La fecha no puede estar vacía.")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    
     @NotEmpty(message="La hora no puede estar vacía.")
     private String hora;
+    
     @NotEmpty(message="El nombre del veterinario no puede estar vacío.")
     private String nombreVet;
+    
     @NotEmpty(message="El nombre de la mascota no puede estar vacío.")
     private String nombreMascota;
     
     
 public Citas() {
     id = 0;
-    fecha = "";
+    fecha = null;
     hora = "";
     nombreVet = "";
     nombreMascota = "";
 }
 
-public Citas(Integer id,String fecha, String hora, String nombreVet, String nombreMascota) {
+public Citas(Integer id,Date fecha, String hora, String nombreVet, String nombreMascota) {
     this.id = id;
     this.fecha = fecha;
     this.hora = hora;
@@ -65,14 +78,14 @@ public Citas(Integer id,String fecha, String hora, String nombreVet, String nomb
     /**
      * @return La fecha de la cita
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
     /**
      * @param fecha La fecha de la cita a poner
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -116,6 +129,11 @@ public Citas(Integer id,String fecha, String hora, String nombreVet, String nomb
      */
     public void setNombreMascota(String nombreMascota) {
         this.nombreMascota = nombreMascota;
+    }
+    
+    public String leerFecha(){
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(this.fecha);
     }
 }
 

@@ -5,6 +5,8 @@
  */
 package com.vetuja.clases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 import javax.persistence.Temporal;
@@ -224,6 +226,11 @@ public class Cliente {
      */
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+    
+        public String leerFecha(){
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(this.fnac);
     }
 
 }

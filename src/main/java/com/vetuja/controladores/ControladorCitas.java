@@ -29,7 +29,6 @@ public class ControladorCitas implements Serializable {
     //View-Model
     private Citas cita;
     private Integer id;
-    //private String prueba;
 
     public ControladorCitas() {
 
@@ -39,7 +38,6 @@ public class ControladorCitas implements Serializable {
     private void init() {
         cita = new Citas();
         id = 0;
-       // setPrueba("Des");
     }
 
     public Citas getCita() {
@@ -74,9 +72,8 @@ public class ControladorCitas implements Serializable {
         if (citasDAO.crea(cita)) {
             return "citas.xhtml?faces-redirect=true";
         } else {
-            return "registro_cita.xhtml?faces-redirect=true";
+            return null;
         }
-
     }
 
     /**
@@ -92,5 +89,4 @@ public class ControladorCitas implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
 }

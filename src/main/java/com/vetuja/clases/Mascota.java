@@ -17,6 +17,7 @@ import java.util.logging.Logger;
     private String raza;
     private String sexo;
     private Date fechanac;
+    private String foto;
     private static final Logger logger = Logger.getLogger(Mascota.class.getName());
 
    public Mascota() {
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
     raza="BDF";
     sexo="M";
     fechanac= null;
+    foto = "img/mascotas/gato.jpg";
 }
     
 /**
@@ -33,14 +35,15 @@ import java.util.logging.Logger;
  * @param raza Raza del animal
  * @param sexo Sexo de la mascota
  * @param fechanac Fecha nacimiento de la mascota
+* @param foto Nombre de la foto de usuario, dentro de la carpeta 'mascotas'
 */
-    public Mascota(String ci,String nombre,String raza,String sexo, Date fechanac){
+    public Mascota(String ci,String nombre,String raza,String sexo, Date fechanac,String foto){
 this.ci = ci;
 this.nombre = nombre;
 this.raza = raza;
 this.sexo = sexo;
 this.fechanac = fechanac;
-
+this.foto = foto;
 }
 
     /**
@@ -115,4 +118,17 @@ this.fechanac = fechanac;
         this.fechanac = fechanac;
     }
 
+    /**
+     * @return Nombre de la foto de mascota, dentro de la carpeta 'mascotas'
+     */
+    public String getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto Nombre de la foto de mascota, dentro de la carpeta 'mascotas'
+     */
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 }

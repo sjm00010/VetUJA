@@ -33,9 +33,7 @@ public class ControladorUsuario implements Serializable {
     private Veterinario veterinario;
     private String user; // Una vez logeado guarda el nombre
     private String pass; // Una vez logeado guarda la foto
-    private String fecha; // Fecha de nacimiento
     private String dni;
-    private Integer id;
 
     public ControladorUsuario() {
     }
@@ -47,7 +45,6 @@ public class ControladorUsuario implements Serializable {
         user = null;
         pass = null;
         dni = null;
-        setFecha(null);
     }
 
     public Cliente getCliente() {
@@ -69,8 +66,6 @@ public class ControladorUsuario implements Serializable {
     public void recupera() {
         cliente = clientesDAO.buscaId(cliente.getDNI());
         this.dni = cliente.getDNI();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        this.fecha = dateFormat.format(cliente.getFnac());
     }
 
     public Veterinario getVeterinario() {
@@ -131,9 +126,6 @@ public class ControladorUsuario implements Serializable {
 
     public String creaCliente() throws ParseException {
         if (cliente.getPass().equals(pass)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date fnac = sdf.parse(getFecha());
-            cliente.setFnac(fnac);
             if (clientesDAO.crea(cliente)) {
                 return "/inicio/inicio.jsf?faces-redirect=true";
             }
@@ -142,12 +134,7 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public String modificaCliente() throws ParseException {
-        // Transformo la fecha para hacerla compatible
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        java.util.Date fnac = sdf.parse(this.fecha);
-        cliente.setFnac(fnac);
-        
+    public String modificaCliente() throws ParseException {    
         if (!cliente.getDNI().equals(dni) && clientesDAO.buscaId(cliente.getDNI()) != null) {
             clientesDAO.crea(cliente);
             clientesDAO.borra(dni);
@@ -161,20 +148,6 @@ public class ControladorUsuario implements Serializable {
     public String borraCliente(String id) {
         clientesDAO.borra(id);
         return null;
-    }
-
-    /**
-     * @return the fecha
-     */
-    public String getFecha() {
-        return fecha;
-    }
-
-    /**
-     * @param fecha the fecha to set
-     */
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 
     /**

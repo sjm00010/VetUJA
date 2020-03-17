@@ -37,7 +37,8 @@
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>
-                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.fecha}">
+                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
                             </h:inputText>
                         </div>
                     </div>

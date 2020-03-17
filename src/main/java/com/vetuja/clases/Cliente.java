@@ -23,10 +23,10 @@ public class Cliente {
     @Size(min = 3, max = 12, message = "El nombre debe tener una longitud entre {min} y {max} caracteres.")
     private String nombre;
 
-    @Size(min = 6, max = 15, message = "Los apellidos deben tener una longitud entre {min} y {max} caracteres.")
+    @Size(min = 6, max = 20, message = "Los apellidos deben tener una longitud entre {min} y {max} caracteres.")
     private String apellidos;
 
-    @Size(min = 6, max = 20, message = "La direción debe tener una longitud entre {min} y {max} caracteres.")
+    @Size(min = 6, max = 30, message = "La direción debe tener una longitud entre {min} y {max} caracteres.")
     private String direccion;
 
     @Past(message = "Si no has nacido, ¿que haces registrandote? Revisa la fecha de nacimiento.")
@@ -34,7 +34,7 @@ public class Cliente {
     @NotNull(message = "La fecha de nacimiento es requerida.")
     private Date fnac;
 
-    @NotEmpty(message = "Introduce una foto para que podamos conocerte")
+    @NotEmpty(message = "Introduce una foto para que podamos conocerte.")
     private String foto;
 
     @Size(min = 3, max = 10, message = "El usuario debe tener una longitud entre {min} y {max} caracteres.")

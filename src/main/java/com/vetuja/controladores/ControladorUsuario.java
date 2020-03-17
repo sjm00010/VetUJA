@@ -71,8 +71,6 @@ public class ControladorUsuario implements Serializable {
         this.dni = cliente.getDNI();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         this.fecha = dateFormat.format(cliente.getFnac());
-        System.out.println("Recuperando fecha");
-        System.out.println(fecha);
     }
 
     public Veterinario getVeterinario() {

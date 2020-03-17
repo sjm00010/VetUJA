@@ -1,17 +1,37 @@
 package com.vetuja.clases;
 
 import java.util.Objects;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author sjm00010
  */
 public class Veterinario {
+    /*
+     Estas variables no requieren de verificación, ya que los datos de los
+     veterinarios no se editan/borran o crean. Se inician al principio y
+     solo se leen.
+    */
+    
+    @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números. Ej. AA1111")
     private String codCol;
+    
+    @Size(min = 3, max = 12, message = "El nombre debe tener una longitud entre {min} y {max} caracteres.")
     private String nombre;
+    
+    @Size(min = 6, max = 20, message = "Los apellidos deben tener una longitud entre {min} y {max} caracteres.")
     private String apellidos;
+    
+    @Size(min = 3, max = 10, message = "El usuario debe tener una longitud entre {min} y {max} caracteres.")
     private String user;
+    
+    @Size(min = 6, max = 10, message = "La contraseña debe tener una longitud entre {min} y {max} caracteres.")
     private String pass;
+    
+    @NotEmpty(message = "Introduce una foto para que te conozcan tus clientes.")
     private String foto;
 
     public Veterinario() {

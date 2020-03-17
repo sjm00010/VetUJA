@@ -5,19 +5,35 @@
  */
 package com.vetuja.clases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.*;
 /**
  *
  * @author dgl00018
  */
     public class Mascota {
+
+ @Pattern(regexp = "\\d{15}", message = "Código identificación incorrecto, debe tener 15 números")
     private String ci;
+
+ @Size(min = 3, max = 12, message = "El nombre debe tener una longitud entre {min} y {max} caracteres.")
     private String nombre;
+
+@Size(min = 2, max = 12, message = "La raza debe tener una longitud entre {min} y {max} caracteres.")
     private String raza;
+
+ @Pattern(regexp = "\\[MF]", message = "El sexo debe ser M(macho) o F(hembra)")
     private String sexo;
     private Date fechanac;
+
+@NotEmpty(message = "Debe introducir una foto de la mascota")
     private String foto;
+
     private static final Logger logger = Logger.getLogger(Mascota.class.getName());
 
    public Mascota() {

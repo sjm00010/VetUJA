@@ -24,8 +24,9 @@
             </f:metadata>
         </h:head>
 
-        <h:form>
-            <h1 class="text-center display-3"><u>Modificación de datos del cliente</u></h1>
+        <h:form class="mb-5">
+            <h1 class="text-center display-3"><u><strong>Modificación de datos del cliente</strong></u></h1>
+            <h:messages class="alert alert-danger"/>
             <div class="card my-3">
                 <h2 class="card-header"><small>Datos personales</small></h2>
                 <div class="row row-cols-1 row-cols-md-2 my-3">
@@ -94,7 +95,7 @@
                     <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
                 </div>
             </div>
-            <h:commandButton styleClass="eBoton btn btn-success btn-lg btn-block" action="#{ctrlUser.modificaCliente()}"  value="Modificar cliente" />
+            <h:commandButton styleClass="eBoton btn btn-success btn-lg btn-block mb-auto" action="#{ctrlUser.modificaCliente()}"  value="Modificar cliente" />
         </h:form>
     </ui:define>
 

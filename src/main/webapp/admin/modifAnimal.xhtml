@@ -16,6 +16,14 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+        
+        <h:head>
+            <f:metadata>
+                <f:viewParam name="ci" required="true"
+                             a:value="#{ ctrlMascotas.mascota.ci }"/>
+                <f:viewAction action="#{ ctrlMascotas.recupera() }"/>
+            </f:metadata>
+        </h:head>
         <h:form>
             <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
             <div class="row row-cols-1 row-cols-md-2">
@@ -24,18 +32,18 @@
                         <h2 class="card-header"><small>Datos de la mascota</small></h2>
                         <div class="row row-cols-1 row-cols-md-2 my-3">
                             <div class="col col-md-3">
-                                <h:graphicImage value="#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img mx-2" style="height: 100%"/>
+                                <h:graphicImage a:value="#{ctrlMascotas.mascota.foto}}" alt="foto mascota" class="card-img mx-2" style="height: 100%"/>
                             </div>
                             <div class="col col-md-9">
                                 <div class="col-12 mt-2">
                                     <div class="row row-cols-1 row-cols-md-2">
                                         <div class="col">
                                             <label for="ci">Código de identificación</label>
-                                            <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" value="938000000455987"/>
+                                            <h:inputText class="form-control" id="ci" a:placeholder="13 dígitos" a:value="#{ctrlMascotas.mascota.ci}"/>
                                         </div>
                                         <div class="col">
                                             <label for="nombre">Nombre</label>
-                                            <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Firulais" value="Remy"/>
+                                            <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Firulais" a:value="#{ctrlMascotas.mascota.nombre}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -43,12 +51,12 @@
                                     <div class="row row-cols-1 row-cols-md-2">
                                         <div class="col mb-2">
                                             <label for="raza">Especie</label>
-                                            <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés" value="Rata"/>
+                                            <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés" a:value="#{ctrlMascotas.mascota.raza}"/>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="sexo">Sexo</label>
-                                                <h:selectOneMenu class="form-control" id="sexo" value="1">
+                                                <h:selectOneMenu class="form-control" id="sexo" a:value="#{ctrlMascotas.mascota.sexo}">
                                                     <f:selectItem itemValue="1" itemLabel="Macho" />
                                                     <f:selectItem itemValue="2" itemLabel="Hembra" />
                                                 </h:selectOneMenu>
@@ -60,7 +68,7 @@
                                     <div class="row row-cols-1 row-cols-md-2">
                                         <div class="col">
                                             <label for="fechanac">Fecha de nacimiento</label>
-                                            <h:inputText class="form-control" a:type="date" id="fechanac" value="2015-02-14"/>
+                                            <h:inputText class="form-control" a:type="date" id="fechanac" a:value="#{ctrlMascotas.mascota.fechanac}"/>
                                         </div>
                                         <div class="col">
                                             <label for="foto">Foto</label>

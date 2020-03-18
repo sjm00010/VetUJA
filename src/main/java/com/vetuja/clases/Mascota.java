@@ -7,6 +7,8 @@ package com.vetuja.clases;
 
 import java.util.Date;
 import java.util.logging.Logger;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
 
 /**
@@ -26,20 +28,30 @@ public class Mascota {
 
     @Pattern(regexp = "\\[MF]", message = "El sexo debe ser M(macho) o F(hembra)")
     private String sexo;
+    
+    @Past(message = "Tu mascota debe haber nacido, revisa la fecha de nacimiento.")
+    @Temporal(TemporalType.DATE)
+    @NotNull(message = "La fecha de nacimiento es requerida.")
     private Date fechanac;
 
     @NotEmpty(message = "Debe introducir una foto de la mascota")
     private String foto;
+    
+    @Pattern(regexp = "\\d{8}[A-Z]", message = "DNI incorrecto, debe tener 8 números y la letra debe estar en mayúscula.")
+    private String cliDNI;
+    
+    @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números. Ej. AA1111")
+    private String vetCC;
 
     private static final Logger logger = Logger.getLogger(Mascota.class.getName());
 
     public Mascota() {
-        ci = "1254125";
-        nombre = "Rufo";
-        raza = "BDF";
-        sexo = "M";
+        ci = "";
+        nombre = "";
+        raza = "";
+        sexo = "";
         fechanac = null;
-        foto = "img/mascotas/gato.jpg";
+        foto = "";
     }
 
     /**
@@ -50,13 +62,15 @@ public class Mascota {
      * @param fechanac Fecha nacimiento de la mascota
      * @param foto Nombre de la foto de usuario, dentro de la carpeta 'mascotas'
      */
-    public Mascota(String ci, String nombre, String raza, String sexo, Date fechanac, String foto) {
+    public Mascota(String ci, String nombre, String raza, String sexo, Date fechanac, String foto, String cliDNI, String vetCC) {
         this.ci = ci;
         this.nombre = nombre;
         this.raza = raza;
         this.sexo = sexo;
         this.fechanac = fechanac;
         this.foto = foto;
+        this.cliDNI = cliDNI;
+        this.vetCC = vetCC;
     }
 
     /**
@@ -141,5 +155,33 @@ public class Mascota {
      */
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    /**
+     * @return the cliDNI
+     */
+    public String getCliDNI() {
+        return cliDNI;
+    }
+
+    /**
+     * @param cliDNI the cliDNI to set
+     */
+    public void setCliDNI(String cliDNI) {
+        this.cliDNI = cliDNI;
+    }
+
+    /**
+     * @return the vetCC
+     */
+    public String getVetCC() {
+        return vetCC;
+    }
+
+    /**
+     * @param vetCC the vetCC to set
+     */
+    public void setVetCC(String vetCC) {
+        this.vetCC = vetCC;
     }
 }

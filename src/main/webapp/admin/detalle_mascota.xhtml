@@ -2,7 +2,8 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="../WEB-INF/template/layout.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="nomPag">
         Detalle Mascota
@@ -13,6 +14,14 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+        <h:head>
+            <f:metadata>
+                <f:viewParam name="ci" required="true"
+                             value="#{ ctrlMasc.mascota.ci }"/>
+                <f:viewAction action="#{ ctrlMasc.recupera() }"/>
+            </f:metadata>
+        </h:head>
+        
         <h:link class="btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml">Editar información</h:link>
         <div class="card mb-3" style="max-width: 100%;">
             <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
@@ -23,13 +32,13 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h3 class="card-title">Remy</h3>
-                        <p class="card-text h4"><strong>Código de identificación :</strong> 938000000455987</p>
-                        <p class="card-text h4"><strong>Fecha de nacimiento :</strong> 14/02/2015</p>
-                        <p class="card-text h4"><strong>Especie :</strong> Rata</p>
-                        <p class="card-text h4"><strong>Raza :</strong> Doméstica</p>
-                        <p class="card-text h4"><strong>Sexo :</strong> Macho</p>
-                        <p class="card-text h4"><strong>Altura :</strong> 34cm</p> 
-                        <p class="card-text h4"><strong>Peso :</strong> 1300g</p> 
+                        <p class="card-text h4"><strong>Código de identificación : </strong> 938000000455987</p>
+                        <p class="card-text h4"><strong>Fecha de nacimiento : </strong> 14/02/2015</p>
+                        <p class="card-text h4"><strong>Especie : </strong> Rata</p>
+                        <p class="card-text h4"><strong>Raza : </strong> Doméstica</p>
+                        <p class="card-text h4"><strong>Sexo : </strong> Macho</p>
+                        <p class="card-text h4"><strong>Altura : </strong> 34cm</p> 
+                        <p class="card-text h4"><strong>Peso : </strong> 1300g</p> 
                     </div>
                 </div>
             </div>

@@ -23,12 +23,20 @@ public class MascotaDAO implements DAOgenerico<Mascota, String> {
             mascotas = new HashMap<>();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date fechanac = sdf.parse("2008-07-26");
+            java.util.Date fechanac2 = sdf.parse("2003-08-08");
+            java.util.Date fechanac3 = sdf.parse("2015-11-17");
             mascotas.put("938000000455987", new Mascota(
-                    "938000000455987", "Remy", "Rata", "M", fechanac, "img/mascotas/remy.png"));
+                    "938000000455987", "Remy", "Rata", "M", fechanac,
+                    "https://vignette.wikia.nocookie.net/dominios-encantados/images/6/66/REMY_WIKI.png/revision/latest/scale-to-width-down/340?cb=20151126195355&path-prefix=es",
+                    "54215624R","AS0008"));
             mascotas.put("938000159457532", new Mascota(
-                    "938000159457532", "Misifu", "Gato Siames", "M", fechanac, "img/mascotas/gato.jpg"));
+                    "938000159457532", "Misifu", "Gato Siames", "F", fechanac2, 
+                    "https://www.lavanguardia.com/r/GODO/LV/p6/WebSite/2019/05/17/Recortada/img_pplaza_20190517-144227_imagenes_lv_otras_fuentes_60889244_295648354678280_6739256407041769472_n-kR3G-U462293423715hBH-992x558@LaVanguardia-Web.jpg",
+                    "54215624R","AS0489"));
             mascotas.put("938000777000666", new Mascota(
-                    "938000777000666", "Pipo", "Perro Gambino", "M", fechanac, "img/mascotas/pipo.jpg"));
+                    "938000777000666", "Pipo", "Perro Gambino", "M", fechanac3, 
+                    "https://i1.sndcdn.com/artworks-000239253704-ikgw8q-t500x500.jpg",
+                    "53914392T","AS0008"));
 
         }
     }

@@ -19,18 +19,19 @@
         <h:head>
             <f:metadata>
                 <f:viewParam name="dni" required="true"
-                             value="#{ ctrlClientes.cliente.DNI }"/>
-                <f:viewAction action="#{ ctrlClientes.recupera() }"/>
+                             value="#{ ctrlUser.cliente.DNI }"/>
+                <f:viewAction action="#{ ctrlUser.recupera() }"/>
             </f:metadata>
         </h:head>
 
-        <h:form>
-            <h1 class="text-center display-3"><u>Modificación de datos del cliente</u></h1>
+        <h:form class="mb-5">
+            <h1 class="text-center display-3"><u><strong>Modificación de datos del cliente</strong></u></h1>
+            <h:messages class="alert alert-danger"/>
             <div class="card my-3">
                 <h2 class="card-header"><small>Datos personales</small></h2>
                 <div class="row row-cols-1 row-cols-md-2 my-3">
                     <div class="col col-md-3">
-                        <h:graphicImage value = "#{ctrlClientes.cliente.foto}" alt="foto usuario" class="card-img ml-2" style="height: 100%;"/>
+                        <h:graphicImage value = "#{ctrlUser.cliente.foto}" alt="foto usuario" class="card-img ml-2" style="height: 100%;"/>
                     </div>
                     <div class="col col-md-9">
                         <div class="col-12 mt-2">
@@ -38,10 +39,10 @@
                                 <label for="nombre">Nombre completo</label>
                                 <div class="row row-cols-1 row-cols-md-2">
                                     <div class="col">
-                                        <h:inputText class="form-control mb-2" id="nombre" a:placeholder="Nombre" a:value="#{ctrlClientes.cliente.nombre}" />
+                                        <h:inputText class="form-control mb-2" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}" />
                                     </div>
                                     <div class="col">
-                                        <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlClientes.cliente.apellidos}" />
+                                        <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}" />
                                     </div>
                                 </div>
                             </div>
@@ -50,17 +51,19 @@
                             <div class="row row-cols-1 row-cols-md-2">
                                 <div class="col">
                                     <label for="dni">DNI</label>
-                                    <h:inputText class="form-control mb-2" id="dni" a:placeholder="Ej. 12345678A" a:value ="#{ctrlClientes.cliente.DNI}" />
+                                    <h:inputText class="form-control mb-2" id="dni" a:placeholder="Ej. 12345678A" a:value ="#{ctrlUser.cliente.DNI}" />
                                 </div>
                                 <div class="col">
                                     <label for="fnac">Fecha de nacimiento</label>
-                                    <h:inputText class="form-control" a:type="date" id="fnac" value="#{ctrlClientes.cliente.fnac}" />
+                                    <h:inputText class="form-control" a:type="date" id="fnac" value="#{ctrlUser.cliente.fnac}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:inputText>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 mt-2">
                             <label for="direccion">Dirección</label>
-                            <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlClientes.cliente.direccion}"/>
+                            <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
                         </div>
                     </div>
                 </div>
@@ -71,17 +74,17 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col">
                             <label for="usuario">Usuario</label>
-                            <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="#{ctrlClientes.cliente.user}"/>
+                            <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="#{ctrlUser.cliente.user}"/>
                         </div>
                         <div class="col">
                             <label for="email">Correo electrónico</label>
-                            <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlClientes.cliente.email}"/>
+                            <h:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 mt-2">
                     <label for="pass">Contraseña</label>
-                    <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlClientes.cliente.pass}"/>
+                    <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
                 </div>
 
                 <div class="col-12 my-2">
@@ -91,10 +94,10 @@
                                         a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
                                         style="margin-left: 1%;"/>
                     </div>
-                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlClientes.cliente.foto}"/>
+                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
                 </div>
             </div>
-            <h:link class="eBoton btn btn-success btn-lg btn-block" outcome = "clientes.xhtml">Modificar cliente</h:link>
+            <h:commandButton styleClass="eBoton btn btn-success btn-lg btn-block mb-auto" action="#{ctrlUser.modificaCliente()}"  value="Modificar cliente" />
         </h:form>
     </ui:define>
 

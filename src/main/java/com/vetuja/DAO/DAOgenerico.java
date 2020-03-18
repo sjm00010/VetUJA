@@ -8,7 +8,10 @@ import java.util.List;
  * 
  * @author sjm00010
  */
-public interface DAOgenerico<T,K> {
+    public interface DAOgenerico<T,K> {
     public T buscaId(K id);
     public List<T> buscaTodos();
+    public boolean crea(T c);
+    public boolean guarda(T c);    
+    public boolean borra(K id);
 }

@@ -1,6 +1,5 @@
 package com.vetuja.DAO;
 
-
 import com.vetuja.clases.Mascota;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,31 +11,31 @@ import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
- * @author dgl00018
+ * @author dgl00018 y sjm00010
  */
 @ApplicationScoped
-public class MascotaDAO implements DAOgenerico <Mascota, String>, DAOcrud <Mascota, String> {
+public class MascotaDAO implements DAOgenerico<Mascota, String> {
 
-    private Map<String, Mascota> mascotas=null; 
+    private Map<String, Mascota> mascotas = null;
 
-public MascotaDAO() throws ParseException {
+    public MascotaDAO() throws ParseException {
         if (mascotas == null) {
             mascotas = new HashMap<>();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date fechanac = sdf.parse("2008-07-26");
             mascotas.put("938000000455987", new Mascota(
-                    "938000000455987", "Remy","Rata","M", fechanac, "img/mascotas/remy.png"));
+                    "938000000455987", "Remy", "Rata", "M", fechanac, "img/mascotas/remy.png"));
             mascotas.put("938000159457532", new Mascota(
-                    "938000159457532", "Misifu","Gato Siames","M", fechanac,"img/mascotas/gato.jpg"));
+                    "938000159457532", "Misifu", "Gato Siames", "M", fechanac, "img/mascotas/gato.jpg"));
             mascotas.put("938000777000666", new Mascota(
-                    "938000777000666", "Pipo","Perro Gambino","M", fechanac,"img/mascotas/pipo.jpg"));
+                    "938000777000666", "Pipo", "Perro Gambino", "M", fechanac, "img/mascotas/pipo.jpg"));
 
         }
     }
 
-@Override
-    public Mascota buscaId(String ci) {
-        return mascotas.get(ci);
+    @Override
+    public Mascota buscaId(String id) {
+        return mascotas.get(id);
     }
 
     @Override
@@ -46,17 +45,27 @@ public MascotaDAO() throws ParseException {
 
     @Override
     public boolean crea(Mascota m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        mascotas.put(m.getCi(), m);
+        return true;
     }
 
     @Override
     public boolean guarda(Mascota m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        if (mascotas.containsKey(m.getCi())) {
+            mascotas.replace(m.getCi(), m);
+            result = true;
+        }
+        return result;
     }
 
     @Override
     public boolean borra(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        if (mascotas.containsKey(id)) {
+            mascotas.remove(id);
+            result = true;
+        }
+        return result;
     }
 }
-

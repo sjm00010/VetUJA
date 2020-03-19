@@ -5,6 +5,8 @@
  */
 package com.vetuja.clases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 import javax.persistence.Temporal;
@@ -17,7 +19,7 @@ import javax.validation.constraints.*;
  */
 public class Mascota {
 
-    @Pattern(regexp = "\\d{15}", message = "Código identificación incorrecto, debe tener 15 números")
+    @Pattern(regexp = "\\d{15}", message = "Código identificación incorrecto, debe tener 15 números.")
     private String ci;
 
     @Size(min = 3, max = 12, message = "El nombre debe tener una longitud entre {min} y {max} caracteres.")
@@ -25,22 +27,33 @@ public class Mascota {
 
     @Size(min = 2, max = 12, message = "La raza debe tener una longitud entre {min} y {max} caracteres.")
     private String raza;
+    
+    @Size(min = 2, max = 12, message = "La especie debe tener una longitud entre {min} y {max} caracteres.")
+    private String especie;
 
-    @Pattern(regexp = "\\[MF]", message = "El sexo debe ser M(macho) o F(hembra)")
+    @Pattern(regexp = "(Macho|Hembra)", message = "El sexo debe ser Macho o Hembra.")
     private String sexo;
     
+    @Positive(message = "La altura tiene que ser mayor a 0 cm.")
+    private Integer altura;
+    
+    @Positive(message = "El peso tiene que ser mayor a 0 g.")
+    private Integer peso;
+    
     @Past(message = "Tu mascota debe haber nacido, revisa la fecha de nacimiento.")
-    @Temporal(TemporalType.DATE)
     @NotNull(message = "La fecha de nacimiento es requerida.")
+    @Temporal(TemporalType.DATE)
     private Date fechanac;
 
     @NotEmpty(message = "Debe introducir una foto de la mascota")
     private String foto;
     
     @Pattern(regexp = "\\d{8}[A-Z]", message = "DNI incorrecto, debe tener 8 números y la letra debe estar en mayúscula.")
+    @NotNull(message = "Se debe seleccionar un cliente.")
     private String cliDNI;
     
-    @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números. Ej. AA1111")
+    @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números.")
+    @NotNull(message = "Se debe seleccionar un veterinario.")
     private String vetCC;
 
     private static final Logger logger = Logger.getLogger(Mascota.class.getName());
@@ -49,24 +62,35 @@ public class Mascota {
         ci = "";
         nombre = "";
         raza = "";
+        especie = "";
         sexo = "";
         fechanac = null;
         foto = "";
+        altura = null;
+        peso = null;
     }
 
     /**
-     * @param ci Codigo de idenficicacion de la mascota
+     * @param ci Código de identificación
      * @param nombre Nombre de la mascota
-     * @param raza Raza del animal
+     * @param raza Raza de la mascota
+     * @param especie Especie de la mascota
      * @param sexo Sexo de la mascota
-     * @param fechanac Fecha nacimiento de la mascota
-     * @param foto Nombre de la foto de usuario, dentro de la carpeta 'mascotas'
+     * @param altura Altura de la mascota
+     * @param peso Peso de la mascota
+     * @param fechanac Fecha de nacimiento
+     * @param foto Foto de la mascota
+     * @param cliDNI DNI del dueño
+     * @param vetCC Códogo de colegiado del veterinario que lo registro
      */
-    public Mascota(String ci, String nombre, String raza, String sexo, Date fechanac, String foto, String cliDNI, String vetCC) {
+    public Mascota(String ci, String nombre, String raza, String especie, String sexo, Integer altura, Integer peso, Date fechanac, String foto, String cliDNI, String vetCC) {
         this.ci = ci;
         this.nombre = nombre;
         this.raza = raza;
+        this.especie = especie;
         this.sexo = sexo;
+        this.altura = altura;
+        this.peso = peso;
         this.fechanac = fechanac;
         this.foto = foto;
         this.cliDNI = cliDNI;
@@ -81,7 +105,7 @@ public class Mascota {
     }
 
     /**
-     * @param DNI El codigo identificacion a cambiar
+     * @param ci El codigo identificacion a cambiar
      */
     public void setCi(String ci) {
         this.ci = ci;
@@ -183,5 +207,52 @@ public class Mascota {
      */
     public void setVetCC(String vetCC) {
         this.vetCC = vetCC;
+    }
+
+    /**
+     * @return the altura
+     */
+    public Integer getAltura() {
+        return altura;
+    }
+
+    /**
+     * @param altura the altura to set
+     */
+    public void setAltura(Integer altura) {
+        this.altura = altura;
+    }
+
+    /**
+     * @return the peso
+     */
+    public Integer getPeso() {
+        return peso;
+    }
+
+    /**
+     * @param peso the peso to set
+     */
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+
+    /**
+     * @return the especie
+     */
+    public String getEspecie() {
+        return especie;
+    }
+
+    /**
+     * @param especie the especie to set
+     */
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+    
+    public String leerFecha(){
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(this.fechanac);
     }
 }

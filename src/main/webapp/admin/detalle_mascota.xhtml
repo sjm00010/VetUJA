@@ -19,26 +19,31 @@
                 <f:viewParam name="ci" required="true"
                              value="#{ ctrlMasc.mascota.ci }"/>
                 <f:viewAction action="#{ ctrlMasc.recupera() }"/>
+                <f:viewAction action="#{ctrlUser.cliente.setDNI(ctrlMasc.mascota.cliDNI)}"/>
+                <f:viewAction action="#{ctrlUser.veterinario.setCodCol(ctrlMasc.mascota.vetCC)}"/>
+                <f:viewAction action="#{ctrlUser.recuperaAll()}"/>
             </f:metadata>
         </h:head>
-        
-        <h:link class="btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml">Editar información</h:link>
+
+        <h:button class="btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="Editar información">
+            <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
+        </h:button>
         <div class="card mb-3" style="max-width: 100%;">
             <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img" style="height: 100%"/>
+                    <h:graphicImage value = "#{ctrlMasc.mascota.foto}" alt="foto mascota" class="card-img" style="height: 100%"/>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h3 class="card-title">Remy</h3>
-                        <p class="card-text h4"><strong>Código de identificación : </strong> 938000000455987</p>
-                        <p class="card-text h4"><strong>Fecha de nacimiento : </strong> 14/02/2015</p>
-                        <p class="card-text h4"><strong>Especie : </strong> Rata</p>
-                        <p class="card-text h4"><strong>Raza : </strong> Doméstica</p>
-                        <p class="card-text h4"><strong>Sexo : </strong> Macho</p>
-                        <p class="card-text h4"><strong>Altura : </strong> 34cm</p> 
-                        <p class="card-text h4"><strong>Peso : </strong> 1300g</p> 
+                        <h3 class="card-title">#{ctrlMasc.mascota.nombre}</h3>
+                        <p class="card-text h4"><strong>Código de identificación : </strong>#{ctrlMasc.mascota.ci}</p>
+                        <p class="card-text h4"><strong>Fecha de nacimiento : </strong>#{ctrlMasc.mascota.leerFecha()}</p>
+                        <p class="card-text h4"><strong>Especie : </strong>#{ctrlMasc.mascota.especie}</p>
+                        <p class="card-text h4"><strong>Raza : </strong>#{ctrlMasc.mascota.raza}</p>
+                        <p class="card-text h4"><strong>Sexo : </strong>#{ctrlMasc.mascota.sexo}</p>
+                        <p class="card-text h4"><strong>Altura : </strong>#{ctrlMasc.mascota.altura} cm</p> 
+                        <p class="card-text h4"><strong>Peso : </strong>#{ctrlMasc.mascota.peso} g</p> 
                     </div>
                 </div>
             </div>
@@ -48,8 +53,8 @@
                 <div class="card border-info mb-3">
                     <div class="card-header lead"><strong>Datos del dueño</strong></div>
                     <div class="card-body text-info">
-                        <h5 class="card-title">Ángel Luis García Fernández</h5>
-                        <p class="card-text"><strong>Dirección :</strong> Campus Las Lagunillas</p>
+                        <h5 class="card-title">#{ctrlUser.cliente.nombre} #{ctrlUser.cliente.apellidos}</h5>
+                        <p class="card-text"><strong>Dirección : </strong>#{ctrlUser.cliente.direccion}</p>
                     </div>
                 </div>
             </div>
@@ -57,8 +62,8 @@
                 <div class="card border-success mb-3">
                     <div class="card-header lead"><strong>Datos del veterinario</strong></div>
                     <div class="card-body text-success">
-                        <h5 class="card-title">José Ramón Balsas Almagro</h5>
-                        <p class="card-text"><strong>Nº Colegiado :</strong> AS0489</p>
+                        <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUser.veterinario.apellidos}</h5>
+                        <p class="card-text"><strong>Nº Colegiado : </strong>#{ctrlUser.veterinario.codCol}</p>
                     </div>
                 </div>
             </div>

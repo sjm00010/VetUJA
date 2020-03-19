@@ -26,6 +26,7 @@ public class ControladorMascota implements Serializable {
 
     //View-Model
     private Mascota mascota;
+    private String ci;
 
     public ControladorMascota() {
     }
@@ -33,6 +34,7 @@ public class ControladorMascota implements Serializable {
     @PostConstruct
     private void init() {
         mascota = new Mascota();
+        ci = null;
     }
 
     public Mascota getMascota() {
@@ -53,6 +55,7 @@ public class ControladorMascota implements Serializable {
 
     public void recupera() {
         mascota = mascotasDAO.buscaId(mascota.getCi());
+        this.ci = mascota.getCi();
     }
 
     public String getEdad(Date f) {
@@ -64,8 +67,29 @@ public class ControladorMascota implements Serializable {
         LocalDate l1 = LocalDate.of(year, month, date);
         LocalDate now1 = LocalDate.now();
         Period diff1 = Period.between(l1, now1);
-        return Integer.toString(diff1.getYears()) + " años, " 
-                + Integer.toString(diff1.getMonths()) + " meses, " 
-                + Integer.toString(diff1.getDays()) + " días";
+        String sol = "";
+        if (diff1.getYears() != 0)
+            sol += Integer.toString(diff1.getYears()) + " años, ";
+        if (diff1.getMonths() != 0)
+            sol += Integer.toString(diff1.getMonths()) + " meses, ";
+        if (diff1.getDays() != 0)
+            sol += Integer.toString(diff1.getDays()) + " días";
+        return sol;
+    }
+
+    public String creaMascota() {
+        if (mascotasDAO.crea(mascota)) {
+            return "mascotas.jsf?faces-redirect=true";
+        }
+        return null;
+    }
+    
+     public String modificaMascota() {    
+        if (!mascotasDAO.guarda(mascota)) {
+            System.out.println("Cambio de ci");
+            mascotasDAO.borra(ci);
+            mascotasDAO.crea(mascota);
+        }
+        return "mascotas.jsf?faces-redirect=true";
     }
 }

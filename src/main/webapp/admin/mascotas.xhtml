@@ -3,7 +3,8 @@
 
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="../WEB-INF/template/layout.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="nomPag">
         Mascotas
@@ -14,29 +15,28 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        
+
         <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="registro_animal.xhtml" value="Nueva mascota" />
-        <ui:repeat value="#{ctrlMascotas.mascotas}" var="masc">
-        <div class="card mb-3" style="max-width: 100%;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-<!--                 Imagen ¿desde url en vez de recurso?   -->
-                    <h:graphicImage value = "#{resource['img/mascotas/remy.png']}" alt="foto mascota" class="card-img" style="height: 100%"/>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h3 class="card-title">#{masc.nombre}</h3>
-                        <p class="card-text h4"><strong>Código de identificación :</strong>#{masc.ci}</p>
-                        <p class="card-text h4"><strong>Edad :</strong>#{masc.fechanac}</p>
-                        <p class="card-text h4"><strong>Especie :</strong>#{masc.raza}</p>
-                        <h:link class="espaciado btn btn-info btn-lg btn-block mb-3" outcome="detalle_mascota" value="+ Información"/>
-                        <h:link class="btn btn-outline-danger" outcome="mascotas.xhtml" value="Eliminar mascota" />
+        <ui:repeat value="#{ctrlMasc.mascotas}" var="mas">
+            <h:form class="card">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title">#{mas.nombre}</h3>
+                            <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
+                            <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
+                            <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
+                            <h:button class="btn btn-info btn-lg btn-block mt-4" outcome="detalle_mascota.jsf" value="+ Información">
+                                <f:param name="ci" value="#{mas.ci}" />
+                            </h:button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-</ui:repeat>
+            </h:form>
+        </ui:repeat>
     </ui:define>
 
 </ui:composition>

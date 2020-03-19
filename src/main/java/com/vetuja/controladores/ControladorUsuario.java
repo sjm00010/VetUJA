@@ -5,9 +5,9 @@ import com.vetuja.DAO.VeterinarioDAO;
 import com.vetuja.clases.Cliente;
 import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -67,6 +67,14 @@ public class ControladorUsuario implements Serializable {
         cliente = clientesDAO.buscaId(cliente.getDNI());
         this.dni = cliente.getDNI();
     }
+    
+    /**
+     * Función para obtener los datos para el detalle de las mascotas
+     */
+    public void recuperaAll() {
+        cliente = clientesDAO.buscaId(cliente.getDNI());
+        veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
+    }
 
     public Veterinario getVeterinario() {
         return veterinario;
@@ -124,25 +132,21 @@ public class ControladorUsuario implements Serializable {
         this.pass = pass;
     }
 
-    public String creaCliente() throws ParseException {
+    public String creaCliente(){
         if (cliente.getPass().equals(pass)) {
             if (clientesDAO.crea(cliente)) {
                 return "/inicio/inicio.jsf?faces-redirect=true";
             }
-
         }
         return null;
     }
 
     public String modificaCliente() throws ParseException {    
-        if (!cliente.getDNI().equals(dni) && clientesDAO.buscaId(cliente.getDNI()) != null) {
+        if (!clientesDAO.guarda(cliente)) {
             clientesDAO.crea(cliente);
             clientesDAO.borra(dni);
-        }else{
-            clientesDAO.guarda(cliente);
         }
         return "/admin/clientes.xhtml?faces-redirect=true";
-
     }
 
     public String borraCliente(String id) {

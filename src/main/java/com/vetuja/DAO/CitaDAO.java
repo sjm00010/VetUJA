@@ -8,6 +8,7 @@ package com.vetuja.DAO;
 import com.vetuja.clases.Citas;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,10 @@ import javax.enterprise.context.ApplicationScoped;
  * @author juanc
  */
 @ApplicationScoped
-public class CitasDAO implements DAOgenerico <Citas, Integer>{
+public class CitaDAO implements DAOgenerico <Citas, Integer>{
     private Map<Integer, Citas> citas = null;
     private Integer idCliente = 6;
-    public CitasDAO() throws ParseException {
+    public CitaDAO() throws ParseException {
         if(citas == null) {
             citas = new HashMap<>();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
@@ -30,11 +31,11 @@ public class CitasDAO implements DAOgenerico <Citas, Integer>{
             java.util.Date fecha2 = sdf.parse("06-05-2020");
             java.util.Date fecha3 = sdf.parse("15-07-2020");
             java.util.Date fecha4 = sdf.parse("01-09-2020");
-            citas.put(1, new Citas(1,fecha,"16:30","José Ramón","Remy"));
-            citas.put(2, new Citas(2,fecha2,"10:30","Flo","Remy"));
-            citas.put(3, new Citas(3,fecha3,"9:00","José Ramón","Misifu"));
-            citas.put(4, new Citas(4,fecha3,"17:10","José Ramón","Desconocida"));
-            citas.put(5, new Citas(5,fecha4,"12:15","Flo","Misifu"));  
+            citas.put(1, new Citas(1,fecha,"16:30","54215624R","AS0489","938000000455987"));
+            citas.put(2, new Citas(2,fecha2,"10:30","54215624R","AS0008","938000777000666"));
+            citas.put(3, new Citas(3,fecha3,"9:00","24315522B","AS0489","938000159457532"));
+            citas.put(4, new Citas(4,fecha3,"17:10","54215624R","AS0489","938000777000666"));
+            citas.put(5, new Citas(5,fecha4,"12:15","53914398T","AS0008","938000159457532"));  
     }
 }
 
@@ -47,6 +48,14 @@ public class CitasDAO implements DAOgenerico <Citas, Integer>{
     public List<Citas> buscaTodos() {
         return citas.values().stream().collect(Collectors.toList());
     }
+    
+    public List<Citas> busca(String DNI) {
+        List<Citas> resultado = new ArrayList();
+        citas.entrySet().stream().filter((entry) -> (entry.getValue().getCliDNI().equals(DNI))).forEachOrdered((entry) -> {
+            resultado.add(entry.getValue());
+        });
+        return resultado;
+    }  
 
     @Override
     public boolean crea(Citas c) {
@@ -77,6 +86,30 @@ public class CitasDAO implements DAOgenerico <Citas, Integer>{
 
     }
 
+    /**
+     * Función que actualiza los DNIs
+     * @param oldDNI DNI a actualizar
+     * @param newDNI Nuevo DNI
+     */
+    public void cambiaDNI(String oldDNI, String newDNI){
+        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
+            if(entry.getValue().getCliDNI() == oldDNI){
+                entry.getValue().setCliDNI(newDNI);
+            }
+        }
+    }
 
-
+    /**
+     * Función que actualiza los Códigos de Identificación de las mascotas
+     * @param oldCi Códigos de Identificación a actualizar
+     * @param newCi Nuevo Códigos de Identificación
+     */
+    public void cambiaCi(String oldCi, String newCi){
+        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
+            if(entry.getValue().getCliDNI() == oldCi){
+                entry.getValue().setCliDNI(newCi);
+            }
+        }
+    }
+    
 }

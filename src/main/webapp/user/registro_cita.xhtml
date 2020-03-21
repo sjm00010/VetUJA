@@ -34,18 +34,20 @@
                             <div class="col-12">
                                 <div class="form-group mx-3">
                                     <label for="vet"><strong>Veterinario</strong></label>
-                                    <h:selectOneMenu class="form-control" id="vet" value ="#{ctrlCitas.cita.nombreVet}" >
-                                        <f:selectItem itemValue="José Ramón" itemLabel="José Ramón" />
-                                        <f:selectItem itemValue="Flo" itemLabel="Flo" />
+                                    <h:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
+                                        <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
+                                        <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
+                                                       itemValue="#{vet.codCol}" itemLabel="#{vet.nombre}" />
                                     </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group mx-3">
-                                    <label for="vet"><strong>Mascota</strong></label>
-                                    <h:selectOneMenu class="form-control" id="mascot" value ="#{ctrlCitas.cita.nombreMascota}" >
-                                        <f:selectItem itemValue="Remy" itemLabel="Remy" />
-                                        <f:selectItem itemValue="Misifu" itemLabel="Misifu" />
+                                    <label for="mas"><strong>Mascota</strong></label>
+                                    <h:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
+                                        <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
+                                        <f:selectItems value="#{ctrlMasc.mascotas}" var="mas" 
+                                                       itemValue="#{mas.ci}" itemLabel="#{mas.nombre}" />
                                     </h:selectOneMenu>
                                 </div>
                             </div>
@@ -71,9 +73,7 @@
                         </div>
 
                         <div class="mx-3">
-                            <!--para el formulario hace falta boton type="submit"-->
-                            <h:commandButton class="eBoton btn btn-success btn-lg btn-block mb-3" action="#{ctrlCitas.creaCita()}" value="Crear cita" />
-                            <!--<h:link class="eBoton btn btn-success btn-lg btn-block" outcome="citas.xhtml">Crear cita</h:link> -->
+                            <h:commandButton class="btn btn-success btn-lg btn-block mb-3" action="#{ctrlCitas.creaCita()}" value="Crear cita" />
                         </div>
                     </h:form>
                 </div>

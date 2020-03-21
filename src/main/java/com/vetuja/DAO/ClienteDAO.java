@@ -29,7 +29,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
                     "https://www.ujaen.es/departamentos/dinformatica/sites/departamento_dinformatica/files/styles/contact_photo/public/uploads/node_contacto_persona/2019-06/algarcia.jpg?itok=VjL78gZO",
                     "algarcia", "algarcia@ujaen.es", "contrasena"));
             clientes.put("53914398T", new Cliente(
-                    "53914392T", "Francis", "Ortega López",
+                    "53914398T", "Francis", "Ortega López",
                     "La lloreria", fnac,
                     "https://i.pinimg.com/originals/d9/e9/7d/d9e97d15c8aefb3067372c36fa2abc26.png",
                     "fol00008", "fol00008@ujaen.es", "paco00008"));

@@ -15,11 +15,23 @@
     </ui:define>
 
     <ui:define name="background">
-        <div style="background-image:url(#{resource['img/otros/cita_background.jpg']}); 
-             background-size: cover; height: 87%;">
+        <h:body class="d-flex flex-column h-100" style="background-image:url(#{resource['img/otros/cita_background.jpg']}); 
+                background-size: cover">
+            <div id="top" class="top shadow-lg">
+                <ui:include src="../WEB-INF/partes/cabecera_user.xhtml" />
+            </div>
+
             <div class="container-xl">
-                <h:messages class=" mt-3 alert alert-danger"/>
-                <div class="row row-cols-md justify-content-center mx-0" style="height: 87%;">
+                <h:panelGroup rendered="#{not empty facesContext.messageList}">
+                    <div class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                        <h:messages/>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </h:panelGroup>
+
+                <div class="row row-cols-md justify-content-center mx-0 my-5">
                     <h:form class="col-12 col-md-6 px-0 align-self-center card bg-light text-center">
                         <h1 class="card-header text-center display-4"><u>Nueva cita</u></h1>
                         <div class="row mt-2">
@@ -78,7 +90,8 @@
                     </h:form>
                 </div>
             </div>
-        </div>
+            <ui:include src="../WEB-INF/partes/footer.xhtml"/>
+        </h:body>
     </ui:define>
 
 </ui:composition>

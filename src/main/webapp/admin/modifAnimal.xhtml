@@ -29,7 +29,16 @@
 
         <h:form>
             <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
-            <h:messages class="alert alert-danger"/>
+
+            <h:panelGroup rendered="#{not empty facesContext.messageList}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <h:messages/>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </h:panelGroup>
+
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col col-md-9">
                     <div class="card my-3">
@@ -77,8 +86,8 @@
                                         <div class="col">
                                             <label for="fnac">Fecha de nacimiento</label>
                                             <h:inputText class="form-control" a:type="date" id="fnac" value="#{ctrlMasc.mascota.fechanac}">
-                                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                                    </h:inputText>
+                                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                                            </h:inputText>
                                         </div>
                                     </div>
                                 </div>

@@ -11,9 +11,18 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <h:form>
+        <h:form class="mb-4">
             <h1 class="text-center display-3"><u>Registro</u></h1>
-            <h:messages class="alert alert-danger"/>
+            
+            <h:panelGroup rendered="#{not empty facesContext.messageList}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <h:messages/>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </h:panelGroup>
+
             <div class="row card my-3">
                 <h2 class="mb-2 card-header"><small>Datos personales</small></h2>
                 <div class="col-12 mt-2">

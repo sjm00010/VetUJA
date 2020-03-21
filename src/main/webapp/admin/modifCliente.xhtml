@@ -26,7 +26,16 @@
 
         <h:form class="mb-5">
             <h1 class="text-center display-3"><u><strong>Modificación de datos del cliente</strong></u></h1>
-            <h:messages class="alert alert-danger"/>
+
+            <h:panelGroup rendered="#{not empty facesContext.messageList}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <h:messages/>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </h:panelGroup>
+
             <div class="card my-3">
                 <h2 class="card-header"><small>Datos personales</small></h2>
                 <div class="row row-cols-1 row-cols-md-2 my-3">

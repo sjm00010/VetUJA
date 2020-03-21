@@ -1,13 +1,13 @@
 package com.vetuja.controladores;
 
+import com.vetuja.DAO.CitaDAO;
 import com.vetuja.DAO.ClienteDAO;
+import com.vetuja.DAO.MascotaDAO;
 import com.vetuja.DAO.VeterinarioDAO;
 import com.vetuja.clases.Cliente;
 import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -27,6 +27,15 @@ public class ControladorUsuario implements Serializable {
 
     @Inject
     private VeterinarioDAO veterinariosDAO;
+    
+    /*  Para cuando se modifiquen los identificadores hacer los cambios en las 
+        clases que tienen referencias a clientes o veterinarios
+    */
+    @Inject
+    private MascotaDAO mascotasDAO;
+    
+    @Inject
+    private CitaDAO citasDAO;
 
     //View-Model
     private Cliente cliente;
@@ -47,6 +56,13 @@ public class ControladorUsuario implements Serializable {
         dni = null;
     }
 
+    /**
+     * Funcion auxiliar para asignar un dni al usurio actual
+     */
+    public void setDNIact(){
+        dni = clientesDAO.buscaUser("algarcia").getDNI();
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }
@@ -145,6 +161,8 @@ public class ControladorUsuario implements Serializable {
         if (!clientesDAO.guarda(cliente)) {
             clientesDAO.crea(cliente);
             clientesDAO.borra(dni);
+            mascotasDAO.cambiaDNI(dni, cliente.getDNI());
+            citasDAO.cambiaDNI(dni, cliente.getDNI());
         }
         return "/admin/clientes.xhtml?faces-redirect=true";
     }
@@ -168,4 +186,13 @@ public class ControladorUsuario implements Serializable {
         return dni;
     }
 
+    public String getNombreCli(String DNI){
+        Cliente cli = clientesDAO.buscaId(DNI);
+        return cli.getNombre();
+    }
+    
+    public String getNombreVet(String CC){
+        Veterinario vet = veterinariosDAO.buscaId(CC);
+        return vet.getNombre();
+    }
 }

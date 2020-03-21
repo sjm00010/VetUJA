@@ -13,55 +13,65 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
  * @author juanc
  */
 public class Citas {
-    @NotEmpty(message="El ID no puede estar vacío.")
+
+    @NotEmpty(message = "El ID no puede estar vacío.")
     private Integer id;
-    
-    @Future(message="La fecha debe ser posterior a hoy.")
-    @NotNull(message="La fecha no puede estar vacía.")
+
+    @Future(message = "La fecha debe ser posterior a hoy.")
+    @NotNull(message = "La fecha no puede estar vacía.")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    
-    @NotEmpty(message="La hora no puede estar vacía.")
+
+    @NotEmpty(message = "La hora no puede estar vacía.")
     private String hora;
-    
-    @NotEmpty(message="El nombre del veterinario no puede estar vacío.")
-    private String nombreVet;
-    
-    @NotEmpty(message="El nombre de la mascota no puede estar vacío.")
-    private String nombreMascota;
-    
-    
-public Citas() {
-    id = 0;
-    fecha = null;
-    hora = "";
-    nombreVet = "";
-    nombreMascota = "";
-}
 
-public Citas(Integer id,Date fecha, String hora, String nombreVet, String nombreMascota) {
-    this.id = id;
-    this.fecha = fecha;
-    this.hora = hora;
-    this.nombreMascota = nombreMascota;
-    this.nombreVet = nombreVet;
-}
+    @Pattern(regexp = "\\d{8}[A-Z]", message = "DNI incorrecto, debe tener 8 números y la letra debe estar en mayúscula.")
+    @NotNull(message = "Se debe seleccionar un cliente")
+    private String cliDNI;
 
-    public Citas(Citas c) {
-    this.id = c.id;
-    this.fecha = c.fecha;
-    this.hora = c.hora;
-    this.nombreMascota = c.nombreMascota;
-    this.nombreVet = c.nombreVet;
+    @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números. Ej. AA1111")
+    @NotNull(message = "Se debe seleccionar un veterinario")
+    private String vetCC;
+
+    @Pattern(regexp = "\\d{15}", message = "Código identificación incorrecto, debe tener 15 números.")
+    @NotNull(message = "Se debe seleccionar una mascota")
+    private String masCI;
+
+    public Citas() {
+        id = 0;
+        fecha = null;
+        hora = "";
+        cliDNI = "54215624R";
+        vetCC = "";
+        masCI = "";
     }
 
-  /**
+    public Citas(Integer id, Date fecha, String hora, String cliDNI, String vetCC, String masCI) {
+        this.id = id;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.cliDNI = cliDNI;
+        this.vetCC = vetCC;
+        this.masCI = masCI;
+    }
+
+    public Citas(Citas c) {
+        this.id = c.id;
+        this.fecha = c.fecha;
+        this.hora = c.hora;
+        this.cliDNI = c.cliDNI;
+        this.vetCC = c.vetCC;
+        this.masCI = c.masCI;
+    }
+
+    /**
      * @return El id de la cita
      */
     public Integer getId() {
@@ -74,6 +84,7 @@ public Citas(Integer id,Date fecha, String hora, String nombreVet, String nombre
     public void setId(Integer id) {
         this.id = id;
     }
+
     /**
      * @return La fecha de la cita
      */
@@ -102,37 +113,50 @@ public Citas(Integer id,Date fecha, String hora, String nombreVet, String nombre
         this.hora = hora;
     }
 
-    /**
-     * @return El nombre del veterinario con el que tendremos la cita
-     */
-    public String getNombreVet() {
-        return nombreVet;
-    }
-
-    /**
-     * @param nombreVet El nombre del veterinario a poner
-     */
-    public void setNombreVet(String nombreVet) {
-        this.nombreVet = nombreVet;
-    }
-
-    /**
-     * @return El nombre de la mascota que tendrá la cita
-     */
-    public String getNombreMascota() {
-        return nombreMascota;
-    }
-
-    /**
-     * @param nombreMascota El nombre de la mascota a poner
-     */
-    public void setNombreMascota(String nombreMascota) {
-        this.nombreMascota = nombreMascota;
-    }
-    
-    public String leerFecha(){
+    public String leerFecha() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(this.fecha);
     }
-}
 
+    /**
+     * @return the cliDNI
+     */
+    public String getCliDNI() {
+        return cliDNI;
+    }
+
+    /**
+     * @param cliDNI the cliDNI to set
+     */
+    public void setCliDNI(String cliDNI) {
+        this.cliDNI = cliDNI;
+    }
+
+    /**
+     * @return the vetCC
+     */
+    public String getVetCC() {
+        return vetCC;
+    }
+
+    /**
+     * @param vetCC the vetCC to set
+     */
+    public void setVetCC(String vetCC) {
+        this.vetCC = vetCC;
+    }
+
+    /**
+     * @return the masCI
+     */
+    public String getMasCI() {
+        return masCI;
+    }
+
+    /**
+     * @param masCI the masCI to set
+     */
+    public void setMasCI(String masCI) {
+        this.masCI = masCI;
+    }
+}

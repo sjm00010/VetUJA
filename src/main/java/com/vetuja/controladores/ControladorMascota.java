@@ -1,5 +1,6 @@
 package com.vetuja.controladores;
 
+import com.vetuja.DAO.CitaDAO;
 import com.vetuja.DAO.MascotaDAO;
 import com.vetuja.clases.Mascota;
 import java.io.Serializable;
@@ -23,6 +24,13 @@ public class ControladorMascota implements Serializable {
 
     @Inject
     private MascotaDAO mascotasDAO;
+    
+    /*  Para cuando se modifiquen los identificadores hacer los cambios en las 
+        clases que tienen referencias a clientes o veterinarios
+    */
+    
+    @Inject
+    private CitaDAO citasDAO;
 
     //View-Model
     private Mascota mascota;
@@ -51,6 +59,10 @@ public class ControladorMascota implements Serializable {
 
     public List<Mascota> getMascotas() {
         return mascotasDAO.buscaTodos();
+    }
+    
+    public List<Mascota> getMascotasCliente(String DNI) {
+        return mascotasDAO.busca(DNI);
     }
 
     public void recupera() {
@@ -86,10 +98,15 @@ public class ControladorMascota implements Serializable {
     
      public String modificaMascota() {    
         if (!mascotasDAO.guarda(mascota)) {
-            System.out.println("Cambio de ci");
-            mascotasDAO.borra(ci);
             mascotasDAO.crea(mascota);
+            mascotasDAO.borra(ci);
+            citasDAO.cambiaCi(ci, mascota.getCi());
         }
         return "mascotas.jsf?faces-redirect=true";
+    }
+     
+    public String getNombreMas(String ci){
+        Mascota mas = mascotasDAO.buscaId(ci);
+        return mas.getNombre();
     }
 }

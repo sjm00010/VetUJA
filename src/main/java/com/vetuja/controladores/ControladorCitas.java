@@ -5,7 +5,7 @@
  */
 package com.vetuja.controladores;
 
-import com.vetuja.DAO.CitasDAO;
+import com.vetuja.DAO.CitaDAO;
 import com.vetuja.clases.Citas;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +23,7 @@ import javax.inject.Named;
 public class ControladorCitas implements Serializable {
 
     @Inject
-    private CitasDAO citasDAO;
+    private CitaDAO citasDAO;
 
     //View-Model
     private Citas cita;
@@ -53,6 +53,10 @@ public class ControladorCitas implements Serializable {
 
     public List<Citas> getCitas() {
         return citasDAO.buscaTodos();
+    }
+    
+    public List<Citas> getCitasCliente(String DNI) {
+        return citasDAO.busca(DNI);
     }
 
     public void recupera() {

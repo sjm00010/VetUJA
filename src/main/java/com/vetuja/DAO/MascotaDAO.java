@@ -3,6 +3,7 @@ package com.vetuja.DAO;
 import com.vetuja.clases.Mascota;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,14 @@ public class MascotaDAO implements DAOgenerico<Mascota, String> {
     public List<Mascota> buscaTodos() {
         return mascotas.values().stream().collect(Collectors.toList());
     }
+    
+    public List<Mascota> busca(String DNI) {
+        List<Mascota> resultado = new ArrayList();
+        mascotas.entrySet().stream().filter((entry) -> (entry.getValue().getCliDNI().equals(DNI))).forEachOrdered((entry) -> {
+            resultado.add(entry.getValue());
+        });
+        return resultado;
+    }    
 
     @Override
     public boolean crea(Mascota m) {
@@ -75,5 +84,18 @@ public class MascotaDAO implements DAOgenerico<Mascota, String> {
             result = true;
         }
         return result;
+    }
+    
+    /**
+     * Función que actualiza los DNIs
+     * @param oldDNI DNI a actualizar
+     * @param newDNI Nuevo DNI
+     */
+    public void cambiaDNI(String oldDNI, String newDNI){
+        for (Map.Entry<String, Mascota> entry : mascotas.entrySet()) {
+            if(entry.getValue().getCliDNI() == oldDNI){
+                entry.getValue().setCliDNI(newDNI);
+            }
+        }
     }
 }

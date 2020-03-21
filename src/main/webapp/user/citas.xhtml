@@ -15,13 +15,20 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+        <h:head>
+            <f:metadata>
+                <!--Como no tengo autentificador aun, pongo el dni del ejemplo de usuario-->
+                <f:viewAction action="#{ctrlUser.setDNIact()}" />
+            </f:metadata>
+        </h:head>
+        
         <h:link class="btn btn-outline-success btn-lg mb-3" outcome="registro_cita.xhtml">Nueva cita</h:link>
         <!--Hace falta cambiar la tabla a jsf cuando tengamos DAO -->
         <div class="table-responsive">
             <h:form>
-                <h:dataTable class="table table-striped" style="min-width: 660px" var ="cit" value = "#{ctrlCitas.citas}">
+                <h:dataTable class="table table-striped" style="min-width: 660px" var ="cit" value = "#{ctrlCitas.getCitasCliente(ctrlUser.DNI)}">
                     <thead class="thead-dark">
-                        <h:column> <f:facet name ="header"> ID </f:facet>
+                        <h:column> <f:facet name ="header" > ID </f:facet>
                             #{cit.id} </h:column>
 
                         <h:column> <f:facet name ="header"> Fecha </f:facet>
@@ -31,10 +38,10 @@
                             #{cit.hora} </h:column> 
 
                         <h:column> <f:facet name ="header"> Veterinario </f:facet>
-                            #{cit.nombreVet} </h:column> 
+                            #{ctrlUser.getNombreVet(cit.vetCC)} </h:column>
 
                         <h:column> <f:facet name ="header"> Mascota </f:facet>
-                            #{cit.nombreMascota} </h:column>
+                            #{ctrlMasc.getNombreMas(cit.masCI)} </h:column>
 
                         <h:column> <f:facet name ="header"> Borrar </f:facet>
                             <h:commandButton image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>

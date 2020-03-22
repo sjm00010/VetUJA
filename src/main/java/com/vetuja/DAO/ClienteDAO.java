@@ -41,7 +41,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
             clientes.put("34209621C", new Cliente(
                     "34209621C", "ElRisas", "Joker",
                     "En su casa", fnac,
-                    "https://img-cdn.hipertextual.com/files/2019/09/hipertextual-warner-no-tiene-planes-secuela-joker-ahora-2019170034.jpg?strip=all&lossy=1&quality=65&resize=740%2C490&ssl=1",
+                    "https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/1200x895/public/media/image/2019/08/joker.jpeg?itok=5ldLzg71",
                     "ElPrisas", "algarcia@ujaen.es", "sanicgo"));
         }
     }

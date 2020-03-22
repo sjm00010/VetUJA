@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.vetuja.DAO;
 
 import com.vetuja.clases.Citas;
@@ -28,14 +23,14 @@ public class CitaDAO implements DAOgenerico <Citas, Integer>{
             citas = new HashMap<>();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
             java.util.Date fecha = sdf.parse("08-02-2020");
-            java.util.Date fecha2 = sdf.parse("06-05-2020");
-            java.util.Date fecha3 = sdf.parse("15-07-2020");
-            java.util.Date fecha4 = sdf.parse("01-09-2020");
             citas.put(1, new Citas(1,fecha,"16:30","54215624R","AS0489","938000000455987"));
-            citas.put(2, new Citas(2,fecha2,"10:30","54215624R","AS0008","938000777000666"));
-            citas.put(3, new Citas(3,fecha3,"9:00","24315522B","AS0489","938000159457532"));
-            citas.put(4, new Citas(4,fecha3,"17:10","54215624R","AS0489","938000777000666"));
-            citas.put(5, new Citas(5,fecha4,"12:15","53914398T","AS0008","938000159457532"));  
+            fecha = sdf.parse("06-05-2020");
+            citas.put(2, new Citas(2,fecha,"10:30","54215624R","AS0008","938000777000666"));
+            fecha = sdf.parse("15-07-2020");
+            citas.put(3, new Citas(3,fecha,"9:00","24315522B","AS0489","938000159457532"));
+            citas.put(4, new Citas(4,fecha,"17:10","54215624R","AS0489","938000777000666"));
+            fecha = sdf.parse("01-09-2020");
+            citas.put(5, new Citas(5,fecha,"12:15","53914398T","AS0008","938000159457532"));  
     }
 }
 
@@ -55,8 +50,8 @@ public class CitaDAO implements DAOgenerico <Citas, Integer>{
             resultado.add(entry.getValue());
         });
         return resultado;
-    }  
-
+    }
+    
     @Override
     public boolean crea(Citas c) {
         c.setId(idCliente++);

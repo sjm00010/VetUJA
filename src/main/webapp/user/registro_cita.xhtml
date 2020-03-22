@@ -15,6 +15,13 @@
     </ui:define>
 
     <ui:define name="background">
+        <h:head>
+            <f:metadata>
+                <!--Como no tengo autentificador aun, pongo el dni del ejemplo de usuario-->
+                <f:viewAction action="#{ctrlUser.setDNIact()}" />
+            </f:metadata>
+        </h:head>
+        
         <h:body class="d-flex flex-column h-100" style="background-image:url(#{resource['img/otros/cita_background.jpg']}); 
                 background-size: cover">
             <div id="top" class="top shadow-lg">
@@ -58,7 +65,7 @@
                                     <label for="mas"><strong>Mascota</strong></label>
                                     <h:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
                                         <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
-                                        <f:selectItems value="#{ctrlMasc.mascotas}" var="mas" 
+                                        <f:selectItems value="#{ctrlMasc.getMascotasCliente(ctrlUser.DNI)}" var="mas" 
                                                        itemValue="#{mas.ci}" itemLabel="#{mas.nombre}" />
                                     </h:selectOneMenu>
                                 </div>

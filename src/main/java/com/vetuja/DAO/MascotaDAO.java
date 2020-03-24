@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -84,6 +85,21 @@ public class MascotaDAO implements DAOgenerico<Mascota, String> {
             result = true;
         }
         return result;
+    }
+    
+    public void borraCli(String cliDNI) {
+        List<String> borrar = new ArrayList<>();
+        for (Map.Entry<String, Mascota> entry : mascotas.entrySet()) {
+            if(entry.getValue().getCliDNI() == cliDNI){
+                borrar.add(entry.getKey());
+            }
+        }
+        if(!borrar.isEmpty()){
+            for (Iterator<String> iterator = borrar.iterator(); iterator.hasNext();) {
+                String next = iterator.next();
+                mascotas.remove(next);
+            }
+        }
     }
     
     /**

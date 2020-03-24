@@ -27,22 +27,22 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
                     "54215624R", "Ángel Luis", "García Fernández",
                     "Campus Las Lagunillas", fnac,
                     "https://www.ujaen.es/departamentos/dinformatica/sites/departamento_dinformatica/files/styles/contact_photo/public/uploads/node_contacto_persona/2019-06/algarcia.jpg?itok=VjL78gZO",
-                    "algarcia", "algarcia@ujaen.es", "contrasena"));
+                    "algarcia@ujaen.es", "contrasena"));
             clientes.put("53914398T", new Cliente(
                     "53914398T", "Francis", "Ortega López",
                     "La lloreria", fnac,
                     "https://i.pinimg.com/originals/d9/e9/7d/d9e97d15c8aefb3067372c36fa2abc26.png",
-                    "fol00008", "fol00008@ujaen.es", "paco00008"));
+                    "fol00008@ujaen.es", "paco00008"));
             clientes.put("24315522B", new Cliente(
                     "24315522B", "Alejandro", "Expósito Pontiveros",
                     "Avenida Andalucía, 1", fnac,
                     "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png",
-                    "aep00047", "aep00042@ujaen.es", "erasmus"));
+                    "aep00042@ujaen.es", "erasmus"));
             clientes.put("34209621C", new Cliente(
                     "34209621C", "ElRisas", "Joker",
                     "En su casa", fnac,
                     "https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/1200x895/public/media/image/2019/08/joker.jpeg?itok=5ldLzg71",
-                    "ElPrisas", "algarcia@ujaen.es", "sanicgo"));
+                    "algarcia@ujaen.es", "sanicgo"));
         }
     }
 
@@ -81,12 +81,16 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
         }
         return result;
     }
-
-    public Cliente buscaUser(String user) {
+    
+    /**
+     * @param user Usuario a localizar
+     * @return Contraseña
+     */
+    public String getPass(String user) {
         List<Cliente> listaClientes = buscaTodos();
         for (Cliente next : listaClientes) {
-            if (user.equals(next.getUser())) {
-                return next;
+            if (user.equals(next.getDNI())) {
+                return next.getPass();
             }
         }
         return null;

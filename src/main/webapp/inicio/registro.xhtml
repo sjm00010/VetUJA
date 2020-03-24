@@ -58,14 +58,19 @@
                 <div class="col-12 my-3">
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col mb-3">
-                            <label for="usuario">Usuario</label>
-                            <h:inputText class="form-control" id="usuario" a:placeholder="Usuario" a:value="#{ctrlUser.cliente.user}"/>
-                            <h:message for="usuario" class="text-danger"/>
-                        </div>
-                        <div class="col">
                             <label for="email">Correo electrónico</label>
                             <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
                             <h:message for="email" class="text-danger"/>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <label for="foto">Foto</label>
+                                <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
+                                                a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
+                                                style="margin-left: 0.5rem;" height="18"/>
+                            </div>
+                            <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
+                            <h:message for="foto" class="text-danger"/>
                         </div>
                     </div>
                 </div>
@@ -79,22 +84,11 @@
                                 <h:message for="pass" class="text-danger"/>
                             </div>
                             <div class="col">
-                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.pass}"/>
+                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.aux}"/>
                                 <h:message for="pass2" class="text-danger"/>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 mb-3">
-                    <div>
-                        <label for="foto">Foto</label>
-                        <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
-                                        a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
-                                        style="margin-left: 0.5rem;" height="18"/>
-                    </div>
-                    <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
-                    <h:message for="foto" class="text-danger"/>
                 </div>
             </div>
             <h:commandButton class="btn btn-success btn-lg btn-block" action="#{ctrlUser.creaCliente()}" value="Registrarse" />

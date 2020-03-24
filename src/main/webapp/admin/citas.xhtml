@@ -15,13 +15,6 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <h:head>
-            <f:metadata>
-                <f:viewAction action="#{ctrlUser.cliente.setDNI(ctrlCitas.cita.cliDNI)}"/>
-                <f:viewAction action="#{ctrlUser.veterinario.setCodCol(ctrlMasc.mascota.vetCC)}"/>
-                <f:viewAction action="#{ctrlUser.recuperaAll()}"/>
-            </f:metadata>
-        </h:head>
         <div class="table-responsive">
             <h:form>
                 <h:dataTable class="table table-striped mt-3" style="min-width: 660px" var = "cit" value = "#{ctrlCitas.citas}">

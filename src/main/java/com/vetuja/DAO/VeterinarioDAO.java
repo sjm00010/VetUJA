@@ -21,10 +21,10 @@ public class VeterinarioDAO implements DAOgenerico<Veterinario, String>{
         if (veterinarios == null) {
             veterinarios = new HashMap<>();
             veterinarios.put("AS0489", new Veterinario("AS0489",
-                    "José Ramón", "Balsas Almagro", "jrbalsas", "admin", 
+                    "José Ramón", "Balsas Almagro", "admin", 
                     "https://pbs.twimg.com/profile_images/1181225056078385154/A3eO3ove_400x400.jpg"));
             veterinarios.put("AS0008", new Veterinario("AS0008",
-                    "Flo", "López Ortega", "flo00008", "francis", 
+                    "Flo", "López Ortega", "francis", 
                     "https://i1.rgstatic.net/ii/profile.image/586016247279622-1516728569350_Q512/F_Charte.jpg"));
         }
     }
@@ -39,11 +39,15 @@ public class VeterinarioDAO implements DAOgenerico<Veterinario, String>{
         return veterinarios.values().stream().collect(Collectors.toList());
     }
 
-    public Veterinario buscaUser(String user) {
+    /**
+     * @param user Usuario a localizar
+     * @return Contraseña
+     */
+    public String getPass(String user) {
         List<Veterinario> listaVet = buscaTodos();
         for (Veterinario next : listaVet) {
-            if (user.equals(next.getUser())){
-                return next;
+            if (user.equals(next.getCodCol())){
+                return next.getPass();
             }
         }
         return null;

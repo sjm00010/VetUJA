@@ -3,47 +3,55 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="nomPag">
         Iniciar sesión
     </ui:define>
 
     <ui:define name="background">
-        <h:body class="d-flex flex-column h-100" style="background-image:url(#{resource['img/otros/background.png']}); 
-                background-size: cover">
+        <h:body class="d-flex flex-column align-self-center" style="background-image:url(#{resource['img/otros/background.png']}); 
+                background-size: cover; background-repeat: no-repeat; background-attachment:fixed;">
             <div id="top" class="top shadow-lg">
                 <ui:include src="../WEB-INF/partes/cabecera.xhtml" />
             </div>
 
-            <div id="content" class="container-xl my-5 h-100">
+            <div id="content" class="container-xl my-5">
                 <div class="container-xl">
+                    <div class="row row-cols-md justify-content-center align-items-center">
+                        <div class="col-12 col-md-12 text-center">
+                            <h:panelGroup rendered="#{not empty facesContext.messageList}">
+                                <div class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                                    <h:messages/>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </h:panelGroup>
 
-                    <h:panelGroup rendered="#{not empty facesContext.messageList}">
-                        <div class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
-                            <h:messages/>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <c:if test="#{param.error!=null}">
+                                <div class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                                    <p>Error de autenticación</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
                         </div>
-                    </h:panelGroup>
-
-                    <div class="row row-cols-md justify-content-center mx-0" style="height: 87%;">
-                        <h:form class="col-12 col-md-4 px-0 align-self-center card bg-light text-center">
+                        <h:form class="col col-md-4 px-0 card bg-light text-center" >
                             <h2 class="mb-3 card-header">Iniciar sesión</h2>
                             <div class="form-group px-4">
-                                <h3 class="text-left ml-1"><label for="user">Usuario</label></h3>
-                                <h:inputText class="form-control" id="user" a:placeholder="Usuario" 
-                                             value="#{ctrlUser.user}"/>
+                                <h4 class="text-left ml-1"><label for="user">DNI o Código de colegiado</label></h4>
+                                <h:inputText class="form-control" id="user" a:placeholder="Ej. 12345678A , AA1111" 
+                                             value="#{ctrlUser.username}"/>
                             </div>
                             <div class="form-group px-4">
                                 <h3 class="text-left ml-1"><label for="pass">Contraseña</label></h3>
                                 <h:inputSecret class="form-control" id="pass" a:placeholder="Contraseña" 
-                                               value="#{ctrlUser.pass}"/>
+                                               value="#{ctrlUser.password}"/>
                             </div>
-                            <!--para el formulario hace falta boton type="submit"-->
-                            <h:commandButton class="btn btn-primary mx-4 mb-3" action="#{ctrlUser.login()}" value="Iniciar sesión" />
-                            <h:commandButton class="btn mx-4 mb-3" action="/admin/inicio.jsf?faces-redirect=true" value="Iniciar sesión veterinario" />
+                            <h:commandButton class="btn btn-primary mx-4 mb-3" a:type="submit" value="Iniciar sesión" action="#{ctrlUser.login()}"/>
                         </h:form>
                     </div>
                 </div>

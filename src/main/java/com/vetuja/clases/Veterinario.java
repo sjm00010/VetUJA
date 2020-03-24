@@ -25,9 +25,6 @@ public class Veterinario {
     @Size(min = 6, max = 20, message = "Los apellidos deben tener una longitud entre {min} y {max} caracteres.")
     private String apellidos;
     
-    @Size(min = 3, max = 10, message = "El usuario debe tener una longitud entre {min} y {max} caracteres.")
-    private String user;
-    
     @Size(min = 6, max = 10, message = "La contraseña debe tener una longitud entre {min} y {max} caracteres.")
     private String pass;
     
@@ -38,16 +35,14 @@ public class Veterinario {
         this.codCol = "AA1111";
         this.nombre = "Desconocido";
         this.apellidos = "Desconocidos";
-        this.user = "user";
         this.pass = "pass";
         this.foto = "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png";
     }
 
-    public Veterinario(String codCol, String nombre, String apellidos, String user, String pass, String foto) {
+    public Veterinario(String codCol, String nombre, String apellidos, String pass, String foto) {
         this.codCol = codCol;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.user = user;
         this.pass = pass;
         this.foto = foto;
     }
@@ -92,20 +87,6 @@ public class Veterinario {
      */
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
-    }
-
-    /**
-     * @return El usuario
-     */
-    public String getUser() {
-        return user;
-    }
-
-    /**
-     * @param user Nuevo usuario
-     */
-    public void setUser(String user) {
-        this.user = user;
     }
 
     /**

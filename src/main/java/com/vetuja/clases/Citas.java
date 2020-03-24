@@ -48,7 +48,7 @@ public class Citas {
         id = 0;
         fecha = null;
         hora = "";
-        cliDNI = "54215624R";
+        cliDNI = "";
         vetCC = "";
         masCI = "";
     }

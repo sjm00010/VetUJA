@@ -19,7 +19,7 @@ import javax.enterprise.context.ApplicationScoped;
 public class CitaDAO implements DAOgenerico<Citas, Integer> {
 
     private Map<Integer, Citas> citas = null;
-    private Integer idCliente = 6;
+    private Integer idCliente = 5;
 
     public CitaDAO() throws ParseException {
         if (citas == null) {
@@ -32,7 +32,7 @@ public class CitaDAO implements DAOgenerico<Citas, Integer> {
             fecha = sdf.parse("15-07-2020");
             citas.put(3, new Citas(3, fecha, "9:00", "54215624R", "AS0489", "938000159457532"));
             fecha = sdf.parse("01-09-2020");
-            citas.put(5, new Citas(5, fecha, "12:15", "53914398T", "AS0008", "938000777000666"));
+            citas.put(4, new Citas(5, fecha, "12:15", "53914398T", "AS0008", "938000777000666"));
         }
     }
 

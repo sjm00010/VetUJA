@@ -27,7 +27,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
                     "54215624R", "Ángel Luis", "García Fernández",
                     "Campus Las Lagunillas", fnac,
                     "https://www.ujaen.es/departamentos/dinformatica/sites/departamento_dinformatica/files/styles/contact_photo/public/uploads/node_contacto_persona/2019-06/algarcia.jpg?itok=VjL78gZO",
-                    "algarcia@ujaen.es", "contrasena"));
+                    "algarcia@ujaen.es", "secreto"));
             clientes.put("53914398T", new Cliente(
                     "53914398T", "Francis", "Ortega López",
                     "La lloreria", fnac,

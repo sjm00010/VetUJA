@@ -19,7 +19,7 @@
                 <f:viewParam name="ci" required="true"
                              value="#{ ctrlMasc.mascota.ci }"/>
                 <f:viewAction action="#{ ctrlMasc.recupera() }"/>
-                <f:viewAction action="#{ctrlUser.cliente.setDNI(ctrlMasc.mascota.cliDNI)}"/>
+                <f:viewAction action="#{ctrlUser.cliente.setDNI(ctrlMasc.mascota.cliDNI)}"/> <!-- No se usa -->
                 <f:viewAction action="#{ctrlUser.veterinario.setCodCol(ctrlMasc.mascota.vetCC)}"/>
                 <f:viewAction action="#{ctrlUser.recuperaAll()}"/>
             </f:metadata>
@@ -46,16 +46,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
-                <div class="card border-info mb-3">
-                    <div class="card-header lead"><strong>Datos del dueño</strong></div>
-                    <div class="card-body text-info">
-                        <h5 class="card-title">#{ctrlUser.cliente.nombre} #{ctrlUser.cliente.apellidos}</h5>
-                        <p class="card-text"><strong>Dirección : </strong>#{ctrlUser.cliente.direccion}</p>
-                        <p class="card-text"><strong>DNI : </strong>#{ctrlUser.cliente.DNI}</p>
-                    </div>
-                </div>
-            </div>
             <div class="col-sm-6">
                 <div class="card border-success mb-3">
                     <div class="card-header lead"><strong>Datos del veterinario</strong></div>

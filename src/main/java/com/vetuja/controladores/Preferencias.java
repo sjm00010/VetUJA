@@ -13,6 +13,7 @@ import javax.inject.Named;
 @Named(value="prefs")
 @SessionScoped
 public class Preferencias implements Serializable{
+    
     // Variables
     private Cliente cli;
     private Veterinario vet;
@@ -31,6 +32,7 @@ public class Preferencias implements Serializable{
      * @return the cli
      */
     public Cliente getCli() {
+        System.out.println("Cabecera : " + cli.getDNI());
         return cli;
     }
 

@@ -7,7 +7,8 @@
                 <h:graphicImage value = "#{resource['img/iconos/logo.png']}" alt="Logo" class="logo-brand"/>
             </h:link>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <h:graphicImage value = "#{resource['img/iconos/menu.png']}" alt="icono menu"/>
                 </span>   
@@ -31,9 +32,10 @@
                 <div class="user">
                     <h:graphicImage value = "#{prefs.vet.foto}" alt="user_foto" class="logo-brand rounded-circle"/>
                     <h5 class="user">¡Hola #{prefs.vet.nombre}!</h5>
-                    <h:link class="nav-link" outcome="#{ctrlUser.logout()}">
-                        <h:graphicImage value = "#{resource['img/iconos/logout.png']}" alt="logout"/>
-                    </h:link>
+                    <h:form>
+                        <h:commandButton class="nav-link" action="#{controladorLogin.logout()}" image="#{resource['img/iconos/logout.png']}"/>
+                    </h:form>
+
                 </div>
             </div>
         </div>

@@ -29,13 +29,12 @@
                         <h:link class="menu nav-link" outcome="clientes.xhtml">Clientes</h:link>
                     </li>
                 </ul>
-                <div class="user">
+                <div class="user align-items-center">
                     <h:graphicImage value = "#{prefs.vet.foto}" alt="user_foto" class="logo-brand rounded-circle"/>
-                    <h5 class="user">¡Hola #{prefs.vet.nombre}!</h5>
-                    <h:form>
+                    <h5 class="user pl-3">¡Hola #{prefs.vet.nombre}!</h5>
+                    <h:form class="user ml-0">
                         <h:commandButton class="nav-link" action="#{controladorLogin.logout()}" image="#{resource['img/iconos/logout.png']}"/>
                     </h:form>
-
                 </div>
             </div>
         </div>

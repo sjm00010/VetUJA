@@ -9,7 +9,9 @@ import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,7 +23,12 @@ import javax.inject.Named;
 @Named("ctrlUser")
 @ViewScoped
 public class ControladorUsuario implements Serializable {
+    
+    private static final Logger logger = Logger.getLogger(ControladorUsuario.class.getName());
 
+    @Inject
+    FacesContext fc;
+    
     @Inject
     private ClienteDAO clientesDAO;
 
@@ -41,7 +48,6 @@ public class ControladorUsuario implements Serializable {
     //View-Model
     private Cliente cliente;
     private Veterinario veterinario;
-    private String dni;
     private String aux;
 
     public ControladorUsuario() {
@@ -51,21 +57,12 @@ public class ControladorUsuario implements Serializable {
     private void init() {
         cliente = new Cliente();
         veterinario = new Veterinario();
-        dni = null;
-        setAux(null);
+        aux=null;
     }
 
-    /**
-     * Funcion auxiliar para asignar un dni al usurio actual
-     */
-    public void setDNIact() {
-        dni = "54215624R";
-    }
-
-    /**
-     * **************************************
-     * Getters y Setters * **************************************
-     */
+    /****************************************
+     *          Getters y Setters           * 
+     ****************************************/
     public Cliente getCliente() {
         return cliente;
     }
@@ -97,35 +94,7 @@ public class ControladorUsuario implements Serializable {
     public List<Veterinario> getVeterinarios() {
         return veterinariosDAO.buscaTodos();
     }
-
-    public void recuperaVet() {
-        veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
-    }
-
-    /**
-     * @param dni the dni to set
-     */
-    public void setDNI(String dni) {
-        this.dni = dni;
-    }
-
-    /**
-     * @return the DNI
-     */
-    public String getDNI() {
-        return dni;
-    }
-
-    public String getNombreCli(String DNI) {
-        Cliente cli = clientesDAO.buscaId(DNI);
-        return cli.getNombre();
-    }
-
-    public String getNombreVet(String CC) {
-        Veterinario vet = veterinariosDAO.buscaId(CC);
-        return vet.getNombre();
-    }
-
+    
     /**
      * @return the aux
      */
@@ -140,9 +109,23 @@ public class ControladorUsuario implements Serializable {
         this.aux = aux;
     }
 
+    public void recuperaVet() {
+        veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
+    }
+
+    public String getNombreCli(String DNI) {
+        Cliente cli = clientesDAO.buscaId(DNI);
+        return cli.getNombre();
+    }
+
+    public String getNombreVet(String CC) {
+        Veterinario vet = veterinariosDAO.buscaId(CC);
+        return vet.getNombre();
+    }
+
     public void recupera() {
         cliente = clientesDAO.buscaId(cliente.getDNI());
-        this.dni = cliente.getDNI();
+        this.aux = cliente.getDNI();
     }
 
     /**
@@ -168,9 +151,9 @@ public class ControladorUsuario implements Serializable {
     public String modificaCliente() throws ParseException {
         if (!clientesDAO.guarda(cliente)) {
             clientesDAO.crea(cliente);
-            clientesDAO.borra(dni);
-            mascotasDAO.cambiaDNI(dni, cliente.getDNI());
-            citasDAO.cambiaDNI(dni, cliente.getDNI());
+            clientesDAO.borra(aux);
+            mascotasDAO.cambiaDNI(aux, cliente.getDNI());
+            citasDAO.cambiaDNI(aux, cliente.getDNI());
         }
         return "/admin/clientes.xhtml?faces-redirect=true";
     }

@@ -31,7 +31,7 @@ import javax.validation.constraints.Size;
 @Named
 public class ControladorLogin implements Serializable {
 
-    private static final Logger logger = Logger.getLogger(ControladorUsuario.class.getName());
+    private static final Logger logger = Logger.getLogger(ControladorLogin.class.getName());
 
     @Inject
     FacesContext fc;

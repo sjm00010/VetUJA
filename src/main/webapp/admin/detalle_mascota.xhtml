@@ -25,7 +25,7 @@
             </f:metadata>
         </h:head>
 
-        <h:button class="btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="Editar información">
+        <h:button class=" btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="     ✏     ">
             <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
         </h:button>
         <div class="card mb-3" style="max-width: 100%;">
@@ -68,7 +68,11 @@
                 </div>
             </div>
         </div>
-        <h:link class="btn btn-outline-dark" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
+        <div class="row no-gutters justify-content-end mb-3">
+            <div class="col-3">
+                <h:link class="btn btn-outline-dark btn-block" outcome="mascotas.xhtml"> Volver </h:link>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <!-- Define Persistence Unit -->
-    <persistence-unit name="my_persistence_unit">
-        
+    <<!-- Define Persistence Unit -->
+    <persistence-unit name="vetujaPU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>java:global/jdbc/libros</jta-data-source>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action"
+                      value="drop-and-create-tables"/> <!-- cambiar a create en la verison final --> 
+            <property name="javax.persistence.sql-load-script-source"
+                      value="/META-INF/sql/datos.sql"/> <!-- fichero sql con los datos a cargar -->
+            <!-- Enable JPA SQL sentences logging -->
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+        </properties>
     </persistence-unit>
 </persistence>

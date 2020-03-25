@@ -153,10 +153,9 @@ public class ControladorUsuario implements Serializable {
         veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
     }
 
-    /**
-     * **************************************
-     * Funciones CRUD * **************************************
-     */
+    /****************************************
+     *          Funciones CRUD              * 
+     ****************************************/
     public String creaCliente() {
         if (cliente.getPass().equals(getAux())) {
             if (clientesDAO.crea(cliente)) {

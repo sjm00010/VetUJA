@@ -32,7 +32,6 @@ public class Preferencias implements Serializable{
      * @return the cli
      */
     public Cliente getCli() {
-        System.out.println("Cabecera : " + cli.getDNI());
         return cli;
     }
 

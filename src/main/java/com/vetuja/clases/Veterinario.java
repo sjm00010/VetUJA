@@ -1,6 +1,8 @@
 package com.vetuja.clases;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Size;
  *
  * @author sjm00010
  */
+@Entity
 public class Veterinario {
     /*
      Estas variables no requieren de verificación, ya que los datos de los
@@ -16,6 +19,7 @@ public class Veterinario {
      solo se leen.
     */
     
+    @Id
     @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números. Ej. AA1111")
     private String codCol;
     
@@ -32,11 +36,11 @@ public class Veterinario {
     private String foto;
 
     public Veterinario() {
-        this.codCol = "AA1111";
-        this.nombre = "Desconocido";
-        this.apellidos = "Desconocidos";
-        this.pass = "pass";
-        this.foto = "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png";
+        this.codCol = "";
+        this.nombre = "";
+        this.apellidos = "";
+        this.pass = "";
+        this.foto = "";
     }
 
     public Veterinario(String codCol, String nombre, String apellidos, String pass, String foto) {
@@ -117,7 +121,7 @@ public class Veterinario {
         this.foto = foto;
     }
 
-        @Override
+    @Override
     public int hashCode() {
         int hash = 3;
         hash = 97 * hash + Objects.hashCode(this.codCol);

@@ -29,7 +29,7 @@
                 <div class="user">
                     <h:graphicImage value = "#{prefs.cli.foto}" alt="user_foto" class="logo-brand rounded-circle"/>
                     <h5 class="user">¡Hola #{prefs.cli.nombre}!</h5>
-                    <h:form>
+                    <h:form class="user ml-0">
                         <h:commandButton class="nav-link" action="#{controladorLogin.logout()}" image="#{resource['img/iconos/logout.png']}"/>
                     </h:form>
                 </div>

@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 /**
@@ -17,21 +16,6 @@ import javax.transaction.Transactional;
 @RequestScoped
 @Transactional
 public class VeterinarioDAO implements DAOgenerico<Veterinario, String> {
-
-//    // Estructura de soporte
-//    private Map<String, Veterinario> veterinarios=null;
-//    
-//    public VeterinarioDAO() {
-//        if (veterinarios == null) {
-//            veterinarios = new HashMap<>();
-//            veterinarios.put("AS0489", new Veterinario("AS0489",
-//                    "José Ramón", "Balsas Almagro", "admin", 
-//                    "https://pbs.twimg.com/profile_images/1181225056078385154/A3eO3ove_400x400.jpg"));
-//            veterinarios.put("AS0008", new Veterinario("AS0008",
-//                    "Flo", "López Ortega", "francis", 
-//                    "https://i1.rgstatic.net/ii/profile.image/586016247279622-1516728569350_Q512/F_Charte.jpg"));
-//        }
-//    }
     
     private static final Logger logger = Logger.getLogger(VeterinarioDAO.class.getName());
     

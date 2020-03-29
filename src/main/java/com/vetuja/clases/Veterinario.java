@@ -1,5 +1,6 @@
 package com.vetuja.clases;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
  * @author sjm00010
  */
 @Entity
-public class Veterinario {
+public class Veterinario implements Serializable {
     /*
      Estas variables no requieren de verificación, ya que los datos de los
      veterinarios no se editan/borran o crean. Se inician al principio y

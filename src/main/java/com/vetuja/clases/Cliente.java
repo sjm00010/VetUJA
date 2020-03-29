@@ -5,10 +5,13 @@
  */
 package com.vetuja.clases;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
@@ -17,8 +20,10 @@ import javax.validation.constraints.*;
  *
  * @author sjm00010
  */
-public class Cliente {
+@Entity
+public class Cliente implements Serializable {
 
+    @Id
     @Pattern(regexp = "\\d{8}[A-Z]", message = "DNI incorrecto, debe tener 8 números y la letra debe estar en mayúscula.")
     private String DNI;
 
@@ -206,8 +211,8 @@ public class Cliente {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
-        public String leerFecha(){
+
+    public String leerFecha() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(this.fnac);
     }

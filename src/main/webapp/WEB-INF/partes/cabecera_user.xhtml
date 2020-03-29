@@ -26,8 +26,8 @@
                         <h:link class="menu nav-link" outcome="citas.xhtml">Citas</h:link>
                     </li>
                 </ul>
-                <div class="user">
-                    <h:graphicImage value = "#{prefs.cli.foto}" alt="user_foto" class="logo-brand rounded-circle"/>
+                <div class="user align-items-center">
+                    <h:graphicImage value = "#{prefs.cli.foto}" alt="user_foto" class="logo-brand rounded-circle" style="width: 75px"/>
                     <h5 class="user">¡Hola #{prefs.cli.nombre}!</h5>
                     <h:form class="user ml-0">
                         <h:commandButton class="nav-link" action="#{controladorLogin.logout()}" image="#{resource['img/iconos/logout.png']}"/>

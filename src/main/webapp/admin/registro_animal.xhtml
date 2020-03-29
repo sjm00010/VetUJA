@@ -120,9 +120,7 @@
                             <div class="col mx-3 my-2">
                                 <label for="cc">Cod. Colegiado</label>
                                 <h:selectOneMenu class="form-control" id="cc" a:value="#{ctrlMasc.mascota.vetCC}">
-                                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
-                                    <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
-                                                   itemValue="#{vet.codCol}" itemLabel="#{vet.codCol}" />
+                                    <f:selectItem itemLabel="#{prefs.vet.codCol}" itemValue="#{prefs.vet.codCol}"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>

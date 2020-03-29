@@ -56,12 +56,12 @@
                                 </p>
                                 <hr/>
                                 <p class="card-text">
-                                    <p><i>DI (Documento identificativo), Pass (Contraseña)</i></p>
+                                    <p><i>CI (Código identificativo), Pass (Contraseña)</i></p>
                                     <strong>Usuarios</strong>
                                     <ul>
                                         <ui:repeat value="#{ctrlUser.clientes}" var="cli">
                                             <li>
-                                                <p><strong>DI : </strong> #{cli.DNI} | <strong>Pass : </strong> #{cli.pass}</p>
+                                                <p><strong>CI : </strong> #{cli.DNI}➡<strong>Pass : </strong> #{cli.pass}</p>
                                             </li>
                                         </ui:repeat>
                                     </ul>
@@ -70,7 +70,7 @@
                                     <ul>
                                         <ui:repeat value="#{ctrlUser.veterinarios}" var="vet">
                                             <li>
-                                                <p><strong>DI : </strong> #{vet.codCol} | <strong>Pass : </strong> #{vet.pass}</p>
+                                                <p><strong>CI : </strong> #{vet.codCol}➡<strong>Pass : </strong> #{vet.pass}</p>
                                             </li>
                                         </ui:repeat>
                                     </ul>

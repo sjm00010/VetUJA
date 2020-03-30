@@ -35,7 +35,7 @@ public class ClienteDAO implements DAOgenerico<Cliente, String> {
     public List<Cliente> buscaTodos() {
         List<Cliente> lc = null;
         try {
-            lc = em.createQuery("Select v from Cliente v", Cliente.class).getResultList();
+            lc = em.createQuery("Select cl from Cliente cl", Cliente.class).getResultList();
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }

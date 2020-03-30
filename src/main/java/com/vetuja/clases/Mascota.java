@@ -5,10 +5,13 @@
  */
 package com.vetuja.clases;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
@@ -17,8 +20,10 @@ import javax.validation.constraints.*;
  *
  * @author dgl00018
  */
-public class Mascota {
+@Entity
+public class Mascota implements Serializable {
 
+    @Id
     @Pattern(regexp = "\\d{15}", message = "Código identificación incorrecto, debe tener 15 números.")
     private String ci;
 

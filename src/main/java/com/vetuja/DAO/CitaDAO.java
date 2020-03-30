@@ -1,101 +1,108 @@
 package com.vetuja.DAO;
 
-import com.vetuja.clases.Citas;
+import com.vetuja.clases.Cita;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.enterprise.context.ApplicationScoped;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 /**
- *
  * @author juanc
  */
-@ApplicationScoped
-public class CitaDAO implements DAOgenerico<Citas, Integer> {
+@RequestScoped
+@Transactional
+public class CitaDAO implements DAOgenerico<Cita, Integer> {
 
-    private Map<Integer, Citas> citas = null;
-    private Integer idCliente = 5;
+    // Logger para depurar errores, e informar del estado de la aplicación
+    private static final Logger logger = Logger.getLogger(ClienteDAO.class.getName());
+
+    @PersistenceContext
+    private EntityManager em;
+
+    private Integer idCita = 5;
 
     public CitaDAO() throws ParseException {
-        if (citas == null) {
-            citas = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
-            java.util.Date fecha = sdf.parse("08-02-2020");
-            citas.put(1, new Citas(1, fecha, "16:30", "54215624R", "AS0489", "938000000455987"));
-            fecha = sdf.parse("06-05-2020");
-            citas.put(2, new Citas(2, fecha, "10:30", "54215624R", "AS0008", "938000777000666"));
-            fecha = sdf.parse("15-07-2020");
-            citas.put(3, new Citas(3, fecha, "9:00", "54215624R", "AS0489", "938000159457532"));
-            fecha = sdf.parse("01-09-2020");
-            citas.put(4, new Citas(5, fecha, "12:15", "53914398T", "AS0008", "938000777000666"));
+    }
+
+    @Override
+    public Cita buscaId(Integer id) {
+        return em.find(Cita.class, id);
+    }
+
+    @Override
+    public List<Cita> buscaTodos() {
+        List<Cita> lc = null;
+        try {
+            lc = em.createQuery("Select c from Cita c", Cita.class).getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
+        return lc;
     }
 
     @Override
-    public Citas buscaId(Integer id) {
-        return citas.get(id);
-    }
-
-    @Override
-    public List<Citas> buscaTodos() {
-        return citas.values().stream().collect(Collectors.toList());
-    }
-
-    public List<Citas> busca(String DNI) {
-        List<Citas> resultado = new ArrayList();
-        citas.entrySet().stream().filter((entry) -> (entry.getValue().getCliDNI().equals(DNI))).forEachOrdered((entry) -> {
-            resultado.add(entry.getValue());
-        });
-        return resultado;
-    }
-
-    @Override
-    public boolean crea(Citas c) {
-        c.setId(idCliente++);
-        citas.put(c.getId(), c);
-        return true;
-    }
-
-    @Override
-    public boolean guarda(Citas c) {
-        boolean result = false;
-        if (citas.containsKey(c.getId())) {
-            Citas nc = new Citas(c);
-            citas.replace(c.getId(), c);
-            result = true;
+    public boolean crea(Cita c) {
+        boolean creado = false;
+        try {
+            em.persist(c);
+            creado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
+        return creado;
+    }
+
+    @Override
+    public boolean guarda(Cita c) {
+        boolean guardado = false;
+        try {
+            c = em.merge(c);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return guardado;
     }
 
     @Override
     public boolean borra(Integer id) {
-        boolean result = false;
-        if (citas.containsKey(id)) {
-            citas.remove(id);
-            result = true;
+        boolean borrado = false;
+        try {
+            Cita c = null;
+            c = em.find(Cita.class, id);
+            em.remove(c);
+            borrado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
-
+        return borrado;
     }
 
+    /**
+     * Busca todas las citas para un cliente en concreto
+     *
+     * @param DNI Cliente
+     * @return Lista de citas encontradas
+     */
+    public List<Cita> buscaCitas(String DNI) {
+        List<Cita> resultado = new ArrayList();
+        // Falta consulta
+        return resultado;
+    }
+
+    /**
+     * Borra todas las citas que hay de un cliente en caso de que este sea
+     * borrado
+     *
+     * @param cliDNI Cliente
+     */
     public void borraCli(String cliDNI) {
-        List<Integer> borrar = new ArrayList<>();
-        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
-            if (entry.getValue().getCliDNI() == cliDNI) {
-                borrar.add(entry.getKey());
-            }
-        }
-        if(!borrar.isEmpty()){
-            for (Iterator<Integer> iterator = borrar.iterator(); iterator.hasNext();) {
-                Integer next = iterator.next();
-                citas.remove(next);
-            }
-        }
+        // Falta borrado
     }
 
     /**
@@ -105,11 +112,7 @@ public class CitaDAO implements DAOgenerico<Citas, Integer> {
      * @param newDNI Nuevo DNI
      */
     public void cambiaDNI(String oldDNI, String newDNI) {
-        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
-            if (entry.getValue().getCliDNI() == oldDNI) {
-                entry.getValue().setCliDNI(newDNI);
-            }
-        }
+        // Falta actualización
     }
 
     /**
@@ -119,11 +122,7 @@ public class CitaDAO implements DAOgenerico<Citas, Integer> {
      * @param newCi Nuevo Códigos de Identificación
      */
     public void cambiaCi(String oldCi, String newCi) {
-        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
-            if (entry.getValue().getCliDNI() == oldCi) {
-                entry.getValue().setCliDNI(newCi);
-            }
-        }
+        // Falta actualización
     }
 
 }

@@ -1,14 +1,13 @@
 package com.vetuja.DAO;
 
 import com.vetuja.clases.Cita;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 /**
@@ -19,15 +18,14 @@ import javax.transaction.Transactional;
 public class CitaDAO implements DAOgenerico<Cita, Integer> {
 
     // Logger para depurar errores, e informar del estado de la aplicación
-    private static final Logger logger = Logger.getLogger(ClienteDAO.class.getName());
+    private static final Logger logger = Logger.getLogger(CitaDAO.class.getName());
 
     @PersistenceContext
     private EntityManager em;
 
-    private Integer idCita = 5;
+    private final Integer idCita = 5;
 
-    public CitaDAO() throws ParseException {
-    }
+    public CitaDAO() { }
 
     @Override
     public Cita buscaId(Integer id) {
@@ -90,9 +88,11 @@ public class CitaDAO implements DAOgenerico<Cita, Integer> {
      * @return Lista de citas encontradas
      */
     public List<Cita> buscaCitas(String DNI) {
-        List<Cita> resultado = new ArrayList();
-        // Falta consulta
-        return resultado;
+        List<Cita> lc = null;
+        TypedQuery<Cita> q = em.createQuery("Select c from Cita c where c.cliDNI=:DNI", Cita.class);
+        q.setParameter("DNI", DNI);
+        lc = q.getResultList();
+        return lc;
     }
 
     /**
@@ -102,27 +102,26 @@ public class CitaDAO implements DAOgenerico<Cita, Integer> {
      * @param cliDNI Cliente
      */
     public void borraCli(String cliDNI) {
-        // Falta borrado
+        em.createQuery("DELETE FROM Cita m WHERE m.cliDNI=:cliDNI").setParameter("cliDNI",cliDNI).executeUpdate();
     }
 
-    /**
-     * Función que actualiza los DNIs
-     *
-     * @param oldDNI DNI a actualizar
-     * @param newDNI Nuevo DNI
-     */
-    public void cambiaDNI(String oldDNI, String newDNI) {
-        // Falta actualización
-    }
-
-    /**
-     * Función que actualiza los Códigos de Identificación de las mascotas
-     *
-     * @param oldCi Códigos de Identificación a actualizar
-     * @param newCi Nuevo Códigos de Identificación
-     */
-    public void cambiaCi(String oldCi, String newCi) {
-        // Falta actualización
-    }
-
+//    /**
+//     * Función que actualiza los DNIs
+//     *
+//     * @param oldDNI DNI a actualizar
+//     * @param newDNI Nuevo DNI
+//     */
+//    public void cambiaDNI(String oldDNI, String newDNI) {
+//        em.createQuery("UPDATE Cita c Set c.cliDNI=:newDNI WHERE c.cliDNI=:oldDNI").setParameter("newDNI",newDNI).setParameter("oldDNI",oldDNI).executeUpdate();
+//    }
+//
+//    /**
+//     * Función que actualiza los Códigos de Identificación de las mascotas
+//     *
+//     * @param oldCi Códigos de Identificación a actualizar
+//     * @param newCi Nuevo Códigos de Identificación
+//     */
+//    public void cambiaCi(String oldCi, String newCi) {
+//        em.createQuery("UPDATE Cita c Set c.masCI=:newCi WHERE c.masCI=:oldCi").setParameter("newCi",newCi).setParameter("oldCi",oldCi).executeUpdate();
+//    }
 }

@@ -152,8 +152,8 @@ public class ControladorUsuario implements Serializable {
         if (!clientesDAO.guarda(cliente)) {
             clientesDAO.crea(cliente);
             clientesDAO.borra(aux);
-            mascotasDAO.cambiaDNI(aux, cliente.getDNI());
-            citasDAO.cambiaDNI(aux, cliente.getDNI());
+//            mascotasDAO.cambiaDNI(aux, cliente.getDNI());
+//            citasDAO.cambiaDNI(aux, cliente.getDNI());
         }
         return "/admin/clientes.xhtml?faces-redirect=true";
     }

@@ -22,6 +22,8 @@ public class VeterinarioDAO implements DAOgenerico<Veterinario, String> {
     @PersistenceContext
     private EntityManager em;
 
+    public VeterinarioDAO() { }
+    
     @Override
     public Veterinario buscaId(String id) {
         return em.find(Veterinario.class, id);

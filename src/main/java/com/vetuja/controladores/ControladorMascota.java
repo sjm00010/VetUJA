@@ -100,7 +100,7 @@ public class ControladorMascota implements Serializable {
         if (!mascotasDAO.guarda(mascota)) {
             mascotasDAO.crea(mascota);
             mascotasDAO.borra(ci);
-            citasDAO.cambiaCi(ci, mascota.getCi());
+//            citasDAO.cambiaCi(ci, mascota.getCi());
         }
         return "mascotas.jsf?faces-redirect=true";
     }

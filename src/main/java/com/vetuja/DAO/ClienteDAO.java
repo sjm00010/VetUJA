@@ -1,7 +1,6 @@
 package com.vetuja.DAO;
 
 import com.vetuja.clases.Cliente;
-import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,13 +17,13 @@ import javax.transaction.Transactional;
 @Transactional
 public class ClienteDAO implements DAOgenerico<Cliente, String> {
 
+    // Logger para depurar errores, e informar del estado de la aplicación
     private static final Logger logger = Logger.getLogger(ClienteDAO.class.getName());
 
     @PersistenceContext
     private EntityManager em;
 
-    public ClienteDAO() throws ParseException {
-    }
+    public ClienteDAO() { }
 
     @Override
     public Cliente buscaId(String id) {

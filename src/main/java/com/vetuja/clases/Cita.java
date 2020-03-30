@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,7 @@ import javax.validation.constraints.Pattern;
 public class Cita implements Serializable {
 
     @Id
-    @NotEmpty(message = "El ID no puede estar vacío.")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremental
     private Integer id;
 
     @Future(message = "La fecha debe ser posterior a hoy.")

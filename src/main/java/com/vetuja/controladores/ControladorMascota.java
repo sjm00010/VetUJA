@@ -24,11 +24,10 @@ public class ControladorMascota implements Serializable {
 
     @Inject
     private MascotaDAO mascotasDAO;
-    
+
     /*  Para cuando se modifiquen los identificadores hacer los cambios en las 
         clases que tienen referencias a clientes o veterinarios
-    */
-    
+     */
     @Inject
     private CitaDAO citasDAO;
 
@@ -60,7 +59,7 @@ public class ControladorMascota implements Serializable {
     public List<Mascota> getMascotas() {
         return mascotasDAO.buscaTodos();
     }
-    
+
     public List<Mascota> getMascotasCliente(String DNI) {
         return mascotasDAO.busca(DNI);
     }
@@ -80,12 +79,15 @@ public class ControladorMascota implements Serializable {
         LocalDate now1 = LocalDate.now();
         Period diff1 = Period.between(l1, now1);
         String sol = "";
-        if (diff1.getYears() != 0)
+        if (diff1.getYears() != 0) {
             sol += Integer.toString(diff1.getYears()) + " años, ";
-        if (diff1.getMonths() != 0)
+        }
+        if (diff1.getMonths() != 0) {
             sol += Integer.toString(diff1.getMonths()) + " meses, ";
-        if (diff1.getDays() != 0)
+        }
+        if (diff1.getDays() != 0) {
             sol += Integer.toString(diff1.getDays()) + " días";
+        }
         return sol;
     }
 
@@ -95,8 +97,8 @@ public class ControladorMascota implements Serializable {
         }
         return null;
     }
-    
-     public String modificaMascota() {    
+
+    public String modificaMascota() {
         if (!mascotasDAO.guarda(mascota)) {
             mascotasDAO.crea(mascota);
             mascotasDAO.borra(ci);
@@ -104,8 +106,14 @@ public class ControladorMascota implements Serializable {
         }
         return "mascotas.jsf?faces-redirect=true";
     }
-     
-    public String getNombreMas(String ci){
+
+    public String borraMascota() {
+        mascotasDAO.borra(mascota.getCi());
+        citasDAO.borraCI(mascota.getCi());
+        return "mascotas.jsf?faces-redirect=true";
+    }
+
+    public String getNombreMas(String ci) {
         Mascota mas = mascotasDAO.buscaId(ci);
         return mas.getNombre();
     }

@@ -25,7 +25,8 @@ public class CitaDAO implements DAOgenerico<Cita, Integer> {
 
     private final Integer idCita = 5;
 
-    public CitaDAO() { }
+    public CitaDAO() {
+    }
 
     @Override
     public Cita buscaId(Integer id) {
@@ -102,7 +103,17 @@ public class CitaDAO implements DAOgenerico<Cita, Integer> {
      * @param cliDNI Cliente
      */
     public void borraCli(String cliDNI) {
-        em.createQuery("DELETE FROM Cita m WHERE m.cliDNI=:cliDNI").setParameter("cliDNI",cliDNI).executeUpdate();
+        em.createQuery("DELETE FROM Cita c WHERE c.cliDNI=:cliDNI").setParameter("cliDNI", cliDNI).executeUpdate();
+    }
+
+    /**
+     * Borra todas las citas que hay de una mascota en caso de que esta sea
+     * borrada
+     *
+     * @param masCI Mascota
+     */
+    public void borraCI(String masCI) {
+        em.createQuery("DELETE FROM Cita c WHERE c.masCI=:masCI").setParameter("masCI", masCI).executeUpdate();
     }
 
 //    /**

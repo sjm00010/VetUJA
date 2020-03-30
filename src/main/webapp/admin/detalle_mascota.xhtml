@@ -25,9 +25,13 @@
             </f:metadata>
         </h:head>
 
-        <h:button class=" btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="     ✏     ">
-            <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
-        </h:button>
+        <h:form>
+            <h:button class=" btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="     ✏     ">
+                <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
+            </h:button>
+            <h:commandButton class=" btn btn-outline-danger btn-lg mb-3 ml-2" action="#{ctrlMasc.borraMascota()}" value="  🗑  "/>
+        </h:form>
+        
         <div class="card mb-3" style="max-width: 100%;">
             <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
             <div class="row no-gutters">

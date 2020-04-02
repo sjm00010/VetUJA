@@ -1,110 +1,138 @@
 package com.vetuja.DAO;
 
-import com.vetuja.clases.Citas;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.vetuja.clases.Cita;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.enterprise.context.ApplicationScoped;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 /**
- *
  * @author juanc
  */
-@ApplicationScoped
-public class CitaDAO implements DAOgenerico <Citas, Integer>{
-    private Map<Integer, Citas> citas = null;
-    private Integer idCliente = 6;
-    public CitaDAO() throws ParseException {
-        if(citas == null) {
-            citas = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
-            java.util.Date fecha = sdf.parse("08-02-2020");
-            citas.put(1, new Citas(1,fecha,"16:30","54215624R","AS0489","938000000455987"));
-            fecha = sdf.parse("06-05-2020");
-            citas.put(2, new Citas(2,fecha,"10:30","54215624R","AS0008","938000777000666"));
-            fecha = sdf.parse("15-07-2020");
-            citas.put(3, new Citas(3,fecha,"9:00","24315522B","AS0489","938000159457532"));
-            citas.put(4, new Citas(4,fecha,"17:10","54215624R","AS0489","938000777000666"));
-            fecha = sdf.parse("01-09-2020");
-            citas.put(5, new Citas(5,fecha,"12:15","53914398T","AS0008","938000159457532"));  
-    }
-}
+@RequestScoped
+@Transactional
+public class CitaDAO implements DAOgenerico<Cita, Integer> {
 
-    @Override
-    public Citas buscaId(Integer id){
-        return citas.get(id);
+    // Logger para depurar errores, e informar del estado de la aplicación
+    private static final Logger logger = Logger.getLogger(CitaDAO.class.getName());
+
+    @PersistenceContext
+    private EntityManager em;
+
+    private final Integer idCita = 5;
+
+    public CitaDAO() {
     }
 
     @Override
-    public List<Citas> buscaTodos() {
-        return citas.values().stream().collect(Collectors.toList());
-    }
-    
-    public List<Citas> busca(String DNI) {
-        List<Citas> resultado = new ArrayList();
-        citas.entrySet().stream().filter((entry) -> (entry.getValue().getCliDNI().equals(DNI))).forEachOrdered((entry) -> {
-            resultado.add(entry.getValue());
-        });
-        return resultado;
-    }
-    
-    @Override
-    public boolean crea(Citas c) {
-        c.setId(idCliente++);
-        citas.put(c.getId(), c);
-        return true;
+    public Cita buscaId(Integer id) {
+        return em.find(Cita.class, id);
     }
 
     @Override
-    public boolean guarda(Citas c) {
-        boolean result = false;
-        if(citas.containsKey(c.getId())){
-            Citas nc = new Citas(c);
-            citas.replace(c.getId(), c);
-            result = true;
+    public List<Cita> buscaTodos() {
+        List<Cita> lc = null;
+        try {
+            lc = em.createQuery("Select c from Cita c", Cita.class).getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
+        return lc;
+    }
+
+    @Override
+    public boolean crea(Cita c) {
+        boolean creado = false;
+        try {
+            em.persist(c);
+            creado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return creado;
+    }
+
+    @Override
+    public boolean guarda(Cita c) {
+        boolean guardado = false;
+        try {
+            c = em.merge(c);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return guardado;
     }
 
     @Override
     public boolean borra(Integer id) {
-        boolean result = false;
-        if (citas.containsKey(id)) {
-            citas.remove(id);
-            result = true;
+        boolean borrado = false;
+        try {
+            Cita c = null;
+            c = em.find(Cita.class, id);
+            em.remove(c);
+            borrado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
-
+        return borrado;
     }
 
     /**
-     * Función que actualiza los DNIs
-     * @param oldDNI DNI a actualizar
-     * @param newDNI Nuevo DNI
+     * Busca todas las citas para un cliente en concreto
+     *
+     * @param DNI Cliente
+     * @return Lista de citas encontradas
      */
-    public void cambiaDNI(String oldDNI, String newDNI){
-        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
-            if(entry.getValue().getCliDNI() == oldDNI){
-                entry.getValue().setCliDNI(newDNI);
-            }
-        }
+    public List<Cita> buscaCitas(String DNI) {
+        List<Cita> lc = null;
+        TypedQuery<Cita> q = em.createQuery("Select c from Cita c where c.cliDNI=:DNI", Cita.class);
+        q.setParameter("DNI", DNI);
+        lc = q.getResultList();
+        return lc;
     }
 
     /**
-     * Función que actualiza los Códigos de Identificación de las mascotas
-     * @param oldCi Códigos de Identificación a actualizar
-     * @param newCi Nuevo Códigos de Identificación
+     * Borra todas las citas que hay de un cliente en caso de que este sea
+     * borrado
+     *
+     * @param cliDNI Cliente
      */
-    public void cambiaCi(String oldCi, String newCi){
-        for (Map.Entry<Integer, Citas> entry : citas.entrySet()) {
-            if(entry.getValue().getCliDNI() == oldCi){
-                entry.getValue().setCliDNI(newCi);
-            }
-        }
+    public void borraCli(String cliDNI) {
+        em.createQuery("DELETE FROM Cita c WHERE c.cliDNI=:cliDNI").setParameter("cliDNI", cliDNI).executeUpdate();
     }
-    
+
+    /**
+     * Borra todas las citas que hay de una mascota en caso de que esta sea
+     * borrada
+     *
+     * @param masCI Mascota
+     */
+    public void borraCI(String masCI) {
+        em.createQuery("DELETE FROM Cita c WHERE c.masCI=:masCI").setParameter("masCI", masCI).executeUpdate();
+    }
+
+//    /**
+//     * Función que actualiza los DNIs
+//     *
+//     * @param oldDNI DNI a actualizar
+//     * @param newDNI Nuevo DNI
+//     */
+//    public void cambiaDNI(String oldDNI, String newDNI) {
+//        em.createQuery("UPDATE Cita c Set c.cliDNI=:newDNI WHERE c.cliDNI=:oldDNI").setParameter("newDNI",newDNI).setParameter("oldDNI",oldDNI).executeUpdate();
+//    }
+//
+//    /**
+//     * Función que actualiza los Códigos de Identificación de las mascotas
+//     *
+//     * @param oldCi Códigos de Identificación a actualizar
+//     * @param newCi Nuevo Códigos de Identificación
+//     */
+//    public void cambiaCi(String oldCi, String newCi) {
+//        em.createQuery("UPDATE Cita c Set c.masCI=:newCi WHERE c.masCI=:oldCi").setParameter("newCi",newCi).setParameter("oldCi",oldCi).executeUpdate();
+//    }
 }

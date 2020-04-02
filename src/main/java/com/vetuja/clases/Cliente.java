@@ -5,10 +5,13 @@
  */
 package com.vetuja.clases;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
@@ -17,8 +20,10 @@ import javax.validation.constraints.*;
  *
  * @author sjm00010
  */
-public class Cliente {
+@Entity
+public class Cliente implements Serializable {
 
+    @Id
     @Pattern(regexp = "\\d{8}[A-Z]", message = "DNI incorrecto, debe tener 8 números y la letra debe estar en mayúscula.")
     private String DNI;
 
@@ -39,9 +44,6 @@ public class Cliente {
     @NotEmpty(message = "Introduce una foto para que podamos conocerte.")
     private String foto;
 
-    @Size(min = 3, max = 10, message = "El usuario debe tener una longitud entre {min} y {max} caracteres.")
-    private String user;
-
     @Pattern(regexp = "[a-zA-Z0-9._+-]+@[a-zA-Z]+\\.[a-zA-Z.]{2,}", message = "El correo introducido no es valido, debe tener el formato email@email.com")
     private String email;
 
@@ -61,7 +63,6 @@ public class Cliente {
         direccion = "";
         fnac = null;
         foto = "";
-        user = "";
         email = "";
         pass = "";
     }
@@ -73,19 +74,17 @@ public class Cliente {
      * @param direccion Direccion del usuario, local sin provincia y demas
      * @param fnac Fecha de nacimiento
      * @param foto Nombre de la foto de usuario, dentro de la carpeta 'usuarios'
-     * @param user Usuario
      * @param email Correo electronico
      * @param pass Contraseña
      */
     public Cliente(String DNI, String nombre, String apellidos, String direccion,
-            Date fnac, String foto, String user, String email, String pass) {
+            Date fnac, String foto, String email, String pass) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.fnac = fnac;
         this.foto = foto;
-        this.user = user;
         this.email = email;
         this.pass = pass;
     }
@@ -97,7 +96,6 @@ public class Cliente {
         this.direccion = c.direccion;
         this.fnac = c.fnac;
         this.foto = c.foto;
-        this.user = c.user;
         this.email = c.email;
         this.pass = c.pass;
     }
@@ -173,20 +171,6 @@ public class Cliente {
     }
 
     /**
-     * @return El usuario
-     */
-    public String getUser() {
-        return user;
-    }
-
-    /**
-     * @param user El usuario a cambiar
-     */
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    /**
      * @return La contraseña
      */
     public String getPass() {
@@ -227,8 +211,8 @@ public class Cliente {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
-        public String leerFecha(){
+
+    public String leerFecha() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(this.fnac);
     }

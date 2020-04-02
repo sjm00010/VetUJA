@@ -1,93 +1,92 @@
 package com.vetuja.DAO;
 
 import com.vetuja.clases.Cliente;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.enterprise.context.ApplicationScoped;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 /**
  *
  * @author sjm00010
  */
-@ApplicationScoped
+@RequestScoped
+@Transactional
 public class ClienteDAO implements DAOgenerico<Cliente, String> {
 
-    private Map<String, Cliente> clientes = null;
+    // Logger para depurar errores, e informar del estado de la aplicación
+    private static final Logger logger = Logger.getLogger(ClienteDAO.class.getName());
 
-    public ClienteDAO() throws ParseException {
-        if (clientes == null) {
-            clientes = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date fnac = sdf.parse("1992-07-26");
-            clientes.put("54215624R", new Cliente(
-                    "54215624R", "Ángel Luis", "García Fernández",
-                    "Campus Las Lagunillas", fnac,
-                    "https://www.ujaen.es/departamentos/dinformatica/sites/departamento_dinformatica/files/styles/contact_photo/public/uploads/node_contacto_persona/2019-06/algarcia.jpg?itok=VjL78gZO",
-                    "algarcia", "algarcia@ujaen.es", "contrasena"));
-            clientes.put("53914398T", new Cliente(
-                    "53914398T", "Francis", "Ortega López",
-                    "La lloreria", fnac,
-                    "https://i.pinimg.com/originals/d9/e9/7d/d9e97d15c8aefb3067372c36fa2abc26.png",
-                    "fol00008", "fol00008@ujaen.es", "paco00008"));
-            clientes.put("24315522B", new Cliente(
-                    "24315522B", "Alejandro", "Expósito Pontiveros",
-                    "Avenida Andalucía, 1", fnac,
-                    "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png",
-                    "aep00047", "aep00042@ujaen.es", "erasmus"));
-            clientes.put("34209621C", new Cliente(
-                    "34209621C", "ElRisas", "Joker",
-                    "En su casa", fnac,
-                    "https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/1200x895/public/media/image/2019/08/joker.jpeg?itok=5ldLzg71",
-                    "ElPrisas", "algarcia@ujaen.es", "sanicgo"));
-        }
-    }
+    @PersistenceContext
+    private EntityManager em;
+
+    public ClienteDAO() { }
 
     @Override
     public Cliente buscaId(String id) {
-        return clientes.get(id);
+        return em.find(Cliente.class, id);
     }
 
     @Override
     public List<Cliente> buscaTodos() {
-        return clientes.values().stream().collect(Collectors.toList());
+        List<Cliente> lc = null;
+        try {
+            lc = em.createQuery("Select cl from Cliente cl", Cliente.class).getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lc;
     }
 
     @Override
     public boolean crea(Cliente c) {
-        clientes.put(c.getDNI(), c);
-        return true;
+        boolean creado = false;
+        try {
+            em.persist(c);
+            creado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return creado;
     }
 
     @Override
     public boolean guarda(Cliente c) {
-        boolean result = false;
-        if (clientes.containsKey(c.getDNI())) {
-            clientes.replace(c.getDNI(), c);
-            result = true;
+        boolean guardado = false;
+        try {
+            c = em.merge(c);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
+        return guardado;
     }
 
     @Override
     public boolean borra(String id) {
-        boolean result = false;
-        if (clientes.containsKey(id)) {
-            clientes.remove(id);
-            result = true;
+        boolean borrado = false;
+        try {
+            Cliente c = null;
+            c = em.find(Cliente.class, id);
+            em.remove(c);
+            borrado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
+        return borrado;
     }
 
-    public Cliente buscaUser(String user) {
-        List<Cliente> listaClientes = buscaTodos();
-        for (Cliente next : listaClientes) {
-            if (user.equals(next.getUser())) {
-                return next;
-            }
+    /**
+     * @param dni Usuario a localizar
+     * @return Contraseña
+     */
+    public String getPass(String dni) {
+        Cliente cli = em.find(Cliente.class, dni);
+        if (cli != null) {
+            return cli.getPass();
         }
         return null;
     }

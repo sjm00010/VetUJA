@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.vetuja.controladores;
 
 import com.vetuja.DAO.CitaDAO;
-import com.vetuja.clases.Citas;
+import com.vetuja.clases.Cita;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,50 +15,50 @@ import javax.inject.Named;
  */
 @Named("ctrlCitas")
 @ViewScoped
-public class ControladorCitas implements Serializable {
+public class ControladorCita implements Serializable {
 
     @Inject
     private CitaDAO citasDAO;
 
     //View-Model
-    private Citas cita;
+    private Cita cita;
     private Integer id;
 
-    public ControladorCitas() {
+    public ControladorCita() {
 
     }
 
     @PostConstruct
     private void init() {
-        cita = new Citas();
+        cita = new Cita();
         id = 0;
     }
 
-    public Citas getCita() {
+    public Cita getCita() {
         return cita;
     }
 
-    public Citas getCita(int id) {
+    public Cita getCita(int id) {
         return citasDAO.buscaId(id);
     }
 
-    public void setCita(Citas cita) {
+    public void setCita(Cita cita) {
         this.cita = cita;
     }
 
-    public List<Citas> getCitas() {
+    public List<Cita> getCitas() {
         return citasDAO.buscaTodos();
     }
     
-    public List<Citas> getCitasCliente(String DNI) {
-        return citasDAO.busca(DNI);
+    public List<Cita> getCitasCliente(String DNI) {
+        return citasDAO.buscaCitas(DNI);
     }
 
     public void recupera() {
         cita = citasDAO.buscaId((cita.getId()));
     }
 
-    public String borra(Citas c) {
+    public String borra(Cita c) {
         if (citasDAO.borra(c.getId())) {
             return "citas.xhtml?faces-redirect=true";
         } else {

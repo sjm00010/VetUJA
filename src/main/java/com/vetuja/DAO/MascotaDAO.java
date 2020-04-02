@@ -1,101 +1,110 @@
 package com.vetuja.DAO;
 
 import com.vetuja.clases.Mascota;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.enterprise.context.ApplicationScoped;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 /**
  *
  * @author dgl00018 y sjm00010
  */
-@ApplicationScoped
+@RequestScoped
+@Transactional
 public class MascotaDAO implements DAOgenerico<Mascota, String> {
 
-    private Map<String, Mascota> mascotas = null;
+    // Logger para depurar errores, e informar del estado de la aplicación
+    private static final Logger logger = Logger.getLogger(MascotaDAO.class.getName());
 
-    public MascotaDAO() throws ParseException {
-        if (mascotas == null) {
-            mascotas = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date fechanac = sdf.parse("2008-07-26");
-            java.util.Date fechanac2 = sdf.parse("2003-08-08");
-            java.util.Date fechanac3 = sdf.parse("2015-11-17");
-            mascotas.put("938000000455987", new Mascota(
-                    "938000000455987", "Remy", "Domestica", "Rata", "Macho", 12, 230, fechanac,
-                    "https://vignette.wikia.nocookie.net/dominios-encantados/images/6/66/REMY_WIKI.png/revision/latest/scale-to-width-down/340?cb=20151126195355&path-prefix=es",
-                    "54215624R","AS0008"));
-            mascotas.put("938000159457532", new Mascota(
-                    "938000159457532", "Misifu", "Ragdoll", "Gato", "Hembra", 25, 3800, fechanac2, 
-                    "https://www.lavanguardia.com/r/GODO/LV/p6/WebSite/2019/05/17/Recortada/img_pplaza_20190517-144227_imagenes_lv_otras_fuentes_60889244_295648354678280_6739256407041769472_n-kR3G-U462293423715hBH-992x558@LaVanguardia-Web.jpg",
-                    "54215624R","AS0489"));
-            mascotas.put("938000777000666", new Mascota(
-                    "938000777000666", "Pipo", "Gambino", "Perro", "Macho", 60, 6000, fechanac3, 
-                    "https://i1.sndcdn.com/artworks-000239253704-ikgw8q-t500x500.jpg",
-                    "53914398T","AS0008"));
+    @PersistenceContext
+    private EntityManager em;
 
-        }
+    public MascotaDAO() {
     }
 
     @Override
     public Mascota buscaId(String id) {
-        return mascotas.get(id);
+        return em.find(Mascota.class, id);
     }
 
     @Override
     public List<Mascota> buscaTodos() {
-        return mascotas.values().stream().collect(Collectors.toList());
+        List<Mascota> lc = null;
+        try {
+            lc = em.createQuery("Select m from Mascota m", Mascota.class).getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lc;
     }
-    
-    public List<Mascota> busca(String DNI) {
-        List<Mascota> resultado = new ArrayList();
-        mascotas.entrySet().stream().filter((entry) -> (entry.getValue().getCliDNI().equals(DNI))).forEachOrdered((entry) -> {
-            resultado.add(entry.getValue());
-        });
-        return resultado;
-    }    
 
     @Override
     public boolean crea(Mascota m) {
-        mascotas.put(m.getCi(), m);
-        return true;
+        boolean creado = false;
+        try {
+            em.persist(m);
+            creado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return creado;
     }
 
     @Override
     public boolean guarda(Mascota m) {
-        boolean result = false;
-        if (mascotas.containsKey(m.getCi())) {
-            mascotas.replace(m.getCi(), m);
-            result = true;
+        boolean guardado = false;
+        try {
+            m = em.merge(m);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
+        return guardado;
     }
 
     @Override
     public boolean borra(String id) {
-        boolean result = false;
-        if (mascotas.containsKey(id)) {
-            mascotas.remove(id);
-            result = true;
+        boolean borrado = false;
+        try {
+            Mascota c = null;
+            c = em.find(Mascota.class, id);
+            em.remove(c);
+            borrado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return result;
+        return borrado;
     }
-    
+
     /**
-     * Función que actualiza los DNIs
-     * @param oldDNI DNI a actualizar
-     * @param newDNI Nuevo DNI
+     * Busca todas las mascotas para un cliente
+     * @param DNI Cliente
+     * @return Devuelve todas las mascotas encontradas
      */
-    public void cambiaDNI(String oldDNI, String newDNI){
-        for (Map.Entry<String, Mascota> entry : mascotas.entrySet()) {
-            if(entry.getValue().getCliDNI() == oldDNI){
-                entry.getValue().setCliDNI(newDNI);
-            }
-        }
+    public List<Mascota> busca(String DNI) {
+        List<Mascota> lc = null;
+        TypedQuery<Mascota> q = em.createQuery("Select m from Mascota m where m.cliDNI=:DNI", Mascota.class);
+        q.setParameter("DNI", DNI);
+        lc = q.getResultList();
+        return lc;
     }
+
+    public void borraCli(String cliDNI) {
+        em.createQuery("DELETE FROM Mascota m WHERE m.cliDNI=:cliDNI").setParameter("cliDNI",cliDNI).executeUpdate();
+    }
+
+//    /**
+//     * Función que actualiza los DNIs
+//     *
+//     * @param oldDNI DNI a actualizar
+//     * @param newDNI Nuevo DNI
+//     */
+//    public void cambiaDNI(String oldDNI, String newDNI) {
+//        em.createQuery("UPDATE Mascota m Set m.cliDNI=:newDNI WHERE m.cliDNI=:oldDNI").setParameter("newDNI",newDNI).setParameter("oldDNI",oldDNI).executeUpdate();
+//    }
 }

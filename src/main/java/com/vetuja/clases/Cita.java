@@ -5,9 +5,14 @@
  */
 package com.vetuja.clases;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
@@ -19,9 +24,11 @@ import javax.validation.constraints.Pattern;
  *
  * @author juanc
  */
-public class Citas {
+@Entity
+public class Cita implements Serializable {
 
-    @NotEmpty(message = "El ID no puede estar vacío.")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremental
     private Integer id;
 
     @Future(message = "La fecha debe ser posterior a hoy.")
@@ -44,16 +51,16 @@ public class Citas {
     @NotNull(message = "Se debe seleccionar una mascota")
     private String masCI;
 
-    public Citas() {
+    public Cita() {
         id = 0;
         fecha = null;
         hora = "";
-        cliDNI = "54215624R";
+        cliDNI = "";
         vetCC = "";
         masCI = "";
     }
 
-    public Citas(Integer id, Date fecha, String hora, String cliDNI, String vetCC, String masCI) {
+    public Cita(Integer id, Date fecha, String hora, String cliDNI, String vetCC, String masCI) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -62,7 +69,7 @@ public class Citas {
         this.masCI = masCI;
     }
 
-    public Citas(Citas c) {
+    public Cita(Cita c) {
         this.id = c.id;
         this.fecha = c.fecha;
         this.hora = c.hora;

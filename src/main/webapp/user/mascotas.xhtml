@@ -13,15 +13,8 @@
         <ui:include src="../WEB-INF/partes/cabecera_user.xhtml" />
     </ui:define>
 
-    <ui:define name="cuerpo">
-        <h:head>
-            <f:metadata>
-                <!--Como no tengo autentificador aun, pongo el dni del ejemplo de usuario-->
-                <f:viewAction action="#{ctrlUser.setDNIact()}" />
-            </f:metadata>
-        </h:head>
-        
-        <ui:repeat value="#{ctrlMasc.getMascotasCliente(ctrlUser.DNI)}" var="mas">
+    <ui:define name="cuerpo">        
+        <ui:repeat value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas">
             <h:form class="card">
                 <div class="row no-gutters">
                     <div class="col-md-4">

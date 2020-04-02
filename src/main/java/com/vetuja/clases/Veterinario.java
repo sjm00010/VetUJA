@@ -1,6 +1,9 @@
 package com.vetuja.clases;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -9,13 +12,15 @@ import javax.validation.constraints.Size;
  *
  * @author sjm00010
  */
-public class Veterinario {
+@Entity
+public class Veterinario implements Serializable {
     /*
      Estas variables no requieren de verificación, ya que los datos de los
      veterinarios no se editan/borran o crean. Se inician al principio y
      solo se leen.
     */
     
+    @Id
     @Pattern(regexp = "[A-Z]{2}[0-9]{4}", message = "Código de colegiado incorrecto, debe tener 2 letras y 4 números. Ej. AA1111")
     private String codCol;
     
@@ -25,9 +30,6 @@ public class Veterinario {
     @Size(min = 6, max = 20, message = "Los apellidos deben tener una longitud entre {min} y {max} caracteres.")
     private String apellidos;
     
-    @Size(min = 3, max = 10, message = "El usuario debe tener una longitud entre {min} y {max} caracteres.")
-    private String user;
-    
     @Size(min = 6, max = 10, message = "La contraseña debe tener una longitud entre {min} y {max} caracteres.")
     private String pass;
     
@@ -35,19 +37,17 @@ public class Veterinario {
     private String foto;
 
     public Veterinario() {
-        this.codCol = "AA1111";
-        this.nombre = "Desconocido";
-        this.apellidos = "Desconocidos";
-        this.user = "user";
-        this.pass = "pass";
-        this.foto = "https://www.pngitem.com/pimgs/m/204-2040760_contact-starwars-user-default-yoda-comments-users-icon.png";
+        this.codCol = "";
+        this.nombre = "";
+        this.apellidos = "";
+        this.pass = "";
+        this.foto = "";
     }
 
-    public Veterinario(String codCol, String nombre, String apellidos, String user, String pass, String foto) {
+    public Veterinario(String codCol, String nombre, String apellidos, String pass, String foto) {
         this.codCol = codCol;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.user = user;
         this.pass = pass;
         this.foto = foto;
     }
@@ -95,20 +95,6 @@ public class Veterinario {
     }
 
     /**
-     * @return El usuario
-     */
-    public String getUser() {
-        return user;
-    }
-
-    /**
-     * @param user Nuevo usuario
-     */
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    /**
      * @return La contraseña
      */
     public String getPass() {
@@ -136,7 +122,7 @@ public class Veterinario {
         this.foto = foto;
     }
 
-        @Override
+    @Override
     public int hashCode() {
         int hash = 3;
         hash = 97 * hash + Objects.hashCode(this.codCol);

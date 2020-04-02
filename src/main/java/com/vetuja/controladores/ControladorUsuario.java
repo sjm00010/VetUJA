@@ -9,7 +9,9 @@ import com.vetuja.clases.Veterinario;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,30 +21,34 @@ import javax.inject.Named;
  * @author sjm00010
  */
 @Named("ctrlUser")
-@ViewScoped // Para que los datos se amntengan mientras la aplicación este iniciada
+@ViewScoped
 public class ControladorUsuario implements Serializable {
+    
+    private static final Logger logger = Logger.getLogger(ControladorUsuario.class.getName());
 
+    @Inject
+    FacesContext fc;
+    
     @Inject
     private ClienteDAO clientesDAO;
 
     @Inject
     private VeterinarioDAO veterinariosDAO;
-    
+
+
     /*  Para cuando se modifiquen los identificadores hacer los cambios en las 
         clases que tienen referencias a clientes o veterinarios
-    */
+     */
     @Inject
     private MascotaDAO mascotasDAO;
-    
+
     @Inject
     private CitaDAO citasDAO;
 
     //View-Model
     private Cliente cliente;
     private Veterinario veterinario;
-    private String user; // Una vez logeado guarda el nombre
-    private String pass; // Una vez logeado guarda la foto
-    private String dni;
+    private String aux;
 
     public ControladorUsuario() {
     }
@@ -51,18 +57,12 @@ public class ControladorUsuario implements Serializable {
     private void init() {
         cliente = new Cliente();
         veterinario = new Veterinario();
-        user = null;
-        pass = null;
-        dni = null;
+        aux=null;
     }
 
-    /**
-     * Funcion auxiliar para asignar un dni al usurio actual
-     */
-    public void setDNIact(){
-        dni = clientesDAO.buscaUser("algarcia").getDNI();
-    }
-    
+    /****************************************
+     *          Getters y Setters           * 
+     ****************************************/
     public Cliente getCliente() {
         return cliente;
     }
@@ -77,19 +77,6 @@ public class ControladorUsuario implements Serializable {
 
     public List<Cliente> getClientes() {
         return clientesDAO.buscaTodos();
-    }
-
-    public void recupera() {
-        cliente = clientesDAO.buscaId(cliente.getDNI());
-        this.dni = cliente.getDNI();
-    }
-    
-    /**
-     * Función para obtener los datos para el detalle de las mascotas
-     */
-    public void recuperaAll() {
-        cliente = clientesDAO.buscaId(cliente.getDNI());
-        veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
     }
 
     public Veterinario getVeterinario() {
@@ -107,49 +94,53 @@ public class ControladorUsuario implements Serializable {
     public List<Veterinario> getVeterinarios() {
         return veterinariosDAO.buscaTodos();
     }
+    
+    /**
+     * @return the aux
+     */
+    public String getAux() {
+        return aux;
+    }
+
+    /**
+     * @param aux the aux to set
+     */
+    public void setAux(String aux) {
+        this.aux = aux;
+    }
 
     public void recuperaVet() {
         veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
     }
 
-    public String login() {
-        return "/user/inicio.jsf?faces-redirect=true";
+    public String getNombreCli(String DNI) {
+        Cliente cli = clientesDAO.buscaId(DNI);
+        return cli.getNombre();
     }
 
-    public String logout() {
-        return "/inicio/inicio.jsf?faces-redirect=true";
+    public String getNombreVet(String CC) {
+        Veterinario vet = veterinariosDAO.buscaId(CC);
+        return vet.getNombre();
     }
 
-    /**
-     * @return the user
-     */
-    public String getUser() {
-        return user;
-    }
-
-    /**
-     * @param user the user to set
-     */
-    public void setUser(String user) {
-        this.user = user;
+    public void recupera() {
+        cliente = clientesDAO.buscaId(cliente.getDNI());
+        this.aux = cliente.getDNI();
     }
 
     /**
-     * @return the pass
+     * Función para obtener los datos para el detalle de las mascotas
      */
-    public String getPass() {
-        return pass;
+    public void recuperaAll() {
+        cliente = clientesDAO.buscaId(cliente.getDNI());
+        veterinario = veterinariosDAO.buscaId(veterinario.getCodCol());
     }
 
-    /**
-     * @param pass the pass to set
-     */
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public String creaCliente(){
-        if (cliente.getPass().equals(pass)) {
+    /****************************************
+     *          Funciones CRUD              * 
+     ****************************************/
+    public String creaCliente() {
+        if (cliente.getPass().equals(getAux())) {
             if (clientesDAO.crea(cliente)) {
                 return "/inicio/inicio.jsf?faces-redirect=true";
             }
@@ -157,42 +148,20 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public String modificaCliente() throws ParseException {    
+    public String modificaCliente() throws ParseException {
         if (!clientesDAO.guarda(cliente)) {
             clientesDAO.crea(cliente);
-            clientesDAO.borra(dni);
-            mascotasDAO.cambiaDNI(dni, cliente.getDNI());
-            citasDAO.cambiaDNI(dni, cliente.getDNI());
+            clientesDAO.borra(aux);
+//            mascotasDAO.cambiaDNI(aux, cliente.getDNI());
+//            citasDAO.cambiaDNI(aux, cliente.getDNI());
         }
         return "/admin/clientes.xhtml?faces-redirect=true";
     }
 
     public String borraCliente(String id) {
         clientesDAO.borra(id);
+        citasDAO.borraCli(id);
+        mascotasDAO.borraCli(id);
         return null;
-    }
-
-    /**
-     * @param dni the dni to set
-     */
-    public void setDNI(String dni) {
-        this.dni = dni;
-    }
-
-    /**
-     * @return the DNI
-     */
-    public String getDNI() {
-        return dni;
-    }
-
-    public String getNombreCli(String DNI){
-        Cliente cli = clientesDAO.buscaId(DNI);
-        return cli.getNombre();
-    }
-    
-    public String getNombreVet(String CC){
-        Veterinario vet = veterinariosDAO.buscaId(CC);
-        return vet.getNombre();
     }
 }

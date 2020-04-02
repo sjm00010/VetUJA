@@ -17,8 +17,8 @@
         <div class="row">
             <ui:repeat value="#{ctrlUser.clientes}" var="cli">
                 <h:form class="col-sm-4 mb-3 px-0">
-                    <div class="card mx-2">
-                        <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="300"/>      
+                    <div class="card mx-2 h-100">
+                        <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="400px"/>      
                         <div class="card-body">
                             <h5 class="card-title">#{cli.nombre}</h5>
                             <p class="card-text">#{cli.apellidos}</p>
@@ -26,13 +26,13 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>DNI : </strong>#{cli.DNI}</li>
                             <li class="list-group-item"><strong>Dirección : </strong>#{cli.direccion}</li>
-                            <li class="list-group-item"><strong>Usuario : </strong>#{cli.user}</li>
+                            <li class="list-group-item"><strong>Correo electronico : </strong>#{cli.email}</li>
                         </ul>
-                        <div class="card-body">
-                            <h:button styleClass="card-link btn btn-outline-primary" value="Editar" outcome="modifCliente.xhtml" >
+                        <div class="card-body bg-light">
+                            <h:button styleClass="btn btn-outline-primary mr-3" value="✏" outcome="modifCliente.xhtml" style="width: 47%;">
                                 <f:param name="dni" value="#{cli.DNI}" />
                             </h:button>
-                            <h:commandButton styleClass="card-link btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="Borrar" />
+                            <h:commandButton styleClass="btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="🗑" style="width: 47%;"/>
                         </div>
                     </div>
                 </h:form>

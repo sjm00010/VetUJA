@@ -10,10 +10,6 @@
         Nueva cita
     </ui:define>
 
-    <ui:define name="cabecera">
-        <ui:include src="../WEB-INF/partes/cabecera_user.xhtml" />
-    </ui:define>
-
     <ui:define name="background">
         <h:head>
             <f:metadata>
@@ -23,7 +19,7 @@
         <h:body class="d-flex flex-column h-100" style="background-image:url(#{resource['img/otros/cita_background.jpg']}); 
                 background-size: cover; background-repeat: no-repeat; background-attachment:fixed;">
             <div id="top" class="top shadow-lg">
-                <ui:include src="../WEB-INF/partes/cabecera_user.xhtml" />
+                <ui:include src="../WEB-INF/partes/cabecera.xhtml" />
             </div>
 
             <div class="container-xl">

@@ -9,10 +9,6 @@
         Mascotas
     </ui:define>
 
-    <ui:define name="cabecera">
-        <ui:include src="../WEB-INF/partes/cabecera_user.xhtml" />
-    </ui:define>
-
     <ui:define name="cuerpo">        
         <ui:repeat value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas">
             <h:form class="card">

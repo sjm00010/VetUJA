@@ -55,6 +55,16 @@
             <role-name>ADMINISTRADORES</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Identificados</web-resource-name>
+            <url-pattern>/common_users/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMINISTRADORES</role-name>
+            <role-name>USUARIOS</role-name>
+        </auth-constraint>
+    </security-constraint>
     
     <welcome-file-list>
         <welcome-file>inicio/inicio.jsf</welcome-file>

@@ -102,4 +102,15 @@ public class Preferencias implements Serializable{
         return null;
     }
     
+    /**
+     * Devuelve el ID del usuario registrado
+     * @return ID
+     */
+    public String getID(){
+//        logger.log(Level.INFO, cli.getDNI());
+        if (cli != null){
+            return cli.getDNI();
+        }
+        return null;
+    }
 }

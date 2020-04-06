@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="nomPag">
+        Citas
+    </ui:define>
+
+    <ui:define name="cuerpo">
+        
+        <c:if test="#{prefs.isLogin()=='USER'}">
+            <h:link class="btn btn-outline-success btn-lg mb-3" outcome="registro_cita.xhtml">Nueva cita</h:link>
+        </c:if>
+
+        <c:if test="#{!ctrlCitas.hayCitas(prefs.ID)}">
+            <div class="text-center">
+                <h1 class="display-3"><span>No se han encontrado citas</span></h1>
+            </div>
+        </c:if>
+        
+        <c:if test="#{ctrlCitas.hayCitas(prefs.ID)}">
+            <div class="table-responsive">
+                <h:form>
+                    
+                    <c:if test="#{prefs.isLogin()=='ADMIN'}">
+                        <h:dataTable class="table table-striped"  style="min-width: 660px" var ="cit" value = "#{ctrlCitas.citas}">
+                            <thead class="thead-dark">
+                                <h:column> <f:facet name ="header" > ID </f:facet>
+                                    #{cit.id} </h:column>
+
+                                <h:column> <f:facet name ="header"> Fecha </f:facet>
+                                    #{cit.leerFecha()} </h:column>
+
+                                <h:column> <f:facet name ="header"> Hora </f:facet>
+                                    #{cit.hora} </h:column> 
+
+                                <h:column> <f:facet name ="header"> Veterinario </f:facet>
+                                    #{ctrlUser.getNombreVet(cit.vetCC)} </h:column>
+
+                                <h:column> <f:facet name ="header"> Cliente </f:facet>
+                                    #{ctrlUser.getNombreCli(cit.cliDNI)}</h:column>
+
+                                <h:column> <f:facet name ="header"> Mascota </f:facet>
+                                    #{ctrlMasc.getNombreMas(cit.masCI)} </h:column>
+
+                                <h:column> <f:facet name ="header"> Borrar </f:facet>
+                                    <h:commandButton image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>
+                                </h:column>
+                            </thead>
+                        </h:dataTable>
+                    </c:if>
+
+                    <c:if test="#{prefs.isLogin()=='USER'}">
+                        <h:dataTable class="table table-striped" style="min-width: 660px" var ="cit" value = "#{ctrlCitas.getCitasCliente(prefs.cli.DNI)}">
+
+                            <thead class="thead-dark">
+                                <h:column> <f:facet name ="header" > ID </f:facet>
+                                    #{cit.id} </h:column>
+
+                                <h:column> <f:facet name ="header"> Fecha </f:facet>
+                                    #{cit.leerFecha()} </h:column>
+
+                                <h:column> <f:facet name ="header"> Hora </f:facet>
+                                    #{cit.hora} </h:column> 
+
+                                <h:column> <f:facet name ="header"> Veterinario </f:facet>
+                                    #{ctrlUser.getNombreVet(cit.vetCC)} </h:column>
+
+
+                                <h:column> <f:facet name ="header"> Mascota </f:facet>
+                                    #{ctrlMasc.getNombreMas(cit.masCI)} </h:column>
+
+                                <h:column> <f:facet name ="header"> Borrar </f:facet>
+                                    <h:commandButton image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>
+                                </h:column>
+                            </thead>
+                        </h:dataTable>
+                    </c:if>
+                    
+                </h:form>
+            </div>
+        </c:if>
+        
+    </ui:define>
+</ui:composition>

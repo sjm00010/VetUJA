@@ -4,7 +4,8 @@
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Nueva cita
@@ -33,35 +34,35 @@
                 </h:panelGroup>
 
                 <div class="row row-cols-md justify-content-center mx-0 my-5">
-                    <h:form class="col-12 col-md-6 px-0 align-self-center card bg-light text-center">
+                    <b:form class="col-12 col-md-6 px-0 align-self-center card bg-light text-center">
                         <h1 class="card-header text-center display-4"><u>Nueva cita</u></h1>
                         <div class="row mt-2">
                             <div class="col-12">
                                 <div class="form-group mx-3">
                                     <label for="dia"><strong>Día de la cita</strong></label>
-                                    <h:inputText class="form-control" a:type="date" id="dia" value="#{ctrlCitas.cita.fecha}">
+                                    <b:inputText class="form-control" a:type="date" id="dia" value="#{ctrlCitas.cita.fecha}">
                                         <f:convertDateTime pattern="yyyy-MM-dd" />
-                                    </h:inputText> 
+                                    </b:inputText> 
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group mx-3">
                                     <label for="vet"><strong>Veterinario</strong></label>
-                                    <h:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
+                                    <b:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
                                         <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
                                         <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
                                                        itemValue="#{vet.codCol}" itemLabel="#{vet.nombre}" />
-                                    </h:selectOneMenu>
+                                    </b:selectOneMenu>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group mx-3">
                                     <label for="mas"><strong>Mascota</strong></label>
-                                    <h:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
+                                    <b:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
                                         <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
                                         <f:selectItems value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas" 
                                                        itemValue="#{mas.ci}" itemLabel="#{mas.nombre}" />
-                                    </h:selectOneMenu>
+                                    </b:selectOneMenu>
                                 </div>
                             </div>
 
@@ -69,7 +70,7 @@
                             <div class="col-12">
                                 <div class="form-group mx-3">
                                     <label for="hora"><strong>Hora</strong></label>
-                                    <h:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
+                                    <b:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
                                         <f:selectItem itemValue="9:00" itemLabel="9:00" />
                                         <f:selectItem itemValue="10:00" itemLabel="10:00" />
                                         <f:selectItem itemValue="11:00" itemLabel="11:00" />
@@ -80,15 +81,15 @@
                                         <f:selectItem itemValue="18:00" itemLabel="18:00" />
                                         <f:selectItem itemValue="19:00" itemLabel="19:00" />
                                         <f:selectItem itemValue="20:00" itemLabel="20:00" />
-                                    </h:selectOneMenu>
+                                    </b:selectOneMenu>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mx-3">
-                            <h:commandButton class="btn btn-success btn-lg btn-block mb-3" action="#{ctrlCitas.creaCita()}" value="Crear cita" />
+                            <b:commandButton class="btn btn-success btn-lg btn-block mb-3" action="#{ctrlCitas.creaCita()}"  value="Crear cita" />
                         </div>
-                    </h:form>
+                    </b:form>
                 </div>
             </div>
             <ui:include src="../WEB-INF/partes/footer.xhtml"/>

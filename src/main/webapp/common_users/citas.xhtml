@@ -14,9 +14,7 @@
 
     <ui:define name="cuerpo">
 
-        <c:if test="#{prefs.isLogin()=='USER'}">
-            <h:link class="btn btn-outline-success btn-lg mb-3" outcome="registro_cita.xhtml">Nueva cita</h:link>
-        </c:if>
+        <h:link class="btn btn-outline-success btn-lg mb-3" rendered="#{prefs.isLogin()=='USER'}" outcome="/user/registro_cita.xhtml">Nueva cita</h:link>
 
         <c:if test="#{!ctrlCitas.hayCitas(prefs.ID)}">
             <div class="text-center">
@@ -24,29 +22,27 @@
             </div>
         </c:if>
 
-        <c:if test="#{ctrlCitas.hayCitas(prefs.ID)}">
-            <div class="table-responsive mt-5">
-                <h:form>
-                    <b:dataTable class="table table-striped"  style="min-width: 660px" var ="cit" value = "#{ctrlCitas.getCitas(prefs.ID)}">
-                        <b:dataTableColumn value="#{cit.id}" />
+        <div class="table-responsive mt-5">
+            <h:form rendered="#{ctrlCitas.hayCitas(prefs.ID)}">
+                <b:dataTable class="table table-striped" style="min-width: 660px" var ="cit" value = "#{ctrlCitas.getCitas(prefs.ID)}">
+                    <b:dataTableColumn value="#{cit.id}" />
 
-                        <b:dataTableColumn value="#{cit.leerFecha()}" label="Fecha" />
+                    <b:dataTableColumn value="#{cit.leerFecha()}" label="Fecha" />
 
-                        <b:dataTableColumn value="#{cit.hora}" />
+                    <b:dataTableColumn value="#{cit.hora}" />
 
-                        <b:dataTableColumn value="#{ctrlUser.getNombreVet(cit.vetCC)}" label="Veterinario"/>
+                    <b:dataTableColumn value="#{ctrlUser.getNombreVet(cit.vetCC)}" label="Veterinario"/>
 
-                        <b:dataTableColumn value="#{ctrlUser.getNombreCli(cit.cliDNI)}" label="Cliente"/>
+                    <b:dataTableColumn value="#{ctrlUser.getNombreCli(cit.cliDNI)}" rendered="#{prefs.isLogin()=='ADMIN'}" label="Cliente"/>
 
-                        <b:dataTableColumn value="#{ctrlMasc.getNombreMas(cit.masCI)}" label="Mascota"/>
+                    <b:dataTableColumn value="#{ctrlMasc.getNombreMas(cit.masCI)}" label="Mascota"/>
 
-                        <b:dataTableColumn label="Borrar" orderable="false" width="60px" searchable="false">
-                            <h:commandButton class="mx-auto" image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>
-                        </b:dataTableColumn>
-                    </b:dataTable>
-                </h:form>
-            </div>
-        </c:if>
+                    <b:dataTableColumn label="Borrar" orderable="false" width="60px" searchable="false">
+                        <h:commandButton class="mx-auto" image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </h:form>
+        </div>
 
     </ui:define>
 </ui:composition>

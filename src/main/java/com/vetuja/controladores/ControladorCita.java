@@ -73,7 +73,7 @@ public class ControladorCita implements Serializable {
 
     public String creaCita() {
         if (citasDAO.crea(cita)) {
-            return "citas.xhtml?faces-redirect=true";
+            return "/common_users/citas.xhtml?faces-redirect=true";
         } else {
             return null;
         }

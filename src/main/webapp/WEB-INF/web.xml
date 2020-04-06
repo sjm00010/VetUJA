@@ -8,6 +8,12 @@
         <!-- Otros valores: Production, SystemTest, UnitTest -->
     </context-param>
     
+    <!-- Para cargar los estilos de Bootstrap -->
+    <context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>default</param-value>
+    </context-param>
+    
     <data-source>
         <name>java:global/jdbc/vetuja</name> <!-- JNDI resource -->
         <class-name>org.h2.jdbcx.JdbcDataSource</class-name> <!-- Driver -->

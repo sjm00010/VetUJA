@@ -51,12 +51,12 @@ public class ControladorCita implements Serializable {
         this.cita = cita;
     }
 
-    public List<Cita> getCitas() {
+    public List<Cita> getCitas(String id) {
+        final Pattern pattern = Pattern.compile("\\d{8}[A-Z]");
+        if (pattern.matcher(id).matches()){
+            return citasDAO.buscaCitas(id);
+        }
         return citasDAO.buscaTodos();
-    }
-    
-    public List<Cita> getCitasCliente(String DNI) {
-        return citasDAO.buscaCitas(DNI);
     }
 
     public void recupera() {

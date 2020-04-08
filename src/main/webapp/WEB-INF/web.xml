@@ -49,15 +49,6 @@
     <!-- Reglas de control de acceso: security-constraint, puede haber varias -->
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Usuarios</web-resource-name>
-            <url-pattern>/user/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>USUARIOS</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <web-resource-collection>
             <web-resource-name>Administradores</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>

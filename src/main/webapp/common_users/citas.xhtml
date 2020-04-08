@@ -14,7 +14,65 @@
 
     <ui:define name="cuerpo">
 
-        <h:link class="btn btn-outline-success btn-lg mb-3" rendered="#{prefs.isLogin()=='USER'}" outcome="/user/registro_cita.xhtml">Nueva cita</h:link>
+        <b:button class="btn btn-outline-success btn-lg mb-3 ml-3" onclick="$('.formValidationModalClass').modal('show')" 
+                  value="Nueva cita" rendered="#{prefs.isLogin()=='USER'}"/>
+        <b:modal title=" Nueva cita " styleClass="formValidationModalClass"
+                 closable="false" rendered="#{prefs.isLogin()=='USER'}"
+                 closeOnEscape="true">
+            <b:form>
+                <h:head>
+                    <f:metadata>
+                        <f:viewAction action="#{ctrlCitas.cita.setCliDNI(prefs.cli.DNI)}"/>
+                    </f:metadata>
+                </h:head>
+                <p>Seleccione uno de los siguientes campos.</p>
+                <b:messages />
+
+                <label for="dia"><strong>Día de la cita</strong></label>
+                <b:inputText class="form-control" 
+                             a:type="date" id="dia" 
+                             value="#{ctrlCitas.cita.fecha}">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </b:inputText>
+
+                <label for="vet"><strong>Veterinario</strong></label>
+                <b:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
+                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
+                    <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
+                                   itemValue="#{vet.codCol}" itemLabel="#{vet.nombre}" />
+                </b:selectOneMenu>
+
+                <label for="mas"><strong>Mascota</strong></label>
+                <b:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
+                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
+                    <f:selectItems value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas" 
+                                   itemValue="#{mas.ci}" itemLabel="#{mas.nombre}" />
+                </b:selectOneMenu>
+
+                <label for="hora"><strong>Hora</strong></label>
+                <b:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
+                    <!--Cambiar por una funcion que devuelva lista de horas-->
+                    <f:selectItem itemValue="9:00" itemLabel="9:00" />
+                    <f:selectItem itemValue="10:00" itemLabel="10:00" />
+                    <f:selectItem itemValue="11:00" itemLabel="11:00" />
+                    <f:selectItem itemValue="12:00" itemLabel="12:00" />
+                    <f:selectItem itemValue="13:00" itemLabel="13:00" />
+                    <f:selectItem itemValue="16:00" itemLabel="16:00" />
+                    <f:selectItem itemValue="17:00" itemLabel="17:00" />
+                    <f:selectItem itemValue="18:00" itemLabel="18:00" />
+                    <f:selectItem itemValue="19:00" itemLabel="19:00" />
+                    <f:selectItem itemValue="20:00" itemLabel="20:00" />
+                </b:selectOneMenu>
+
+                <b:commandButton update="@form" style="width: 47%;"
+                                 value="Guardar" look="success" class="mr-3"
+                                 action="#{ctrlCitas.creaCita()}"
+                                 oncomplete="if(#{ctrlCitas.creaCita() != null}) { $('.formValidationModalClass').modal('hide') } "/>
+                <b:button value="Cancelar" look="danger" style="width: 47%;"
+                          dismiss="modal" onclick="return false;"/>
+                <b:fetchBeanInfos />
+            </b:form>
+        </b:modal>
 
         <c:if test="#{!ctrlCitas.hayCitas(prefs.ID)}">
             <div class="text-center">

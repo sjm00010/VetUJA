@@ -1,6 +1,7 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container">
             <h:link class="navbar-brand" outcome="inicio.xhtml">
@@ -15,10 +16,10 @@
 
             <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <h:link class="menu nav-link" outcome="inicio.xhtml">Inicio</h:link>
-                    </li>
                     <c:if test="#{prefs.isLogin()==null}">
+                        <li class="nav-item active">
+                            <h:link class="menu nav-link" outcome="inicio.xhtml">Inicio</h:link>
+                        </li>
                         <li class="nav-item">
                             <h:link class="nav-link btn btn-outline-secondary" outcome="login.xhtml" role="button">Iniciar sesión</h:link>
                         </li>
@@ -27,16 +28,19 @@
                         </li>
                     </c:if>
                     <c:if test="#{prefs.isLogin()!=null}">
-                        <li class="nav-item">
-                            <h:link class="menu nav-link" outcome="mascotas.xhtml">Mascotas</h:link>
+                        <li class="nav-item active">
+                            <h:link class="menu nav-link" outcome="/common_users/inicio.xhtml">Inicio</h:link>
                         </li>
                         <li class="nav-item">
-                            <h:link class="menu nav-link" outcome="citas.xhtml">Citas</h:link>
+                            <h:link class="menu nav-link" outcome="/common_users/mascotas.xhtml">Mascotas</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="menu nav-link" outcome="/common_users/citas.xhtml">Citas</h:link>
                         </li>
                     </c:if>
                     <c:if test="#{prefs.isLogin()=='ADMIN'}">
                         <li class="nav-item">
-                            <h:link class="menu nav-link" outcome="clientes.xhtml">Clientes</h:link>
+                            <h:link class="menu nav-link" outcome="/admin/clientes.xhtml">Clientes</h:link>
                         </li>
                     </c:if>
                 </ul>

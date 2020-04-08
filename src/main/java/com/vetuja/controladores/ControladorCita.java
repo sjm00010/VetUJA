@@ -4,6 +4,9 @@ import com.vetuja.DAO.CitaDAO;
 import com.vetuja.clases.Cita;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -17,6 +20,8 @@ import javax.inject.Named;
 @ViewScoped
 public class ControladorCita implements Serializable {
 
+    private static final Logger logger = Logger.getLogger(ControladorCita.class.getName());
+    
     @Inject
     private CitaDAO citasDAO;
 
@@ -46,12 +51,12 @@ public class ControladorCita implements Serializable {
         this.cita = cita;
     }
 
-    public List<Cita> getCitas() {
+    public List<Cita> getCitas(String id) {
+        final Pattern pattern = Pattern.compile("\\d{8}[A-Z]");
+        if (pattern.matcher(id).matches()){
+            return citasDAO.buscaCitas(id);
+        }
         return citasDAO.buscaTodos();
-    }
-    
-    public List<Cita> getCitasCliente(String DNI) {
-        return citasDAO.buscaCitas(DNI);
     }
 
     public void recupera() {
@@ -67,8 +72,9 @@ public class ControladorCita implements Serializable {
     }
 
     public String creaCita() {
+        
         if (citasDAO.crea(cita)) {
-            return "citas.xhtml?faces-redirect=true";
+            return "/common_users/citas.xhtml?faces-redirect=true";
         } else {
             return null;
         }
@@ -86,5 +92,18 @@ public class ControladorCita implements Serializable {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public boolean hayCitas(String id){
+        logger.log(Level.INFO, id);
+        final Pattern pattern = Pattern.compile("\\d{8}[A-Z]");
+        if (pattern.matcher(id).matches()){
+            if(citasDAO.buscaCitas(id).isEmpty())
+                return false;
+        }else{
+            if(citasDAO.buscaTodos().isEmpty())
+                return false;
+        }
+        return true;
     }
 }

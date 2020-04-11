@@ -14,11 +14,12 @@
 
     <ui:define name="cuerpo">
 
-        <b:button class="btn btn-outline-success btn-lg mb-3 ml-3" onclick="$('.formValidationModalClass').modal('show')" 
+        <b:button class="btn btn-outline-success btn-lg mb-3 ml-3" a:data-target="#ncita"
+                  a:data-toggle="modal"
                   value="Nueva cita" rendered="#{prefs.isLogin()=='USER'}"/>
-        <b:modal title=" Nueva cita " styleClass="formValidationModalClass"
+        <b:modal title=" Nueva cita " id="ncita"
                  closable="false" rendered="#{prefs.isLogin()=='USER'}"
-                 closeOnEscape="true">
+                 closeOnEscape="true" style-class="modal fade">
             <b:form>
                 <h:head>
                     <f:metadata>
@@ -66,8 +67,8 @@
 
                 <b:commandButton update="@form" style="width: 47%;"
                                  value="Guardar" look="success" class="mr-3"
-                                 action="#{ctrlCitas.creaCita()}"
-                                 oncomplete="if(#{ctrlCitas.creaCita() != null}) { $('.formValidationModalClass').modal('hide') } "/>
+                                 action="#{ctrlCitas.creaCita()}" 
+                                 oncomplete="if(#{ctrlCitas.creaCita() != null}) { $('#ncita').modal('hide') } "/>
                 <b:button value="Cancelar" look="danger" style="width: 47%;"
                           dismiss="modal" onclick="return false;"/>
                 <b:fetchBeanInfos />

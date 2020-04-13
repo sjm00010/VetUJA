@@ -57,7 +57,7 @@ public class Cliente implements Serializable {
      *
      */
     public Cliente() {
-        DNI = "";
+        DNI = null;
         nombre = "";
         apellidos = "";
         direccion = "";

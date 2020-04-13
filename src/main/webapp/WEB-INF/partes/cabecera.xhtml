@@ -1,11 +1,13 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container">
             <h:link class="navbar-brand" outcome="inicio.xhtml">
                 <h:graphicImage value = "#{resource['img/iconos/logo.png']}" alt="Logo" class="logo-brand"/>
             </h:link>
-            
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <h:graphicImage value = "#{resource['img/iconos/menu.png']}" alt="icono menu"/>
@@ -14,16 +16,43 @@
 
             <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <h:link class="menu nav-link" outcome="inicio.xhtml">Inicio</h:link>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link btn btn-outline-secondary" outcome="login.xhtml" role="button">Iniciar sesión</h:link>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" outcome="registro.xhtml">Registrarse</h:link>
-                    </li>
+                    <c:if test="#{prefs.isLogin()==null}">
+                        <li class="nav-item active">
+                            <h:link class="menu nav-link" outcome="inicio.xhtml">Inicio</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link btn btn-outline-secondary" outcome="login.xhtml" role="button">Iniciar sesión</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="registro.xhtml">Registrarse</h:link>
+                        </li>
+                    </c:if>
+                    <c:if test="#{prefs.isLogin()!=null}">
+                        <li class="nav-item active">
+                            <h:link class="menu nav-link" outcome="/common_users/inicio.xhtml">Inicio</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="menu nav-link" outcome="/common_users/mascotas.xhtml">Mascotas</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="menu nav-link" outcome="/common_users/citas.xhtml">Citas</h:link>
+                        </li>
+                    </c:if>
+                    <c:if test="#{prefs.isLogin()=='ADMIN'}">
+                        <li class="nav-item">
+                            <h:link class="menu nav-link" outcome="/admin/clientes.xhtml">Clientes</h:link>
+                        </li>
+                    </c:if>
                 </ul>
+                <c:if test="#{prefs.isLogin()!=null}">
+                    <div class="user align-items-center">
+                        <h:graphicImage value = "#{prefs.foto}" alt="user_foto" class="logo-brand rounded-circle" style="width: 75px"/>
+                        <h5 class="user pl-3">¡Hola #{prefs.nombre}!</h5>
+                        <h:form class="user ml-0">
+                            <h:commandButton class="nav-link" action="#{controladorLogin.logout()}" image="#{resource['img/iconos/logout.png']}"/>
+                        </h:form>
+                    </div>
+                </c:if>
             </div>
         </div>
     </nav>

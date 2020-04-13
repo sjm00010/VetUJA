@@ -8,6 +8,16 @@
         <!-- Otros valores: Production, SystemTest, UnitTest -->
     </context-param>
     
+    <!-- Para cargar los estilos de Bootstrap -->
+    <context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>default</param-value>
+    </context-param>
+    <context-param>
+        <param-name>BootsFaces_THEME</param-name>
+        <param-value>custom</param-value>
+    </context-param>
+    
     <data-source>
         <name>java:global/jdbc/vetuja</name> <!-- JNDI resource -->
         <class-name>org.h2.jdbcx.JdbcDataSource</class-name> <!-- Driver -->
@@ -39,20 +49,21 @@
     <!-- Reglas de control de acceso: security-constraint, puede haber varias -->
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Usuarios</web-resource-name>
-            <url-pattern>/user/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>USUARIOS</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <web-resource-collection>
             <web-resource-name>Administradores</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMINISTRADORES</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Identificados</web-resource-name>
+            <url-pattern>/common_users/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMINISTRADORES</role-name>
+            <role-name>USUARIOS</role-name>
         </auth-constraint>
     </security-constraint>
     

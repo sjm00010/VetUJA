@@ -51,7 +51,9 @@ public class CitaDAO implements DAOgenerico<Cita, Integer> {
             em.persist(c);
             creado = true;
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
+            logger.log(Level.INFO, "No se ha podido crear la cita, para mas información mirar CitaDAO.java");
+            // Para mayor limpieza en la ejecucion comento esta linea, ya que da errores al crear la cita desde el model.
+//            logger.log(Level.SEVERE, ex.getMessage(), ex); // Si se producen
         }
         return creado;
     }

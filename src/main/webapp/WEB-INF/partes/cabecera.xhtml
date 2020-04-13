@@ -29,13 +29,13 @@
                     </c:if>
                     <c:if test="#{prefs.isLogin()!=null}">
                         <li class="nav-item active">
-                            <h:link class="menu nav-link" outcome="/common_users/inicio.xhtml">Inicio</h:link>
+                            <h:link class="menu nav-link" outcome="/users/inicio.xhtml">Inicio</h:link>
                         </li>
                         <li class="nav-item">
-                            <h:link class="menu nav-link" outcome="/common_users/mascotas.xhtml">Mascotas</h:link>
+                            <h:link class="menu nav-link" outcome="/users/mascotas.xhtml">Mascotas</h:link>
                         </li>
                         <li class="nav-item">
-                            <h:link class="menu nav-link" outcome="/common_users/citas.xhtml">Citas</h:link>
+                            <h:link class="menu nav-link" outcome="/users/citas.xhtml">Citas</h:link>
                         </li>
                     </c:if>
                     <c:if test="#{prefs.isLogin()=='ADMIN'}">

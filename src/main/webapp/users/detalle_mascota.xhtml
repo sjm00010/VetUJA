@@ -4,7 +4,8 @@
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Detalle Mascota
@@ -90,20 +91,29 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card border-info mb-3">
-                        <div class="card-header lead"><strong>Datos del dueño</strong></div>
-                        <div class="card-body text-info">
-                            <h5 class="card-title">#{ctrlUser.cliente.nombre} #{ctrlUser.cliente.apellidos}</h5>
-                            <p class="card-text"><strong>Dirección : </strong>#{ctrlUser.cliente.direccion}</p>
-                        </div>
+                        <b:accordion expanded-panels="panel1">
+                            <b:panel id="panel1" title="Datos del dueño"> 
+                                <div class="card-body text-info">
+                                    <h5 class="card-title">#{ctrlUser.cliente.nombre} #{ctrlUser.cliente.apellidos}</h5>
+                                    <p class="card-text"><strong>Dirección : </strong>#{ctrlUser.cliente.direccion}</p>
+                                </div>
+                            </b:panel>
+                              </b:accordion>
+
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="card border-success mb-3">
-                        <div class="card-header lead"><strong>Datos del veterinario</strong></div>
-                        <div class="card-body text-success">
-                            <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUser.veterinario.apellidos}</h5>
-                            <p class="card-text"><strong>Nº Colegiado : </strong>#{ctrlUser.veterinario.codCol}</p>
-                        </div>
+                        <b:accordion expanded-panels="panel2">
+                            <b:panel id="panel2" title="Datos del veterinario">
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUser.veterinario.apellidos}</h5>
+                                    <p class="card-text"><strong>Nº Colegiado : </strong>#{ctrlUser.veterinario.codCol}</p>
+                                </div>
+                            </b:panel>
+                        </b:accordion>
+
+
                     </div>
                 </div>
             </div>

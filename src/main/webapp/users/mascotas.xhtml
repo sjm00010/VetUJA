@@ -4,7 +4,8 @@
                 template="../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Mascotas
@@ -12,52 +13,67 @@
 
     <ui:define name="cuerpo">  
         <c:if test="#{prefs.isLogin()=='USER'}">
-            
-        <ui:repeat value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas">
-            <h:form class="card">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title">#{mas.nombre}</h3>
-                            <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
-                            <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
-                            <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
-                            <h:button class="btn btn-info btn-lg btn-block mt-4" outcome="detalle_mascota.jsf" value="+ Información">
-                                <f:param name="ci" value="#{mas.ci}" />
-                            </h:button>
+
+            <ui:repeat value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas">
+                <h:form class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">#{mas.nombre}</h3>
+                                <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
+                                <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
+                                <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
+                                <h:button class="btn btn-info btn-lg btn-block mt-4" outcome="detalle_mascota.jsf" value="+ Información">
+                                    <f:param name="ci" value="#{mas.ci}" />
+                                </h:button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </h:form>
-        </ui:repeat>
-            </c:if>
+                </h:form>
+            </ui:repeat>
+        </c:if>
         <c:if test="#{prefs.isLogin()=='ADMIN'}">
             <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="registro_animal.xhtml" value="Nueva mascota" />
-        <ui:repeat value="#{ctrlMasc.mascotas}" var="mas">
-            <h:form class="card">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title">#{mas.nombre}</h3>
-                            <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
-                            <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
-                            <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
-                            <h:button class="btn btn-info btn-lg btn-block mt-4" outcome="detalle_mascota.jsf" value="+ Información">
-                                <f:param name="ci" value="#{mas.ci}" />
-                            </h:button>
+            <ui:repeat value="#{ctrlMasc.mascotas}" var="mas">
+                <h:form class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">#{mas.nombre}</h3>
+                                <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
+                                <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
+                                <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
+
+
+
+                                <b:modal id="amodal2" title="Detalle Mascota" styleClass="modalPseudoClass2"
+                                         closable="false"  close-on-escape="false" backdrop="false">
+                                    <p>Far far away, behind the word mountains, far from the
+                                        countries Vokalia and Consonantia, there live the blind texts.
+                                        Separated they live in Bookmarksgrove right at the coast of the
+                                        Semantics, a large language ocean.
+                                    </p>
+                                    <f:facet name="footer">
+                                        <b:button value="Close" dismiss="modal" />
+                                    </f:facet>
+                                </b:modal>
+                             
+
+                                <b:button value="+Información" class="btn btn-info btn-lg btn-block mt-4" look="primary" onclick="$('.modalPseudoClass2').modal()" size="lg"/>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            </h:form>
-        </ui:repeat>
-            
-            </c:if>
+                </h:form>
+            </ui:repeat>
+
+        </c:if>
     </ui:define>
 
 </ui:composition>

@@ -7,6 +7,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:b="http://bootsfaces.net/ui">
+    
+<h:outputScript library="js" name="validaCita.js"/>
 
     <ui:define name="nomPag">
         Citas
@@ -20,7 +22,8 @@
         <b:modal title=" Nueva cita " id="ncita"
                  closable="false" rendered="#{prefs.isLogin()=='USER'}"
                  closeOnEscape="true" style-class="modal fade">
-            <b:form>
+            
+            <b:form id="fAltaCita" onsubmit="validarFormulario(event)">
                 <h:head>
                     <f:metadata>
                         <f:viewAction action="#{ctrlCitas.cita.setCliDNI(prefs.cli.DNI)}"/>
@@ -34,6 +37,7 @@
                              a:type="date" id="dia" 
                              value="#{ctrlCitas.cita.fecha}">
                     <f:convertDateTime pattern="yyyy-MM-dd" />
+                    <p id="errFecha"><h:message for="dia"/></p>
                 </b:inputText>
 
                 <label for="vet"><strong>Veterinario</strong></label>

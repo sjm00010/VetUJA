@@ -52,20 +52,42 @@
 
 
 
-                                <b:modal id="amodal2" title="Detalle Mascota" styleClass="modalPseudoClass2"
-                                         closable="false"  close-on-escape="false" backdrop="false">
-                                    <p>Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.
-                                        Separated they live in Bookmarksgrove right at the coast of the
-                                        Semantics, a large language ocean.
-                                    </p>
+                                <b:button value="+Información" class="btn btn-info btn-lg btn-block mt-4" look="primary" onclick="$('.modalPseudoClass2').modal()" size="lg">
+                                </b:button>
+
+                                <b:modal id="amodal2" title="Detalle Mascota" styleClass="modalPseudoClass2" 
+                                         closable="false"  close-on-escape="true" backdrop="false">
+
+
+                                    <div class="card-body" style="backface-visibility: visible" >
+
+                                        <b:form>
+                                            
+                                            <div class="col-md-4">
+                                                <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" style="height: 100%"/>
+                                            </div>
+                                            <p class="card-text h4"><strong>Nombre : </strong> #{mas.nombre}</p>
+                                            <p class="card-text h4"><strong>Código de identificación : </strong> #{mas.ci}</p>
+                                            <p class="card-text h4"><strong>Especie : </strong> #{mas.especie}</p>
+                                            <p class="card-text h4"><strong>Raza : </strong> #{mas.raza}</p>
+                                            <p class="card-text h4"><strong>Sexo : </strong> #{mas.sexo}</p>
+                                            <p class="card-text h4"><strong>Altura : </strong> #{mas.altura} cm</p> 
+                                            <p class="card-text h4"><strong>Peso : </strong> #{mas.peso} g</p> 
+                                        </b:form>
+
+                                    </div>
+
+
                                     <f:facet name="footer">
                                         <b:button value="Close" dismiss="modal" />
                                     </f:facet>
-                                </b:modal>
-                             
 
-                                <b:button value="+Información" class="btn btn-info btn-lg btn-block mt-4" look="primary" onclick="$('.modalPseudoClass2').modal()" size="lg"/>
+                                </b:modal>
+
+
+
+
+
 
                             </div>
                         </div>

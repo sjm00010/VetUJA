@@ -23,6 +23,7 @@ function validarFormulario(event) {
     var el = selector => document.querySelector(selector);
     var fecha = el('#fAltaCita\\:dia').value;
     var veterinario = el('#fAltaCita\\:vet').value;
+    var mascota = el('#fAltaCita\\:mas').value;
 
     var valido = true;
     if (fecha === null) {
@@ -35,10 +36,16 @@ function validarFormulario(event) {
         valido = false;
     }
 
-    if(veterinario === null){
+    if (veterinario === null) {
         el('#errVet').textContent = "Se debe seleccionar un veterinario";
         valido = false;
     }
+
+    if (mascota === null) {
+        el('#errMas').textContent = "Se debe seleccionar una mascota";
+        valido = false;
+    }
+
 
     if (!valido)
         event.preventDefault(); //stop form submit

@@ -50,6 +50,7 @@
                 </b:selectOneMenu>
 
                 <label for="mas"><strong>Mascota</strong></label>
+                <p id="errMas"><h:message for="mas"/></p>
                 <b:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
                     <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
                     <f:selectItems value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas" 

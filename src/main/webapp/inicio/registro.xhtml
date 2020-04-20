@@ -4,14 +4,15 @@
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Registro
     </ui:define>
 
     <ui:define name="cuerpo">
-        <h:form class="mb-4">
+        <b:form class="mb-4">
             <h1 class="text-center display-3"><u>Registro</u></h1>
 
             <div class="row card my-3">
@@ -21,12 +22,12 @@
                         <label for="nombre">Nombre completo</label>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
-                                <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
-                                <h:message for="nombre" class="text-danger"/>
+                                <b:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
+                                <b:message for="nombre" class="text-danger"/>
                             </div>
                             <div class="col">
-                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
-                                <h:message for="apellidos" class="text-danger"/>
+                                <b:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
+                                <b:message for="apellidos" class="text-danger"/>
                             </div>
                         </div>
                     </div>
@@ -35,22 +36,22 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col mb-3">
                             <label for="dni">DNI</label>
-                            <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value="#{ctrlUser.cliente.DNI}"/>
-                            <h:message for="dni" class="text-danger"/>
+                            <b:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value="#{ctrlUser.cliente.DNI}"/>
+                            <b:message for="dni" class="text-danger"/>
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>
-                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
+                            <b:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
                                 <f:convertDateTime pattern="yyyy-MM-dd" />
-                            </h:inputText>
-                            <h:message for="fnac" class="text-danger"/>
+                            </b:inputText>
+                            <b:message for="fnac" class="text-danger"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 my-3">
                     <label for="direccion">Dirección</label>
-                    <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
-                    <h:message for="direccion" class="text-danger"/>
+                    <b:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
+                    <b:message for="direccion" class="text-danger"/>
                 </div>
             </div>
             <div class="row card my-3">
@@ -59,18 +60,18 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col mb-3">
                             <label for="email">Correo electrónico</label>
-                            <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
-                            <h:message for="email" class="text-danger"/>
+                            <b:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
+                            <b:message for="email" class="text-danger"/>
                         </div>
                         <div class="col">
                             <div>
                                 <label for="foto">Foto</label>
-                                <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
+                                <b:image value="#{resource['img/iconos/info.png']}" alt="info"
                                                 a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
                                                 style="margin-left: 0.5rem;" height="18"/>
                             </div>
-                            <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
-                            <h:message for="foto" class="text-danger"/>
+                            <b:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
+                            <b:message for="foto" class="text-danger"/>
                         </div>
                     </div>
                 </div>
@@ -80,18 +81,18 @@
                         <label for="pass">Contraseña</label>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
-                                <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
-                                <h:message for="pass" class="text-danger"/>
+                                <b:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
+                                <b:message for="pass" class="text-danger"/>
                             </div>
                             <div class="col">
-                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.aux}"/>
-                                <h:message for="pass2" class="text-danger"/>
+                                <b:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.aux}"/>
+                                <b:message for="pass2" class="text-danger"/>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <h:commandButton class="btn btn-success btn-lg btn-block" action="#{ctrlUser.creaCliente()}" value="Registrarse" />
-        </h:form>
+            <b:commandButton class="btn btn-success btn-lg btn-block" action="#{ctrlUser.creaCliente()}" value="Registrarse" />
+        </b:form>
     </ui:define>
 </ui:composition>

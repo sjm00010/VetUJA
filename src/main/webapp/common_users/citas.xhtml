@@ -8,11 +8,11 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    <h:outputScript library="js" name="validaCita.js"/>
-
     <ui:define name="nomPag">
         Citas
     </ui:define>
+
+    <h:outputScript library="js" name="validaCita.js"/>
 
     <ui:define name="cuerpo">
 
@@ -23,7 +23,7 @@
                  closable="false" rendered="#{prefs.isLogin()=='USER'}"
                  closeOnEscape="true" style-class="modal fade">
 
-            <b:form id="fAltaCita" onsubmit="validarFormulario(event)">
+            <h:form id="fAltaCita" onsubmit="CitasCtrl(validarFormulario())">
                 <h:head>
                     <f:metadata>
                         <f:viewAction action="#{ctrlCitas.cita.setCliDNI(prefs.cli.DNI)}"/>
@@ -33,13 +33,12 @@
                 <b:messages />
 
                 <label for="dia"><strong>Día de la cita</strong></label>
-                <b:inputText class="form-control" 
+                <h:inputText class="form-control" 
                              a:type="date" id="dia" 
                              value="#{ctrlCitas.cita.fecha}">
                     <f:convertDateTime pattern="yyyy-MM-dd" />
-                    <p id="errFecha"><h:message for="dia"/></p>
-
-                </b:inputText>
+                </h:inputText>
+                <p id="errFecha"><h:message for="dia"/></p>
 
                 <label for="vet"><strong>Veterinario</strong></label>
                 <p id="errVet"><h:message for="vet"/></p>
@@ -79,7 +78,7 @@
                 <b:button value="Cancelar" look="danger" style="width: 47%;"
                           dismiss="modal" onclick="return false;"/>
                 <b:fetchBeanInfos />
-            </b:form>
+            </h:form>
         </b:modal>
 
         <c:if test="#{!ctrlCitas.hayCitas(prefs.ID)}">

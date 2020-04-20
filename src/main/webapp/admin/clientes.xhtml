@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Clientes
@@ -12,9 +13,9 @@
     <ui:define name="cuerpo">
         <div class="row">
             <ui:repeat value="#{ctrlUser.clientes}" var="cli">
-                <h:form class="col-sm-4 mb-3 px-0">
+                <b:form class="col-sm-4 mb-3 px-0">
                     <div class="card mx-2 h-100">
-                        <h:graphicImage class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="400px"/>      
+                        <b:image class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="400px"/>      
                         <div class="card-body">
                             <h5 class="card-title">#{cli.nombre}</h5>
                             <p class="card-text">#{cli.apellidos}</p>
@@ -25,13 +26,13 @@
                             <li class="list-group-item"><strong>Correo electronico : </strong>#{cli.email}</li>
                         </ul>
                         <div class="card-body bg-light">
-                            <h:button styleClass="btn btn-outline-primary mr-3" value="✏" outcome="modifCliente.xhtml" style="width: 47%;">
+                            <b:button styleClass="btn btn-outline-primary mr-3" value="✏" outcome="modifCliente.xhtml" style="width: 45%;">
                                 <f:param name="dni" value="#{cli.DNI}" />
-                            </h:button>
-                            <h:commandButton styleClass="btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="🗑" style="width: 47%;"/>
+                            </b:button>
+                            <b:commandButton styleClass="btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="🗑" style="width: 45%;"/>
                         </div>
                     </div>
-                </h:form>
+                </b:form>
             </ui:repeat>
         </div>
     </ui:define>

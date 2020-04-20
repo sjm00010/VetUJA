@@ -19,9 +19,7 @@ class citasCtrl {
                     if (this.validarFormulario() === false) {
                         //Stop submission
                         event.preventDefault();
-                    }
-                    ;
-
+                    };
                 });
     }
 
@@ -34,28 +32,28 @@ class citasCtrl {
 
         let valido = true;
         if (fecha === null) {
-            el('#errFecha').textContent = "La fecha no puede estar vacíaa.";
+            el('#errFecha').textContent = "La fecha no puede estar vacía.";
             valido = false;
         } else {
             el('#errFecha').textContent = "";
         }
 
         if (fecha < hoyFecha()) {
-            el('#errFecha').textContent = "La fecha debe ser posterior a hoyy.";
+            el('#errFecha').textContent = "La fecha debe ser posterior a hoy.";
             valido = false;
         } else {
             el('#errFecha').textContent = "";
         }
 
         if (veterinario === null) {
-            el('#errVet').textContent = "Se debe seleccionar un veterinarioo";
+            el('#errVet').textContent = "Se debe seleccionar un veterinario";
             valido = false;
         } else {
             el('#errVet').textContent = "";
         }
 
         if (mascota === null) {
-            el('#errMas').textContent = "Se debe seleccionar una mascotaa";
+            el('#errMas').textContent = "Se debe seleccionar una mascota";
             valido = false;
         } else {
             el('#errMas').textContent = "";

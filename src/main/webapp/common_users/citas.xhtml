@@ -23,7 +23,7 @@
                  closable="false" rendered="#{prefs.isLogin()=='USER'}"
                  closeOnEscape="true" style-class="modal fade">
 
-            <h:form id="fAltaCita" onsubmit="CitasCtrl(validarFormulario())">
+            <h:form id="fAltaCita">
                 <h:head>
                     <f:metadata>
                         <f:viewAction action="#{ctrlCitas.cita.setCliDNI(prefs.cli.DNI)}"/>
@@ -33,12 +33,12 @@
                 <b:messages />
 
                 <label for="dia"><strong>Día de la cita</strong></label>
+                <p id="errFecha"><h:message for="dia"/></p>
                 <h:inputText class="form-control" 
                              a:type="date" id="dia" 
                              value="#{ctrlCitas.cita.fecha}">
                     <f:convertDateTime pattern="yyyy-MM-dd" />
                 </h:inputText>
-                <p id="errFecha"><h:message for="dia"/></p>
 
                 <label for="vet"><strong>Veterinario</strong></label>
                 <p id="errVet"><h:message for="vet"/></p>

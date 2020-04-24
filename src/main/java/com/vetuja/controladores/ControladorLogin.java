@@ -97,10 +97,10 @@ public class ControladorLogin implements Serializable {
         if (sc.authenticate(request, response, ap) == AuthenticationStatus.SUCCESS) {
             final Pattern pattern = Pattern.compile("\\d{8}[A-Z]");
             if (pattern.matcher(username).matches()) {
-                view = "/users/inicio?faces-redirect=true";
+                view = "/common_users/inicio?faces-redirect=true";
                 pref.setCli(clientesDAO.buscaId(username));
             } else {
-                view = "/users/inicio?faces-redirect=true";
+                view = "/common_users/inicio?faces-redirect=true";
                 pref.setVet(veterinariosDAO.buscaId(username));
             }
             logger.log(Level.INFO, "Usuario autenticado");

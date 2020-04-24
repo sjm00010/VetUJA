@@ -4,7 +4,8 @@
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
 
     <ui:define name="nomPag">
@@ -23,17 +24,17 @@
             </f:metadata>
         </h:head>
 
-        <h:form>
+        <b:form>
             <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
 
-            <h:panelGroup rendered="#{not empty facesContext.messageList}">
+            <b:panel rendered="#{not empty facesContext.messageList}">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <h:messages/>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            </h:panelGroup>
+            </b:panel>
 
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col col-md-9">
@@ -41,7 +42,7 @@
                         <h2 class="card-header"><small>Datos de la mascota</small></h2>
                         <div class="row row-cols-1 row-cols-md-2 my-3">
                             <div class="col col-md-4 mt-5">
-                                <h:graphicImage value = "#{ctrlMasc.mascota.foto}" alt="foto mascota" class="card-img ml-2" style="height: 300px"/>
+                                <b:image value = "#{ctrlMasc.mascota.foto}" alt="foto mascota" class="card-img ml-2" style="height: 300px"/>
                             </div>
                             <div class="col col-md-8">
                                 <div class="col-12 mt-2">

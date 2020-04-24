@@ -22,8 +22,8 @@
         <name>java:global/jdbc/vetuja</name> <!-- JNDI resource -->
         <class-name>org.h2.jdbcx.JdbcDataSource</class-name> <!-- Driver -->
         <url>jdbc:h2:~/h2db/vetuja;AUTO_SERVER=TRUE</url> <!--DB in user folder -->
-        <user>dawuser</user>
-        <password>dawuser</password>
+        <user>admin</user>
+        <password>admin</password>
         <initial-pool-size>2</initial-pool-size>
         <max-pool-size>10</max-pool-size>
         <min-pool-size>5</min-pool-size>

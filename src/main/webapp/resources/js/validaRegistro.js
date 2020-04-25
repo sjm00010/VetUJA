@@ -9,7 +9,8 @@ class registroCtrl {
         this.config = {
             formulario: "#fRegistro",
             nombre: "#fRegistro\\:nombre",
-            apellidos: "#fRegistro\\:apellidos"
+            apellidos: "#fRegistro\\:apellidos",
+            dni: "#fRegistro\\:dni"
         };
     }
     init() {
@@ -29,20 +30,30 @@ class registroCtrl {
         let el = selector => document.querySelector(selector);
         let nombre = $(this.config.nombre).val();
         let apellidos = $(this.config.apellidos).val();
+        let dni = $(this.config.dni).val();
 
         let valido = true;
         if (nombre.length < 3 || nombre.length > 12) {
-            el('#errNombre').textContent = "La longitud del nombre debe estar entre 3 y 12 caractereswww";
+            el('#errNombre').textContent = "La longitud del nombre debe estar entre 3 y 12 caracteres.";
             valido = false;
         } else {
             el('#errNombre').textContent = "";
         }
         if (apellidos.length < 6 || apellidos.length > 20) {
-            el('#errApell').textContent = "La longitud de los apellidos debe estar entre 6 y 20 caracteres";
+            el('#errApell').textContent = "La longitud de los apellidos debe estar entre 6 y 20 caracteres.";
             valido = false;
         } else {
             el('#errApell').textContent = "";
         }
+
+        if (dni.search(/^\d{8}([A-Z])$/)) {
+            el('#errDni').textContent = "El DNI debe tener 8 números y la letra debe estar en mayúscula.";
+            valido = false;
+        } else {
+            el('#errDni').textContent = "";
+        }
+
+
 
         return valido;
     }

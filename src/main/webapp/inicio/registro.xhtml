@@ -38,8 +38,8 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col mb-3">
                             <label for="dni">DNI</label>
-                            <b:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value="#{ctrlUser.cliente.DNI}"/>
-                            <b:message for="dni" class="text-danger"/>
+                            <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value="#{ctrlUser.cliente.DNI}"/>
+                            <p id="errDni" class="text-danger"><b:message for="dni"/></p> 
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>

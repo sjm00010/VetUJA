@@ -12,7 +12,10 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        <b:form class="mb-4">
+        
+        <h:outputScript library="js" name="validaRegistro.js"/>
+
+        <b:form id = "fRegistro" class="mb-4">
             <h1 class="text-center display-3"><u>Registro</u></h1>
 
             <div class="row card my-3">
@@ -23,7 +26,7 @@
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
                                 <b:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
-                                <b:message for="nombre" class="text-danger"/>
+                                <p id= "errNombre"><b:message for="nombre" class="text-danger"/></p>
                             </div>
                             <div class="col">
                                 <b:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
@@ -67,8 +70,8 @@
                             <div>
                                 <label for="foto">Foto</label>
                                 <b:image value="#{resource['img/iconos/info.png']}" alt="info"
-                                                a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
-                                                style="margin-left: 0.5rem;" height="18"/>
+                                         a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
+                                         style="margin-left: 0.5rem;" height="18"/>
                             </div>
                             <b:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
                             <b:message for="foto" class="text-danger"/>

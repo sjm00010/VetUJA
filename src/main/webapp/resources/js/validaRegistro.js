@@ -10,7 +10,8 @@ class registroCtrl {
             formulario: "#fRegistro",
             nombre: "#fRegistro\\:nombre",
             apellidos: "#fRegistro\\:apellidos",
-            dni: "#fRegistro\\:dni"
+            dni: "#fRegistro\\:dni",
+            fecha: "#fRegistro\\:fnac"
         };
     }
     init() {
@@ -31,6 +32,7 @@ class registroCtrl {
         let nombre = $(this.config.nombre).val();
         let apellidos = $(this.config.apellidos).val();
         let dni = $(this.config.dni).val();
+        let fnac = $(this.config.fecha).val();
 
         let valido = true;
         if (nombre.length < 3 || nombre.length > 12) {
@@ -46,12 +48,21 @@ class registroCtrl {
             el('#errApell').textContent = "";
         }
 
-        if (dni.search(/^\d{8}([A-Z])$/)) {
+        if (dni.search(/^\d{8}([A-Z])$/) === -1) {
             el('#errDni').textContent = "El DNI debe tener 8 números y la letra debe estar en mayúscula.";
             valido = false;
         } else {
             el('#errDni').textContent = "";
         }
+        if (fnac.length === 0) {
+            el('#errFecha').textContent = "Debe introducir una fecha";
+            valido = false;
+        } else {
+            el('#errFecha').textContent = "";
+        }
+         
+        
+        
 
 
 

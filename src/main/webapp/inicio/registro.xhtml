@@ -43,10 +43,10 @@
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>
-                            <b:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
+                            <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
                                 <f:convertDateTime pattern="yyyy-MM-dd" />
-                            </b:inputText>
-                            <b:message for="fnac" class="text-danger"/>
+                            </h:inputText>
+                            <p id="errFecha" class="text-danger"><b:message for="fnac"/></p>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,6 @@
     </ui:define>
 
     <ui:define name="cuerpo">
-        
         <h:outputScript library="js" name="validaRegistro.js"/>
 
         <b:form id = "fRegistro" class="mb-4">
@@ -25,12 +24,12 @@
                         <label for="nombre">Nombre completo</label>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
-                                <b:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
-                                <p id= "errNombre"><b:message for="nombre" class="text-danger"/></p>
+                                <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
+                                <p id= "errNombre" class="text-danger"><b:message for="nombre"/></p>
                             </div>
                             <div class="col">
-                                <b:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
-                                <b:message for="apellidos" class="text-danger"/>
+                                <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
+                                <p id ="errApell" class="text-danger"><b:message for="apellidos"/></p>
                             </div>
                         </div>
                     </div>

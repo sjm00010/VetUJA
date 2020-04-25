@@ -6,7 +6,7 @@
         <jta-data-source>java:global/jdbc/vetuja</jta-data-source>
         <properties>
             <property name="javax.persistence.schema-generation.database.action"
-                      value="drop-and-create"/> <!-- cambiar a create en la verison final --> 
+                      value="drop-and-create"/> <!-- cambiar a create en la versión final --> 
             <property name="javax.persistence.sql-load-script-source"
                       value="/META-INF/sql/datos.sql"/> <!-- fichero sql con los datos a cargar -->
             <!-- Enable JPA SQL sentences logging -->

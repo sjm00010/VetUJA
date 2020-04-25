@@ -17,7 +17,7 @@
         <param-name>BootsFaces_THEME</param-name>
         <param-value>custom</param-value>
     </context-param>
-    
+                                
     <data-source>
         <name>java:global/jdbc/vetuja</name> <!-- JNDI resource -->
         <class-name>org.h2.jdbcx.JdbcDataSource</class-name> <!-- Driver -->

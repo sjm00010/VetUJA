@@ -3,33 +3,123 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Mascotas
     </ui:define>
 
-    <ui:define name="cuerpo">        
-        <ui:repeat value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas">
-            <h:form class="card">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title">#{mas.nombre}</h3>
-                            <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
-                            <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
-                            <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
-                            <h:button class="btn btn-info btn-lg btn-block mt-4" outcome="detalle_mascota.jsf" value="+ Información">
-                                <f:param name="ci" value="#{mas.ci}" />
-                            </h:button>
+    <ui:define name="cuerpo">  
+        <c:if test="#{prefs.isLogin()=='USER'}">
+
+            <ui:repeat value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas">
+                <h:form class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">#{mas.nombre}</h3>
+                                <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
+                                <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
+                                <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
+                                <h:button class="btn btn-info btn-lg btn-block mt-4" outcome="detalle_mascota.jsf" value="+ Información">
+                                    <f:param name="ci" value="#{mas.ci}" />
+                                </h:button>
+                            </div>
                         </div>
                     </div>
+                </h:form>
+            </ui:repeat>
+        </c:if>
+        <c:if test="#{prefs.isLogin()=='ADMIN'}">
+            <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="registro_animal.xhtml" value="Nueva mascota" />
+            <ui:repeat value="#{ctrlMasc.mascotas}" var="mas">
+                <h:form class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" height="100%"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">#{mas.nombre}</h3>
+                                <p class="card-text h4"><strong>Código de identificación : </strong>#{mas.ci}</p>
+                                <p class="card-text h4"><strong>Edad : </strong>#{ctrlMasc.getEdad(mas.fechanac)}</p>
+                                <p class="card-text h4"><strong>Especie : </strong>#{mas.especie}</p>
+
+
+                                <b:commandButton  type="button" value="+Información" look="primary" class="btn btn-info btn-lg btn-block mt-4" action="#{ctrlMasc.getMascota(mas.ci)}" onclick="$('.modalPseudoClass2').modal()" />
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+
+
+            </ui:repeat>
+            <b:modal id="amodal2" title="Detalle Mascota" styleClass="modalPseudoClass2" 
+                     closable="false" size="modal-lg">
+
+
+                <div class="card-body" style="backface-visibility: visible" >
+
+                    <b:form>
+
+                        <div class="col-md-4">
+                            <h:graphicImage value = "#{mas.foto}" alt="foto mascota" class="card-img" style="height: 100%"/>
+                        </div>
+                        <p class="card-text h4"><strong>Nombre : </strong> #{ctrlMasc.mascota.nombre}</p>
+                        <p class="card-text h4"><strong>Código de identificación : </strong> #{mas.ci}</p>
+                        <p class="card-text h4"><strong>Especie : </strong> #{mas.especie}</p>
+                        <p class="card-text h4"><strong>Raza : </strong> #{mas.raza}</p>
+                        <p class="card-text h4"><strong>Sexo : </strong> #{mas.sexo}</p>
+                        <p class="card-text h4"><strong>Altura : </strong> #{mas.altura} cm</p> 
+                        <p class="card-text h4"><strong>Peso : </strong> #{mas.peso} g</p> 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card border-info mb-3">
+                                    <b:accordion expanded-panels="panel1">
+                                        <b:panel id="panel1" title="Datos del dueño"> 
+                                            <div class="card-body text-info">
+                                                <h5 class="card-title">#{mas.vetCC} #{cli.apellidos}</h5>
+                                                <p class="card-text"><strong>Dirección : </strong>#{cli.direccion}</p>
+                                            </div>
+                                        </b:panel>
+                                    </b:accordion>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card border-success mb-3">
+                                    <b:accordion expanded-panels="panel2">
+                                        <b:panel id="panel2" title="Datos del veterinario">
+                                            <div class="card-body text-success">
+                                                <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUserveterinario.apellidos}</h5>
+                                                <p class="card-text"><strong>Nº Colegiado : </strong>#{mas.vetCC}</p>
+                                            </div>
+                                        </b:panel>
+                                    </b:accordion>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </b:form>
+
                 </div>
-            </h:form>
-        </ui:repeat>
+
+
+                <f:facet name="footer">
+                    <b:button value="Close" dismiss="modal" />
+                </f:facet>
+
+            </b:modal>
+        </c:if>
     </ui:define>
 
 </ui:composition>

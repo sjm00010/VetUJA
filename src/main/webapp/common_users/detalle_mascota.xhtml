@@ -3,7 +3,11 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="nomPag">
         Detalle Mascota
@@ -20,39 +24,108 @@
                 <f:viewAction action="#{ctrlUser.recuperaAll()}"/>
             </f:metadata>
         </h:head>
-        
-        <div class="card mb-3" style="max-width: 100%;">
-            <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <h:graphicImage value = "#{ctrlMasc.mascota.foto}" alt="foto mascota" class="card-img" style="height: 100%"/>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h3 class="card-title">#{ctrlMasc.mascota.nombre}</h3>
-                        <p class="card-text h4"><strong>Código de identificación : </strong>#{ctrlMasc.mascota.ci}</p>
-                        <p class="card-text h4"><strong>Fecha de nacimiento : </strong>#{ctrlMasc.mascota.leerFecha()}</p>
-                        <p class="card-text h4"><strong>Especie : </strong>#{ctrlMasc.mascota.especie}</p>
-                        <p class="card-text h4"><strong>Raza : </strong>#{ctrlMasc.mascota.raza}</p>
-                        <p class="card-text h4"><strong>Sexo : </strong>#{ctrlMasc.mascota.sexo}</p>
-                        <p class="card-text h4"><strong>Altura : </strong>#{ctrlMasc.mascota.altura} cm</p> 
-                        <p class="card-text h4"><strong>Peso : </strong>#{ctrlMasc.mascota.peso} g</p> 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card border-success mb-3">
-                    <div class="card-header lead"><strong>Datos del veterinario</strong></div>
-                    <div class="card-body text-success">
-                        <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUser.veterinario.apellidos}</h5>
-                        <p class="card-text"><strong>Nº Colegiado : </strong>#{ctrlUser.veterinario.codCol}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h:link class="btn btn-outline-dark" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
-    </ui:define>
 
+        <c:if test="#{prefs.isLogin()=='USER'}">
+            <div class="card mb-3" style="max-width: 100%;">
+                <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <h:graphicImage value = "#{ctrlMasc.mascota.foto}" alt="foto mascota" class="card-img" style="height: 100%"/>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title">#{ctrlMasc.mascota.nombre}</h3>
+                            <p class="card-text h4"><strong>Código de identificación : </strong>#{ctrlMasc.mascota.ci}</p>
+                            <p class="card-text h4"><strong>Fecha de nacimiento : </strong>#{ctrlMasc.mascota.leerFecha()}</p>
+                            <p class="card-text h4"><strong>Especie : </strong>#{ctrlMasc.mascota.especie}</p>
+                            <p class="card-text h4"><strong>Raza : </strong>#{ctrlMasc.mascota.raza}</p>
+                            <p class="card-text h4"><strong>Sexo : </strong>#{ctrlMasc.mascota.sexo}</p>
+                            <p class="card-text h4"><strong>Altura : </strong>#{ctrlMasc.mascota.altura} cm</p> 
+                            <p class="card-text h4"><strong>Peso : </strong>#{ctrlMasc.mascota.peso} g</p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card border-success mb-3">
+                        <div class="card-header lead"><strong>Datos del veterinario</strong></div>
+                        <div class="card-body text-success">
+                            <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUser.veterinario.apellidos}</h5>
+                            <p class="card-text"><strong>Nº Colegiado : </strong>#{ctrlUser.veterinario.codCol}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h:link class="btn btn-outline-dark" outcome="mascotas.xhtml"> Volver a mascotas</h:link>
+
+        </c:if>
+
+        <c:if test="#{prefs.isLogin()=='ADMIN'}">
+
+            <h:form>
+                <h:button class=" btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="     ✏     ">
+                    <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
+                </h:button>
+                <h:commandButton class=" btn btn-outline-danger btn-lg mb-3 ml-2" action="#{ctrlMasc.borraMascota()}" value="  🗑  "/>
+            </h:form>
+
+            <div class="card mb-3" style="max-width: 100%;">
+                <div class="card-header text-center lead"><strong>Datos de la mascota</strong></div>
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <h:graphicImage value = "#{ctrlMasc.mascota.foto}" alt="foto mascota" class="card-img" style="height: 100%"/>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title">#{ctrlMasc.mascota.nombre}</h3>
+                            <p class="card-text h4"><strong>Código de identificación : </strong>#{ctrlMasc.mascota.ci}</p>
+                            <p class="card-text h4"><strong>Fecha de nacimiento : </strong>#{ctrlMasc.mascota.leerFecha()}</p>
+                            <p class="card-text h4"><strong>Especie : </strong>#{ctrlMasc.mascota.especie}</p>
+                            <p class="card-text h4"><strong>Raza : </strong>#{ctrlMasc.mascota.raza}</p>
+                            <p class="card-text h4"><strong>Sexo : </strong>#{ctrlMasc.mascota.sexo}</p>
+                            <p class="card-text h4"><strong>Altura : </strong>#{ctrlMasc.mascota.altura} cm</p> 
+                            <p class="card-text h4"><strong>Peso : </strong>#{ctrlMasc.mascota.peso} g</p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card border-info mb-3">
+                        <b:accordion expanded-panels="panel1">
+                            <b:panel id="panel1" title="Datos del dueño"> 
+                                <div class="card-body text-info">
+                                    <h5 class="card-title">#{ctrlUser.cliente.nombre} #{ctrlUser.cliente.apellidos}</h5>
+                                    <p class="card-text"><strong>Dirección : </strong>#{ctrlUser.cliente.direccion}</p>
+                                </div>
+                            </b:panel>
+                        </b:accordion>
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card border-success mb-3">
+                        <b:accordion expanded-panels="panel2">
+                            <b:panel id="panel2" title="Datos del veterinario">
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">#{ctrlUser.veterinario.nombre} #{ctrlUser.veterinario.apellidos}</h5>
+                                    <p class="card-text"><strong>Nº Colegiado : </strong>#{ctrlUser.veterinario.codCol}</p>
+                                </div>
+                            </b:panel>
+                        </b:accordion>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters justify-content-end mb-3">
+                <div class="col-3">
+                    <h:link class="btn btn-outline-dark btn-block" outcome="mascotas.xhtml"> Volver </h:link>
+                </div>
+            </div>
+
+
+        </c:if>  
+    </ui:define>
 </ui:composition>

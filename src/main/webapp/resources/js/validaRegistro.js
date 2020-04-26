@@ -12,7 +12,8 @@ class registroCtrl {
             apellidos: "#fRegistro\\:apellidos",
             dni: "#fRegistro\\:dni",
             fecha: "#fRegistro\\:fnac",
-            direccion: "#fRegistro\\:direccion"
+            direccion: "#fRegistro\\:direccion",
+            email: "#fRegistro\\:email"
         };
     }
     init() {
@@ -21,8 +22,7 @@ class registroCtrl {
                     if (this.validarFormulario() === false) {
                         //Stop submission
                         event.preventDefault();
-                    }
-                    ;
+                    };
                 });
         console.log("Iniciando controlador JS");
 
@@ -36,6 +36,8 @@ class registroCtrl {
         let dni = $(this.config.dni).val();
         let fnac = $(this.config.fecha).val();
         let dir = $(this.config.direccion).val();
+        let email = $(this.config.email).val();
+
 
 
         let valido = true;
@@ -69,6 +71,13 @@ class registroCtrl {
             valido = false;
         } else {
             el('#errDir').textContent = "";
+        }
+        
+        if (email.search(/[a-zA-Z0-9._+-]+@[a-zA-Z]+\.[a-zA-Z.]{2,}/) === -1) {
+            el('#errEmail').textContent = "El correo debe tener el formato email@email.com";
+            valido = false;
+        } else {
+            el('#errEmail').textContent = "";
         }
 
         return valido;

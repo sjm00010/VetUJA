@@ -62,8 +62,8 @@
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col mb-3">
                             <label for="email">Correo electrónico</label>
-                            <b:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
-                            <b:message for="email" class="text-danger"/>
+                            <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
+                            <p id ="errEmail" class="text-danger"><b:message for="email"/></p>
                         </div>
                         <div class="col">
                             <div>

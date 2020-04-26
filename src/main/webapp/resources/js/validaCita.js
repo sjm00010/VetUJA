@@ -21,6 +21,8 @@ class citasCtrl {
                         event.preventDefault();
                     };
                 });
+        console.log("Iniciando controlador JS");
+
     }
 
     validarFormulario() {
@@ -31,33 +33,33 @@ class citasCtrl {
         let mascota = $(this.config.mascota).val();
 
         let valido = true;
-        if (fecha === null) {
+        if (fecha.length === 0) {
             el('#errFecha').textContent = "La fecha no puede estar vacía.";
             valido = false;
         } else {
             el('#errFecha').textContent = "";
         }
-
-        if (fecha < hoyFecha()) {
-            el('#errFecha').textContent = "La fecha debe ser posterior a hoy.";
-            valido = false;
-        } else {
-            el('#errFecha').textContent = "";
-        }
-
-        if (veterinario === null) {
-            el('#errVet').textContent = "Se debe seleccionar un veterinario";
-            valido = false;
-        } else {
-            el('#errVet').textContent = "";
-        }
-
-        if (mascota === null) {
-            el('#errMas').textContent = "Se debe seleccionar una mascota";
-            valido = false;
-        } else {
-            el('#errMas').textContent = "";
-        }
+//
+//        if (fecha < hoyFecha()) {
+//            el('#errFecha').textContent = "La fecha debe ser posterior a hoy.";
+//            valido = false;
+//        } else {
+//            el('#errFecha').textContent = "";
+//        }
+//
+//        if (veterinario === null) {
+//            el('#errVet').textContent = "Se debe seleccionar un veterinario";
+//            valido = false;
+//        } else {
+//            el('#errVet').textContent = "";
+//        }
+//
+//        if (mascota === null) {
+//            el('#errMas').textContent = "Se debe seleccionar una mascota";
+//            valido = false;
+//        } else {
+//            el('#errMas').textContent = "";
+//        }
 
 
         return valido;

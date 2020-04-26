@@ -11,7 +11,8 @@ class registroCtrl {
             nombre: "#fRegistro\\:nombre",
             apellidos: "#fRegistro\\:apellidos",
             dni: "#fRegistro\\:dni",
-            fecha: "#fRegistro\\:fnac"
+            fecha: "#fRegistro\\:fnac",
+            direccion: "#fRegistro\\:direccion"
         };
     }
     init() {
@@ -20,7 +21,8 @@ class registroCtrl {
                     if (this.validarFormulario() === false) {
                         //Stop submission
                         event.preventDefault();
-                    };
+                    }
+                    ;
                 });
         console.log("Iniciando controlador JS");
 
@@ -33,6 +35,8 @@ class registroCtrl {
         let apellidos = $(this.config.apellidos).val();
         let dni = $(this.config.dni).val();
         let fnac = $(this.config.fecha).val();
+        let dir = $(this.config.direccion).val();
+
 
         let valido = true;
         if (nombre.length < 3 || nombre.length > 12) {
@@ -60,11 +64,12 @@ class registroCtrl {
         } else {
             el('#errFecha').textContent = "";
         }
-         
-        
-        
-
-
+        if (dir.length < 6 || dir.length > 30) {
+            el('#errDir').textContent = "La longitud de la dirección debe estar entre 6 y 30 caracteres.";
+            valido = false;
+        } else {
+            el('#errDir').textContent = "";
+        }
 
         return valido;
     }

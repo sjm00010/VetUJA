@@ -72,8 +72,8 @@
                                          a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 400 x 400 píxeles"
                                          style="margin-left: 0.5rem;" height="18"/>
                             </div>
-                            <b:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
-                            <b:message for="foto" class="text-danger"/>
+                            <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
+                            <p id="errFoto" class="text-danger"><b:message for="foto"/></p>
                         </div>
                     </div>
                 </div>
@@ -83,12 +83,12 @@
                         <label for="pass">Contraseña</label>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
-                                <b:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
-                                <b:message for="pass" class="text-danger"/>
+                                <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
+                                <p id="errContrasena1" class="text-danger"><b:message for="pass"/></p>
                             </div>
                             <div class="col">
-                                <b:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.aux}"/>
-                                <b:message for="pass2" class="text-danger"/>
+                                <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.aux}"/>
+                                <p id ="errContrasena2" class="text-danger"> <b:message for="pass2"/></p>
                             </div>
                         </div>
                     </div>

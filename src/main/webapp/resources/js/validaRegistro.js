@@ -13,7 +13,10 @@ class registroCtrl {
             dni: "#fRegistro\\:dni",
             fecha: "#fRegistro\\:fnac",
             direccion: "#fRegistro\\:direccion",
-            email: "#fRegistro\\:email"
+            email: "#fRegistro\\:email",
+            foto: "#fRegistro\\:foto",
+            contrasena: "#fRegistro\\:pass",
+            contrasena2: "#fRegistro\\:pass2"
         };
     }
     init() {
@@ -37,10 +40,12 @@ class registroCtrl {
         let fnac = $(this.config.fecha).val();
         let dir = $(this.config.direccion).val();
         let email = $(this.config.email).val();
-
-
+        let foto = $(this.config.foto).val();
+        let contrasena1 = $(this.config.contrasena).val();
+        let contrasena2 = $(this.config.contrasena2).val();
 
         let valido = true;
+        //Validación
         if (nombre.length < 3 || nombre.length > 12) {
             el('#errNombre').textContent = "La longitud del nombre debe estar entre 3 y 12 caracteres.";
             valido = false;
@@ -72,14 +77,38 @@ class registroCtrl {
         } else {
             el('#errDir').textContent = "";
         }
-        
+
         if (email.search(/[a-zA-Z0-9._+-]+@[a-zA-Z]+\.[a-zA-Z.]{2,}/) === -1) {
             el('#errEmail').textContent = "El correo debe tener el formato email@email.com";
             valido = false;
         } else {
             el('#errEmail').textContent = "";
         }
-
+        if (foto.length === 0) {
+            el('#errFoto').textContent = "Debe introducir una foto";
+            valido = false;
+        } else {
+            el('#errFoto').textContent = "";
+        }
+        if (contrasena1.length < 6 || contrasena1.length > 10) {
+            el('#errContrasena1').textContent = "La longitud de la contraseña debe estar entre 6 y 10 caracteres.";
+            valido = false;
+        } else {
+            el('#errContrasena1').textContent = "";
+        }
+        if (contrasena2.length < 6 || contrasena2.length > 10) {
+            el('#errContrasena2').textContent = "La longitud de la contraseña debe estar entre 6 y 10 caracteres.";
+            valido = false;
+        } else {
+            el('#errContrasena2').textContent = "";
+        }
+        if (contrasena1 !== contrasena2) {
+            el('#errContrasena1').textContent = "Las contraseñas deben ser iguales";
+            valido = false;
+        } else {
+            el('#errContrasena1').textContent = "";
+        }
+        
         return valido;
     }
 }

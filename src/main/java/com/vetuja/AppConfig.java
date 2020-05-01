@@ -12,7 +12,7 @@ import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 
 /* JEE Security Database IdentityStore implementation*/
 //@DatabaseIdentityStoreDefinition(
-//    dataSourceLookup = "java:global/jdbc/gestClub", 
+//    dataSourceLookup = "java:global/jdbc/vetuja", 
 //    callerQuery = "select password from authinfo where dni = ?",
 //    groupsQuery = "select rolname from authinfo where dni = ?",
 //    hashAlgorithm = Pbkdf2PasswordHash.class,

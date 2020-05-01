@@ -36,7 +36,7 @@
             </ui:repeat>
         </c:if>
         <c:if test="#{prefs.isLogin()=='ADMIN'}">
-            <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="registro_animal.xhtml" value="Nueva mascota" />
+            <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="/admin/registro_animal.xhtml" value="Nueva mascota" />
             <ui:repeat value="#{ctrlMasc.mascotas}" var="mas">
                 <h:form class="card">
                     <div class="row no-gutters">
@@ -87,7 +87,10 @@
                                         <b:panel id="panel1" title="Datos del dueño"> 
                                             <div class="card-body text-info">
                                                 <h5 class="card-title">#{mas.vetCC} #{cli.apellidos}</h5>
+                                                <p class="card-text"><strong>DNI : </strong></p>
                                                 <p class="card-text"><strong>Dirección : </strong>#{cli.direccion}</p>
+                                                <p class="card-text"><strong>Fecha de nacimiento : </strong></p>
+                                                <p class="card-text"><strong>Email : </strong></p>
                                             </div>
                                         </b:panel>
                                     </b:accordion>

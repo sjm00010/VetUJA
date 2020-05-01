@@ -93,7 +93,7 @@ public class ControladorMascota implements Serializable {
 
     public String creaMascota() {
         if (mascotasDAO.crea(mascota)) {
-            return "mascotas.jsf?faces-redirect=true";
+            return "/common_users/mascotas.jsf?faces-redirect=true";
         }
         return null;
     }
@@ -104,13 +104,13 @@ public class ControladorMascota implements Serializable {
             mascotasDAO.borra(ci);
 //            citasDAO.cambiaCi(ci, mascota.getCi());
         }
-        return "mascotas.jsf?faces-redirect=true";
+        return "/common_users/mascotas.jsf?faces-redirect=true";
     }
 
     public String borraMascota() {
         mascotasDAO.borra(mascota.getCi());
         citasDAO.borraCI(mascota.getCi());
-        return "mascotas.jsf?faces-redirect=true";
+        return "/common_users/mascotas.jsf?faces-redirect=true";
     }
 
     public String getNombreMas(String ci) {

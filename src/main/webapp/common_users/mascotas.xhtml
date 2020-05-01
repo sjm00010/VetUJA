@@ -36,7 +36,7 @@
             </ui:repeat>
         </c:if>
         <c:if test="#{prefs.isLogin()=='ADMIN'}">
-            <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="registro_animal.xhtml" value="Nueva mascota" />
+            <h:link class="btn btn-outline-success mb-3 btn-lg" outcome="/admin/registro_animal.xhtml" value="Nueva mascota" />
             <ui:repeat value="#{ctrlMasc.mascotas}" var="mas">
                 <h:form class="card">
                     <div class="row no-gutters">

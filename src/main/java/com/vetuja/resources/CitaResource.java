@@ -18,9 +18,9 @@ import javax.ws.rs.core.Response;
  *
  * @author sjm00010
  */
-@Path("/duenio") //Acceso /api/duenio
+@Path("/cita") //Acceso /api/duenio
 @Produces(MediaType.APPLICATION_JSON)
-public class DuenioResource {
+public class CitaResource {
 
     @Inject
     private ClienteDAO clientesDAO;
@@ -28,7 +28,7 @@ public class DuenioResource {
     
     @GET
     @Path("/{id}")
-    public Response getDuenio(@PathParam("id") String id) {
+    public Response getLibro(@PathParam("id") String id) {
         Response response;
         Cliente l = clientesDAO.buscaId(id);
         if( l != null) {
@@ -37,7 +37,7 @@ public class DuenioResource {
             //Error messages
             List<Map<String,Object>> errores=new ArrayList<>();
             Map<String,Object> err=new HashMap<>(); 
-            err.put("message", "El dueño no existe");
+            err.put("message", "El libro no existe");
             errores.add(err);
             response=Response.status(Response.Status.BAD_REQUEST)
                              .entity(errores).build();            

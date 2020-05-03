@@ -14,7 +14,9 @@
 
 
     <ui:define name="cuerpo">
-
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"/>
         <h:outputScript library="js" name="validaCita.js"/>
 
         <b:button class="btn btn-outline-success btn-lg mb-3 ml-3" a:data-target="#ncita"
@@ -87,7 +89,7 @@
                 <h1 class="display-3"><span>No se han encontrado citas</span></h1>
             </div>
         </c:if>
-        <h:form class="mt-3" rendered="#{ctrlCitas.hayCitas(prefs.ID)}">
+        <h:form class="mt-3" rendered="#{ctrlCitas.hayCitas(prefs.ID)}" onsubmit="borrar(event)">
             <b:dataTable class="table table-striped" style="width:100%" var ="cit" value = "#{ctrlCitas.getCitas(prefs.ID)}" mark-search-results="true" >
                 <b:dataTableColumn value="#{cit.id}" />
 
@@ -102,7 +104,7 @@
                 <b:dataTableColumn value="#{ctrlMasc.getNombreMas(cit.masCI)}" label="Mascota"/>
 
                 <b:dataTableColumn label="Borrar" width="60px" orderable="false" searchable="false">
-                    <h:commandButton image = "#{resource['img/iconos/borrar.png']}" action="#{ctrlCitas.borra(cit)}"/>
+                    <h:commandButton image = "#{resource['img/iconos/borrar.png']}" value="Borrar" action="#{ctrlCitas.borra(cit)}"/>
                 </b:dataTableColumn>
             </b:dataTable>
         </h:form>

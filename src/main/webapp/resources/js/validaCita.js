@@ -19,7 +19,8 @@ class citasCtrl {
                     if (this.validarFormulario() === false) {
                         //Stop submission
                         event.preventDefault();
-                    };
+                    }
+                    ;
                 });
         console.log("Iniciando controlador JS");
 
@@ -60,28 +61,39 @@ class citasCtrl {
 //        } else {
 //            el('#errMas').textContent = "";
 //        }
-
-
-        return valido;
-    }
+//
+//
+//        return valido;
+        }
 }
+//
+//function fechaActual() {
+//    var hoy = new Date();
+//    var dd = hoy.getDate();
+//    var mm = hoy.getMonth() + 1; //Empiezan en 0
+//    var yyyy = hoy.getFullYear();
+//
+//// Si queremos que los días y meses tengan dos dígitos hacemos lo siguiente
+//    if (dd < 10) {
+//        dd = '0' + dd;
+//    }
+//
+//    if (mm < 10) {
+//        mm = '0' + mm;
+//    }
+//
+//    hoy = dd + '-' + mm + '-' + yyyy;
+//
+//    return hoy;
+//}
 
-function fechaActual() {
-    var hoy = new Date();
-    var dd = hoy.getDate();
-    var mm = hoy.getMonth() + 1; //Empiezan en 0
-    var yyyy = hoy.getFullYear();
-
-// Si queremos que los días y meses tengan dos dígitos hacemos lo siguiente
-    if (dd < 10) {
-        dd = '0' + dd;
+//Ventana emergente
+function borrar(event) {
+    console.log("Confirma borrado");
+    let opcion = confirm("¿Estás seguro de borrar la cita?");
+    console.log(opcion);
+    if (opcion  === false) {
+        console.log("Cancelado");
+        event.preventDefault();
     }
-
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-
-    hoy = dd + '-' + mm + '-' + yyyy;
-
-    return hoy;
 }

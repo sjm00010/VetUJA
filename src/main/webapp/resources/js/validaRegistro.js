@@ -47,66 +47,66 @@ class registroCtrl {
         let valido = true;
         //Validación
         if (nombre.length < 3 || nombre.length > 12) {
-            el('#errNombre').textContent = "La longitud del nombre debe estar entre 3 y 12 caracteres.";
+            el('#errNombre').innerHTML = `<p class= "alert alert-danger"> La longitud del nombre debe estar entre 3 y 12 caracteres. </p>` ;
             valido = false;
         } else {
-            el('#errNombre').textContent = "";
+            el('#errNombre').innerHTML = "";
         }
         if (apellidos.length < 6 || apellidos.length > 20) {
-            el('#errApell').textContent = "La longitud de los apellidos debe estar entre 6 y 20 caracteres.";
+            el('#errApell').innerHTML = `<p class="alert alert-danger"> La longitud de los apellidos debe estar entre 6 y 20 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errApell').textContent = "";
+            el('#errApell').innerHTML = "";
         }
 
         if (dni.search(/^\d{8}([A-Z])$/) === -1) {
-            el('#errDni').textContent = "El DNI debe tener 8 números y la letra debe estar en mayúscula.";
+            el('#errDni').innerHTML = `<p class="alert alert-danger"> El DNI debe tener 8 números y la letra debe estar en mayúscula. </p>`;
             valido = false;
         } else {
-            el('#errDni').textContent = "";
+            el('#errDni').innerHTML = "";
         }
         if (fnac.length === 0) {
-            el('#errFecha').textContent = "Debe introducir una fecha";
+            el('#errFecha').innerHTML = `<p class="alert alert-danger"> Debe introducir una fecha. </p>`;
             valido = false;
         } else {
-            el('#errFecha').textContent = "";
+            el('#errFecha').innerHTML = "";
         }
         if (dir.length < 6 || dir.length > 30) {
-            el('#errDir').textContent = "La longitud de la dirección debe estar entre 6 y 30 caracteres.";
+            el('#errDir').innerHTML = `<p class="alert alert-danger"> La longitud de la dirección debe estar entre 6 y 30 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errDir').textContent = "";
+            el('#errDir').innerHTML = "";
         }
 
         if (email.search(/[a-zA-Z0-9._+-]+@[a-zA-Z]+\.[a-zA-Z.]{2,}/) === -1) {
-            el('#errEmail').textContent = "El correo debe tener el formato email@email.com";
+            el('#errEmail').innerHTML = `<p class="alert alert-danger"> El correo debe tener el formato email@email.com </p>`;
             valido = false;
         } else {
-            el('#errEmail').textContent = "";
+            el('#errEmail').innerHTML = "";
         }
         if (foto.length === 0) {
-            el('#errFoto').textContent = "Debe introducir una foto";
+            el('#errFoto').innerHTML = `<p class="alert alert-danger"> Debe introducir una foto. </p>`;
             valido = false;
         } else {
-            el('#errFoto').textContent = "";
+            el('#errFoto').innerHTML = "";
         }
         if (contrasena1.length < 6 || contrasena1.length > 10) {
-            el('#errContrasena1').textContent = "La longitud de la contraseña debe estar entre 6 y 10 caracteres.";
+            el('#errContrasena1').innerHTML = `<p class="alert alert-danger"> La longitud de la contraseña debe estar entre 6 y 10 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errContrasena1').textContent = "";
+            el('#errContrasena1').innerHTML = "";
         }
         if (contrasena2.length < 6 || contrasena2.length > 10) {
-            el('#errContrasena2').textContent = "La longitud de la contraseña debe estar entre 6 y 10 caracteres.";
+            el('#errContrasena2').innerHTML = `<p class="alert alert-danger"> La longitud de la contraseña debe estar entre 6 y 10 caracteres.</p>`;
             valido = false;
         } else {
-            el('#errContrasena2').textContent = "";
+            el('#errContrasena2').innerHTML = "";
         }
         if (contrasena1 !== contrasena2) {
-            el('#errContrasena1').textContent = "Las contraseñas deben ser iguales";
+            el('#errContrasena1').innerHTML = `<p class="alert alert-danger"> Las contraseñas deben ser iguales </p>`;
             valido = false;
         } else {
-            el('#errContrasena1').textContent = "";
+            el('#errContrasena1').innerHTML = "";
         }
         
         return valido;

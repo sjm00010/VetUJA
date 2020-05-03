@@ -25,11 +25,14 @@
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
                                 <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}"/>
-                                <p id= "errNombre" class="text-danger"><b:message for="nombre"/></p>
+                                <div class="mt-3" id= "errNombre"></div>
+                                <b:message for="nombre"/>
+                               
                             </div>
                             <div class="col">
                                 <h:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}"/>
-                                <p id ="errApell" class="text-danger"><b:message for="apellidos"/></p>
+                                <div class="mt-3" id="errApell"></div> 
+                                <b:message for="apellidos"/>
                             </div>
                         </div>
                     </div>
@@ -39,21 +42,24 @@
                         <div class="col mb-3">
                             <label for="dni">DNI</label>
                             <h:inputText class="form-control" id="dni" a:placeholder="Ej. 12345678A" a:value="#{ctrlUser.cliente.DNI}"/>
-                            <p id="errDni" class="text-danger"><b:message for="dni"/></p> 
+                            <div class="mt-3" id="errDni"></div> 
+                            <b:message for="dni"/>
                         </div>
                         <div class="col">
                             <label for="date">Fecha de nacimiento</label>
                             <h:inputText class="form-control" a:type="date" id="fnac" a:value="#{ctrlUser.cliente.fnac}">
                                 <f:convertDateTime pattern="yyyy-MM-dd" />
                             </h:inputText>
-                            <p id="errFecha" class="text-danger"><b:message for="fnac"/></p>
+                            <div class="mt-3" id="errFecha"></div> 
+                            <b:message for="fnac"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 my-3">
                     <label for="direccion">Dirección</label>
                     <h:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
-                    <p id = "errDir" class="text-danger"><b:message for="direccion"/></p>
+                    <div class="mt-3" id="errDir"></div> 
+                    <b:message for="direccion"/>
                 </div>
             </div>
             <div class="row card my-3">
@@ -63,7 +69,8 @@
                         <div class="col mb-3">
                             <label for="email">Correo electrónico</label>
                             <h:inputText class="form-control" a:type="email" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
-                            <p id ="errEmail" class="text-danger"><b:message for="email"/></p>
+                            <div class="mt-3" id ="errEmail"></div> 
+                            <b:message for="email"/>
                         </div>
                         <div class="col">
                             <div>
@@ -73,7 +80,8 @@
                                          style="margin-left: 0.5rem;" height="18"/>
                             </div>
                             <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
-                            <p id="errFoto" class="text-danger"><b:message for="foto"/></p>
+                            <div class="mt-3" id ="errFoto"></div> 
+                            <b:message for="foto"/>
                         </div>
                     </div>
                 </div>
@@ -84,11 +92,13 @@
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col mb-3">
                                 <h:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
-                                <p id="errContrasena1" class="text-danger"><b:message for="pass"/></p>
+                                <div class="mt-3" id ="errContrasena1"></div> 
+                                <b:message for="pass"/>
                             </div>
                             <div class="col">
                                 <h:inputText class="form-control" id="pass2" a:placeholder="Repite la contraseña" a:value="#{ctrlUser.aux}"/>
-                                <p id ="errContrasena2" class="text-danger"> <b:message for="pass2"/></p>
+                                <div class="mt-3" id ="errContrasena2"></div>
+                                <b:message for="pass2"/>
                             </div>
                         </div>
                     </div>

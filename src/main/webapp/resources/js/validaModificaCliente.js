@@ -6,109 +6,86 @@ $(() => {
 class modifClienteCtrl {
     constructor() {
         this.config = {
-            formulario: "#fModifCliente",
-            nombre: "#fModifCliente\\:nombre",
-            apellidos: "#fModifCliente\\:apellidos",
-            dni: "#fModifCliente\\:dni",
-            fecha: "#fModifCliente\\:fnac",
-            direccion: "#fModifCliente\\:direccion",
-            email: "#fModifCliente\\:email",
-            foto: "#fModifCliente\\:foto",
-            contrasena: "#fModifCliente\\:pass",
-            contrasena2: "#fModifCliente\\:pass2"
+            formulario: "#fModifClienteMC",
+            nombre: "#fModifCliente\\:nombreMC",
+            apellidos: "#fModifCliente\\:apellidosMC",
+            fecha: "#fModifCliente\\:fnacMC",
+            direccion: "#fModifCliente\\:direccionMC",
+            email: "#fModifCliente\\:emailMC",
+            foto: "#fModifCliente\\:fotoMC",
+            contrasena: "#fModifCliente\\:passMC"
         };
     }
-    
+
     init() {
         $(this.config.formulario)
                 .on('submit', event => { //ev. handler
                     if (this.validarFormulario() === false) {
                         //Stop submission
                         event.preventDefault();
-                    };
+                    }
+                    ;
                 });
         console.log("Iniciando controlador JS");
 
     }
-    
+
     validarFormulario() {
         console.log("Validación modificación cliente con JS");
         let el = selector => document.querySelector(selector);
         let nombre = $(this.config.nombre).val();
         let apellidos = $(this.config.apellidos).val();
-        let dni = $(this.config.dni).val();
         let fnac = $(this.config.fecha).val();
         let dir = $(this.config.direccion).val();
         let email = $(this.config.email).val();
         let foto = $(this.config.foto).val();
-        let contrasena1 = $(this.config.contrasena).val();
-        let contrasena2 = $(this.config.contrasena2).val();
+        let contrasena = $(this.config.contrasena).val();
 
         let valido = true;
         //Validación
         if (nombre.length < 3 || nombre.length > 12) {
-            el('#errNombre').textContent = "La longitud del nombre debe estar entre 3 y 12 caracteres.";
+            el('#errNombreMC').innerHTML = `<p class= "alert alert-danger"> La longitud del nombre debe estar entre 3 y 12 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errNombre').textContent = "";
+            el('#errNombreMC').innerHTML = "";
         }
         if (apellidos.length < 6 || apellidos.length > 20) {
-            el('#errApell').textContent = "La longitud de los apellidos debe estar entre 6 y 20 caracteres.";
+            el('#errApellMC').innerHTML = `<p class="alert alert-danger"> La longitud de los apellidos debe estar entre 6 y 20 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errApell').textContent = "";
-        }
-
-        if (dni.search(/^\d{8}([A-Z])$/) === -1) {
-            el('#errDni').textContent = "El DNI debe tener 8 números y la letra debe estar en mayúscula.";
-            valido = false;
-        } else {
-            el('#errDni').textContent = "";
+            el('#errApellMC').innerHTML = "";
         }
         if (fnac.length === 0) {
-            el('#errFecha').textContent = "Debe introducir una fecha";
+            el('#errFechaMC').innerHTML = `<p class="alert alert-danger"> Debe introducir una fecha. </p>`;
             valido = false;
         } else {
-            el('#errFecha').textContent = "";
+            el('#errFechaMC').innerHTML = "";
         }
         if (dir.length < 6 || dir.length > 30) {
-            el('#errDir').textContent = "La longitud de la dirección debe estar entre 6 y 30 caracteres.";
+            el('#errDirMC').innerHTML = `<p class="alert alert-danger"> La longitud de la dirección debe estar entre 6 y 30 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errDir').textContent = "";
+            el('#errDirMC').innerHTML = "";
         }
 
         if (email.search(/[a-zA-Z0-9._+-]+@[a-zA-Z]+\.[a-zA-Z.]{2,}/) === -1) {
-            el('#errEmail').textContent = "El correo debe tener el formato email@email.com";
+            el('#errEmailMC').innerHTML = `<p class="alert alert-danger"> El correo debe tener el formato email@email.com </p>`;
             valido = false;
         } else {
-            el('#errEmail').textContent = "";
+            el('#errEmailMC').innerHTML = "";
         }
         if (foto.length === 0) {
-            el('#errFoto').textContent = "Debe introducir una foto";
+            el('#errFotoMC').innerHTML = `<p class="alert alert-danger"> Debe introducir una foto. </p>`;
             valido = false;
         } else {
-            el('#errFoto').textContent = "";
+            el('#errFotoMC').innerHTML = "";
         }
-        if (contrasena1.length < 6 || contrasena1.length > 10) {
-            el('#errContrasena1').textContent = "La longitud de la contraseña debe estar entre 6 y 10 caracteres.";
+        if (contrasena.length < 6 || contrasena.length > 10) {
+            el('#errContrasenaMC').innerHTML = `<p class="alert alert-danger"> La longitud de la contraseña debe estar entre 6 y 10 caracteres. </p>`;
             valido = false;
         } else {
-            el('#errContrasena1').textContent = "";
+            el('#errContrasenaMC').innerHTML = "";
         }
-        if (contrasena2.length < 6 || contrasena2.length > 10) {
-            el('#errContrasena2').textContent = "La longitud de la contraseña debe estar entre 6 y 10 caracteres.";
-            valido = false;
-        } else {
-            el('#errContrasena2').textContent = "";
-        }
-        if (contrasena1 !== contrasena2) {
-            el('#errContrasena1').textContent = "Las contraseñas deben ser iguales";
-            valido = false;
-        } else {
-            el('#errContrasena1').textContent = "";
-        }
-        
         return valido;
     }
 }

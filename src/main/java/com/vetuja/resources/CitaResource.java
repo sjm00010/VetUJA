@@ -1,7 +1,9 @@
 package com.vetuja.resources;
 
-import com.vetuja.DAO.ClienteDAO;
-import com.vetuja.clases.Cliente;
+import com.vetuja.DAO.CitaDAO;
+import com.vetuja.DAO.VeterinarioDAO;
+import com.vetuja.clases.Cita;
+import com.vetuja.clases.Veterinario;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,26 +25,28 @@ import javax.ws.rs.core.Response;
 public class CitaResource {
 
     @Inject
-    private ClienteDAO clientesDAO;
-
+    private CitaDAO citasDAO;
+    
+    @Inject
+    private VeterinarioDAO vetDAO;
     
     @GET
-    @Path("/{id}")
-    public Response getLibro(@PathParam("id") String id) {
-        Response response;
-        Cliente l = clientesDAO.buscaId(id);
-        if( l != null) {
-            response= Response.ok(l).build();
-        } else {
+    public List<Veterinario> Listado() {
+        return vetDAO.buscaTodos();
+    }
+   
+    @GET
+    @Path("/{cc}")
+    public List<String> getHorario(@PathParam("cc") String cc) {
+        List<String> l = citasDAO.buscaHorarios(cc);
+        if( l.isEmpty() ) {
             //Error messages
             List<Map<String,Object>> errores=new ArrayList<>();
             Map<String,Object> err=new HashMap<>(); 
-            err.put("message", "El libro no existe");
+            err.put("message", "El veterinario no existe");
             errores.add(err);
-            response=Response.status(Response.Status.BAD_REQUEST)
-                             .entity(errores).build();            
+            return null;
         }
-        return response;
+        return l;
     }
-
 }

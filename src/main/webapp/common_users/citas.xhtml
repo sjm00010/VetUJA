@@ -14,12 +14,15 @@
 
     <ui:define name="cuerpo">
 
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.js"></script>
+        <script type="module" src="./js/app-cita.module.js"></script>
+
         <b:button class="btn btn-outline-success btn-lg mb-3 ml-3" a:data-target="#ncita"
                   a:data-toggle="modal"
                   value="Nueva cita" rendered="#{prefs.isLogin()=='USER'}"/>
         <b:modal title=" Nueva cita " id="ncita"
                  closable="false" rendered="#{prefs.isLogin()=='USER'}"
-                 closeOnEscape="true" style-class="modal fade">
+                 close-on-escape="false" backdrop="false" style-class="modal fade">
             <b:form>
                 <h:head>
                     <f:metadata>
@@ -27,32 +30,20 @@
                     </f:metadata>
                 </h:head>
                 <p>Seleccione uno de los siguientes campos.</p>
-                <b:messages />
 
-                <label for="dia"><strong>Día de la cita</strong></label>
-                <b:inputText class="form-control" 
+                <label for="dia" class="mb-2"><strong>Día de la cita</strong></label>
+                <b:message for="dia"/>
+                <b:inputText class="form-control mt-2" 
                              a:type="date" id="dia" 
                              value="#{ctrlCitas.cita.fecha}">
                     <f:convertDateTime pattern="yyyy-MM-dd" />
                 </b:inputText>
 
-                <label for="vet"><strong>Veterinario</strong></label>
-                <b:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
-                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
-                    <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
-                                   itemValue="#{vet.codCol}" itemLabel="#{vet.nombre}" />
-                </b:selectOneMenu>
-
-                <label for="mas"><strong>Mascota</strong></label>
-                <b:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
-                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
-                    <f:selectItems value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas" 
-                                   itemValue="#{mas.ci}" itemLabel="#{mas.nombre}" />
-                </b:selectOneMenu>
-
                 <label for="hora"><strong>Hora</strong></label>
+                <b:message for="hora" class="mb-3"/>
                 <b:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
                     <!--Cambiar por una funcion que devuelva lista de horas-->
+                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona una hora --" />
                     <f:selectItem itemValue="9:00" itemLabel="9:00" />
                     <f:selectItem itemValue="10:00" itemLabel="10:00" />
                     <f:selectItem itemValue="11:00" itemLabel="11:00" />
@@ -65,15 +56,33 @@
                     <f:selectItem itemValue="20:00" itemLabel="20:00" />
                 </b:selectOneMenu>
 
+                <label for="vet"><strong>Veterinario</strong></label>
+                <b:message for="vet" class="mb-3"/>
+                <b:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
+                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona un veterinario --" />
+                    <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
+                                   itemValue="#{vet.codCol}" itemLabel="#{vet.nombre}" />
+                </b:selectOneMenu>
+
+                <label for="mas"><strong>Mascota</strong></label>
+                <b:message for="mas" class="mb-3"/>
+                <b:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
+                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona una mascota --" />
+                    <f:selectItems value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas" 
+                                   itemValue="#{mas.ci}" itemLabel="#{mas.nombre}" />
+                </b:selectOneMenu>
+
                 <b:commandButton update="@form" style="width: 47%;"
                                  value="Guardar" look="success" class="mr-3"
-                                 action="#{ctrlCitas.creaCita()}" 
+                                 action="#{ctrlCitas.creaCita()}"
                                  oncomplete="if(#{ctrlCitas.creaCita() != null}) { $('#ncita').modal('hide') } "/>
+
                 <b:button value="Cancelar" look="danger" style="width: 47%;"
                           dismiss="modal" onclick="return false;"/>
                 <b:fetchBeanInfos />
             </b:form>
         </b:modal>
+
 
         <c:if test="#{!ctrlCitas.hayCitas(prefs.ID)}">
             <div class="text-center">
@@ -100,5 +109,12 @@
             </b:dataTable>
         </h:form>
 
+
+        <!--Componente angular para mostrar dias disponibles-->
+        <c:if test="#{prefs.isLogin()=='USER'}">
+            <div data-ng-app="citas.app" class="mb-5">
+                <app-citas></app-citas>
+            </div>
+        </c:if>
     </ui:define>
 </ui:composition>

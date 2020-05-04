@@ -1,6 +1,9 @@
 package com.vetuja.DAO;
 
 import com.vetuja.clases.Cita;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +34,35 @@ public class CitaDAO implements DAOgenerico<Cita, Integer> {
     @Override
     public Cita buscaId(Integer id) {
         return em.find(Cita.class, id);
+    }
+    
+    /**
+     * Funcion para obtener el horario de un veterinario
+     * @param cc Código colegiado del veterinario
+     * @return Lista de horas disponibles
+     */
+    public List<String> buscaHorarios(String cc) {
+        List<String> totalHoras = new ArrayList<>();
+        for(int i = 9;i < 21;i++){
+            if(i != 14 && i != 15){
+                totalHoras.add(i+":00");
+            }
+        }
+        List<Cita> lc;
+        List<String> hora = new ArrayList<>();
+        java.sql.Date hoy = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        try {
+            lc = em.createQuery("Select c from Cita c where c.vetCC=:cc and c.fecha=:hoy", Cita.class).setParameter("hoy", hoy).setParameter("cc",cc).getResultList();
+            for (Iterator<Cita> iterator = lc.iterator(); iterator.hasNext();) {
+                Cita next = iterator.next();
+                    hora.add(next.getHora());
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        
+        totalHoras.removeAll(hora);
+        return totalHoras;
     }
 
     @Override

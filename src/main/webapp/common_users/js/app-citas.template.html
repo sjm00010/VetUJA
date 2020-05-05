@@ -1,0 +1,35 @@
+<hr/>
+<h3 class="text-center">Horas disponibles para el dia de hoy</h3>
+<div class="container">
+    <div class="row">
+        <div class="card col px-0 mr-3" style="width: 20rem;">
+            <div class="card-header">
+                Veterinarios
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between" ng-repeat='v in $ctrl.veterinarios'>
+                    <div><strong>{{v.codCol}}</strong> : {{v.nombre}}</div>
+                    <form class="my-0">
+                        <button class="btn-sm btn-primary" ng-click='$ctrl.muestraHorario(v.codCol)'>
+                            Ver horario</button>
+                    </form>
+
+                </li>
+            </ul>
+        </div>
+        <div class="card text-white bg-dark col px-0" style="width: 20rem;" ng-show="$ctrl.selec">
+            <div class="card-header d-flex justify-content-between">
+                <div>
+                    Horas disponibles
+                </div> 
+                <b>{{$ctrl.cc}}</b>
+            </div>
+            <div class="card-body">
+                <i ng-repeat='h in $ctrl.horas'>{{h}} 
+                    <span ng-if="!$last">||</span> 
+                </i>
+            </div>
+        </div>
+    </div>
+
+

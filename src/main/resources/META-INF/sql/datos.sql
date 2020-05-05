@@ -12,11 +12,11 @@ insert into Cliente (DNI,nombre,apellidos,direccion,fnac,foto,email,pass) values
 insert into Cliente (DNI,nombre,apellidos,direccion,fnac,foto,email,pass) values ('34209621C','ElRisas','Joker El Bromas','En su casa, algun sitio','1976-12-30','https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/1200x895/public/media/image/2019/08/joker.jpeg?itok=5ldLzg71','elbromas@ujaen.es','sanicgo');
 
 -- Inserciones de Cita
-insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-02-08','16:30','54215624R','AS0008','938000000455987'); 
-insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-05-06','10:30','54215624R','AS0489','938000000455987'); 
-insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-07-15','9:00','53914398T','AS0008','938000777000666'); 
-insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-07-15','17:10','54215624R','AS0489','938000000455987'); 
-insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-09-01','12:15','53914398T','AS0008','938000777000666');
+insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-05-08','16:00','54215624R','AS0008','938000000455987'); 
+insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-05-05','10:00','54215624R','AS0489','938000000455987'); 
+insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-05-05','9:00','53914398T','AS0008','938000777000666'); 
+insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-07-15','17:00','54215624R','AS0489','938000000455987'); 
+insert into Cita (fecha,hora,cliDNI,vetCC,masCI) VALUES ('2020-09-01','12:00','53914398T','AS0008','938000777000666');
 
 -- Inserciones de Mascotas
 insert into Mascota (ci,nombre,raza,especie,sexo,altura,peso,fechanac,foto,cliDNI,vetCC) VALUES ('938000000455987', 'Remy', 'Domestica', 'Rata', 'Macho', 12, 230, '2008-07-26', 'https://vignette.wikia.nocookie.net/dominios-encantados/images/6/66/REMY_WIKI.png/revision/latest/scale-to-width-down/340?cb=20151126195355&path-prefix=es', '54215624R', 'AS0008');

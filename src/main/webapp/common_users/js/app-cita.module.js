@@ -6,7 +6,7 @@ class ControladorCitas {
         this.serviceUrl = 'api/cita';
 
         //init view-model
-        this.cc=""
+        this.cc="";
         this.selec=false;
         this.veterinarios = [];
         this.horas = [];

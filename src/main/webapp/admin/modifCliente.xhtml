@@ -13,6 +13,8 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+        <h:outputScript library="js" name="validaModificaCliente.js"/>
+
         <h:head>
             <f:metadata>
                 <f:viewParam name="dni" required="true"
@@ -21,7 +23,7 @@
             </f:metadata>
         </h:head>
 
-        <b:form class="mb-5">
+        <b:form id = "fModifClienteMC" class="mb-5" onsubmit="modifica(event)">
             <h1 class="text-center display-3"><u><strong>Modificación de datos del cliente</strong></u></h1>
             <div class="card my-3">
                 <h2 class="card-header"><small>Datos personales</small></h2>
@@ -32,15 +34,17 @@
                     <div class="col col-md-9">
                         <div class="col-12 mt-2">
                             <div class="form-group">
-                                <label for="nombre">Nombre completo</label>
+                                <label for="nombreMC">Nombre completo</label>
                                 <div class="row row-cols-1 row-cols-md-2">
                                     <div class="col">
-                                        <b:inputText class="form-control mb-2" id="nombre" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}" />
-                                        <b:message for="nombre" class="text-danger"/>
+                                        <b:inputText class="form-control mb-2" id="nombreMC" a:placeholder="Nombre" a:value="#{ctrlUser.cliente.nombre}" />
+                                        <div class="mt-3" id= "errNombreMC"></div>
+                                        <b:message for="nombreMC"/>
                                     </div>
                                     <div class="col">
-                                        <b:inputText class="form-control" id="apellidos" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}" />
-                                        <b:message for="apellidos" class="text-danger"/>
+                                        <b:inputText class="form-control" id="apellidosMC" a:placeholder="Apellidos" a:value="#{ctrlUser.cliente.apellidos}" />
+                                        <div class="mt-3" id="errApellMC"></div> 
+                                        <b:message for="apellidosMC"/>
                                     </div>
                                 </div>
                             </div>
@@ -48,23 +52,25 @@
                         <div class="col-12">
                             <div class="row row-cols-1 row-cols-md-2">
                                 <div class="col">
-                                    <label for="dni">DNI</label>
-                                    <b:inputText class="form-control mb-2" id="dni" a:placeholder="Ej. 12345678A" a:value ="#{ctrlUser.cliente.DNI}" readonly="true"/>
-                                    <b:message for="dni" class="text-danger"/>
+                                    <label for="dniMC">DNI</label>
+                                    <b:inputText class="form-control mb-2" id="dniMC" a:placeholder="Ej. 12345678A" a:value ="#{ctrlUser.cliente.DNI}" readonly="true"/>
+                                    <b:message for="dniMC" class="text-danger"/>
                                 </div>
                                 <div class="col">
                                     <label for="fnac">Fecha de nacimiento</label>
-                                    <b:inputText class="form-control" a:type="date" id="fnac" value="#{ctrlUser.cliente.fnac}">
+                                    <b:inputText class="form-control" a:type="date" id="fnacMC" value="#{ctrlUser.cliente.fnac}">
                                         <f:convertDateTime pattern="yyyy-MM-dd" />
                                     </b:inputText>
-                                    <b:message for="fnac" class="text-danger"/>
+                                    <div class="mt-3" id="errFechaMC"></div> 
+                                    <b:message for="fnacMC"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 mt-2">
-                            <label for="direccion">Dirección</label>
-                            <b:inputText class="form-control" id="direccion" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
-                            <b:message for="direccion" class="text-danger"/>
+                            <label for="direccionMC">Dirección</label>
+                            <b:inputText class="form-control" id="direccionMC" a:placeholder="Ej. Avenida de Madrid, 5" a:value="#{ctrlUser.cliente.direccion}"/>
+                            <div class="mt-3" id="errDirMC"></div> 
+                            <b:message for="direccionMC"/>
                         </div>
                     </div>
                 </div>
@@ -74,31 +80,32 @@
                 <div class="col-12 mt-2">
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col mb-3">
-                            <label for="email">Correo electrónico</label>
-                            <b:inputText class="form-control" id="email" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
-                            <b:message for="email" class="text-danger"/>
+                            <label for="emailMC">Correo electrónico</label>
+                            <b:inputText class="form-control" a:type="email" id="emailMC" a:placeholder="nombre@ejemplo.es" a:value="#{ctrlUser.cliente.email}"/>
+                            <div class="mt-3" id ="errEmailMC"></div> 
+                            <b:message for="emailMC"/>
                         </div>
                         <div class="col">
                             <div>
-                                <label for="foto">Foto</label>
+                                <label for="fotoMC">Foto</label>
                                 <b:image value="#{resource['img/iconos/info.png']}" alt="info"
-                                                a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
-                                                style="margin-left: 0.5rem;"/>
+                                         a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 210 x 270 píxeles"
+                                         style="margin-left: 0.5rem;"/>
                             </div>
-                            <b:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
-                            <b:message for="foto" class="text-danger"/>
+                            <b:inputText class="form-control" id="fotoMC" a:placeholder="URL" a:value="#{ctrlUser.cliente.foto}"/>
+                            <div class="mt-3" id ="errFotoMC"></div> 
+                            <b:message for="fotoMC"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 my-2">
-                    <label for="pass">Contraseña</label>
-                    <b:inputText class="form-control" id="pass" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
-                    <b:message for="pass" class="text-danger"/>
+                    <label for="passMC">Contraseña</label>
+                    <b:inputText class="form-control" id="passMC" a:placeholder="Contraseña" a:value="#{ctrlUser.cliente.pass}"/>
+                    <div class="mt-3" id ="errContrasenaMC"></div> 
+                    <b:message for="passMC"/>
                 </div>
-
-
             </div>
-            <b:commandButton styleClass="eBoton btn btn-success btn-lg btn-block mb-auto" action="#{ctrlUser.modificaCliente()}"  value="Modificar cliente" />
+            <b:commandButton class="btn btn-success btn-lg btn-block" action="#{ctrlUser.modificaCliente()}"  value="Modificar cliente" />
         </b:form>
     </ui:define>
 

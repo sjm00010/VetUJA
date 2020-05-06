@@ -11,9 +11,10 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+        <h:outputScript library="js" name="validaModificaCliente.js"/>
         <div class="row">
             <ui:repeat value="#{ctrlUser.clientes}" var="cli">
-                <b:form class="col-sm-4 mb-3 px-0">
+                <h:form class="col-sm-4 mb-3 px-0" onsubmit="borrar(event)">
                     <div class="card mx-2 h-100">
                         <b:image class="card-img-top" value = "#{cli.foto}" alt="foto usuario" height="400px"/>      
                         <div class="card-body">
@@ -32,7 +33,7 @@
                             <b:commandButton styleClass="btn btn-outline-danger" action="#{ctrlUser.borraCliente(cli.DNI)}"  value="🗑" style="width: 45%;"/>
                         </div>
                     </div>
-                </b:form>
+                </h:form>
             </ui:repeat>
         </div>
     </ui:define>

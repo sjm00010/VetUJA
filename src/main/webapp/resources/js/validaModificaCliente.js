@@ -90,7 +90,7 @@ class modifClienteCtrl {
     }
 }
 
-//Ventana emergente
+//Ventana emergente borrado cliente
 function borrar(event) {
     console.log("Confirma borrado");
     let opcion = confirm("¿Estás seguro de borrar el cliente?");
@@ -99,4 +99,14 @@ function borrar(event) {
         console.log("Cancelado");
         event.preventDefault();
     }
+}
+//Ventana emergente modificado cliente
+function modifica(event) {
+console.log("Confirma modificado cliente");
+let opcion = confirm("¿Estás seguro de modificar el cliente?");
+console.log(opcion);
+if (opcion === false) {
+    console.log("Cancelado");
+    event.preventDefault();
+}
 }

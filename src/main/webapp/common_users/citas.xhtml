@@ -42,7 +42,7 @@
                              a:type="date" id="dia" 
                              value="#{ctrlCitas.cita.fecha}">
                     <f:convertDateTime pattern="yyyy-MM-dd" />
-                </h:inputText>
+                </b:inputText>
 
                 <label for="hora"><strong>Hora</strong></label>
                 <b:message for="hora" class="mb-3"/>
@@ -85,7 +85,7 @@
                 <b:button value="Cancelar" look="danger" style="width: 47%;"
                           dismiss="modal" onclick="return false;"/>
                 <b:fetchBeanInfos />
-            </h:form>
+            </b:form>
         </b:modal>
 
 

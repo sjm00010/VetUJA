@@ -36,7 +36,7 @@
                 <b:messages />
 
                 <label for="dia"><strong>Día de la cita</strong></label>
-                <p id="errFecha"><h:message for="dia"/></p>
+                <p id="errFecha"><b:message for="dia"/></p>
                 <h:inputText class="form-control" 
                              a:type="date" id="dia" 
                              value="#{ctrlCitas.cita.fecha}">
@@ -44,7 +44,7 @@
                 </h:inputText>
 
                 <label for="vet"><strong>Veterinario</strong></label>
-                <p id="errVet"><h:message for="vet"/></p>
+                <p id="errVet"><b:message for="vet"/></p>
                 <b:selectOneMenu class="form-control" id="vet" a:value="#{ctrlCitas.cita.vetCC}">
                     <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona un veterinario --" />
                     <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
@@ -52,7 +52,7 @@
                 </b:selectOneMenu>
 
                 <label for="mas"><strong>Mascota</strong></label>
-                <p id="errMas"><h:message for="mas"/></p>
+                <p id="errMas"><b:message for="mas"/></p>
                 <b:selectOneMenu class="form-control" id="mas" a:value="#{ctrlCitas.cita.masCI}">
                     <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona una mascota --" />
                     <f:selectItems value="#{ctrlMasc.getMascotasCliente(prefs.cli.DNI)}" var="mas" 
@@ -60,6 +60,7 @@
                 </b:selectOneMenu>
 
                 <label for="hora"><strong>Hora</strong></label>
+                <p id="errHora"><b:message for="mas"/></p>
                 <b:selectOneMenu class="form-control" id="hora" value = "#{ctrlCitas.cita.hora}">
                     <!--Cambiar por una funcion que devuelva lista de horas-->
                     <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona una hora --" />
@@ -75,7 +76,7 @@
                     <f:selectItem itemValue="20:00" itemLabel="20:00" />
                 </b:selectOneMenu>
 
-                <b:commandButton style="width: 47%;" value="Guardar" look="success"
+                <b:commandButton update="@form" style="width: 47%;" value="Guardar" look="success"
                                  class="mr-3" action="#{ctrlCitas.creaCita()}" 
                                  oncomplete="if(#{ctrlCitas.creaCita() != null}) { $('#ncita').modal('hide') } "/>
                 <b:button value="Cancelar" look="danger" style="width: 47%;"

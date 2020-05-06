@@ -25,7 +25,8 @@ class registroCtrl {
                     if (this.validarFormulario() === false) {
                         //Stop submission
                         event.preventDefault();
-                    };
+                    }
+                    ;
                 });
         console.log("Iniciando controlador JS");
 
@@ -47,7 +48,7 @@ class registroCtrl {
         let valido = true;
         //Validación
         if (nombre.length < 3 || nombre.length > 12) {
-            el('#errNombre').innerHTML = `<p class= "alert alert-danger"> La longitud del nombre debe estar entre 3 y 12 caracteres. </p>` ;
+            el('#errNombre').innerHTML = `<p class= "alert alert-danger"> La longitud del nombre debe estar entre 3 y 12 caracteres. </p>`;
             valido = false;
         } else {
             el('#errNombre').innerHTML = "";
@@ -108,7 +109,18 @@ class registroCtrl {
         } else {
             el('#errContrasena1').innerHTML = "";
         }
-        
+
         return valido;
+    }
+}
+
+//Ventana emergente
+function bienvenida(event) {
+    console.log("Mensaje registro bienvenida");
+    let opcion = alert("Registro realizado correctamente");
+    console.log(opcion);
+    if (opcion === false) {
+        console.log("Cancelado");
+        event.preventDefault();
     }
 }

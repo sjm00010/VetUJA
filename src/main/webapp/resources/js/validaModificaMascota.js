@@ -38,7 +38,6 @@ $(this.config.formulario)
 validarFormulario() {
 console.log("Validación modificación cliente con JS");
         let el = selector => document.querySelector(selector);
-        let ci = $(this.config.ci).val();
         let nombre = $(this.config.nombre).val();
         let raza = $(this.config.raza).val();
         let especie = $(this.config.especie).val();
@@ -53,12 +52,6 @@ console.log("Validación modificación cliente con JS");
         //Validación mascotas
 
 
-        if (ci.length !== 15) {
-el('#errCiMM').innerHTML = `<p class="alert alert-danger"> El código de identificación debe tener una longitud de 15 dígitos. </p>`;
-        valido = false;
-} else {
-el('#errCiMM').innerHTML = "";
-}
 
 if (nombre.length < 3 || nombre.length > 12) {
 el('#errNombreMM').innerHTML = `<p class= "alert alert-danger"> La longitud del nombre debe estar entre 3 y 12 caracteres. </p>`;
@@ -141,4 +134,23 @@ return valido;
 
 }
 
-
+//Ventana emergente borrado cliente
+function borrar(event) {
+console.log("Confirma borrado");
+        let opcion = confirm("¿Estás seguro de borrar la mascota?");
+        console.log(opcion);
+        if (opcion === false) {
+console.log("Cancelado");
+        event.preventDefault();
+}
+}
+//Ventana emergente modificado cliente
+function modifica(event) {
+console.log("Confirma modificar mascota");
+        let opcion = confirm("¿Estás seguro de modificar la mascota?");
+        console.log(opcion);
+        if (opcion === false) {
+console.log("Cancelado");
+        event.preventDefault();
+}
+}

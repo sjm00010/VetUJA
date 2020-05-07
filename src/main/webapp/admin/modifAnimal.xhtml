@@ -13,6 +13,9 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+
+        <h:outputScript library="js" name="validaModificaMascota.js"/>
+        
         <h:head>
             <f:metadata>
                 <f:viewParam name="ci" required="true"
@@ -24,7 +27,7 @@
             </f:metadata>
         </h:head>
 
-        <b:form>
+        <b:form id="fModifMascotaMM" >
             <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
 
             <b:panel rendered="#{not empty facesContext.messageList}">
@@ -53,7 +56,10 @@
                                         </div>
                                         <div class="col">
                                             <label for="nombre">Nombre</label>
-                                            <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Firulais" a:value="#{ctrlMasc.mascota.nombre}"/>
+                                            <h:inputText class="form-control" id="nombreMM" a:placeholder="Ej. Firulais" a:value="#{ctrlMasc.mascota.nombre}"/>
+                                            <div class="mt-3" id= "errNombreMM"></div>
+                                            <b:message for="nombreMM"/>
+                                            
                                         </div>
                                     </div>
                                 </div>

@@ -8,17 +8,16 @@ class modifMascotaCtrl {
 constructor() {
 this.config = {
 formulario: "#fModifMascotaMM",
-        ci: "#fModifMascotaMM\\:ci",
-        nombre: "#fModifMascotaMM\\:nombre",
-        raza: "#fModifMascotaMM\\:raza",
-        especie: "#fModifMascotaMM\\:especie",
-        sexo: "#fModifMascotaMM\\:sexo",
-        fecha: "#fModifMascotaMM\\:fechanac",
-        altura: "#fModifMascotaMM\\:altura",
-        peso: "#fModifMascotaMM\\:peso",
-        foto: "#fModifMascotaMM\\:foto",
-        cliDNI: "#fModifMascotaMM\\:cliDNI",
-        vetCC: "#fModifMascotaMM\\:vetCC"
+        nombre: "#fModifMascotaMM\\:nombreMM",
+        raza: "#fModifMascotaMM\\:razaMM",
+        especie: "#fModifMascotaMM\\:especieMM",
+        sexo: "#fModifMascotaMM\\:sexoMM",
+        fecha: "#fModifMascotaMM\\:fechanacMM",
+        altura: "#fModifMascotaMM\\:alturaMM",
+        peso: "#fModifMascotaMM\\:pesoMM",
+        foto: "#fModifMascotaMM\\:fotoMM",
+        cliDNI: "#fModifMascotaMM\\:cliDNIMM",
+        vetCC: "#fModifMascotaMM\\:vetCCMM"
 
 };
 }

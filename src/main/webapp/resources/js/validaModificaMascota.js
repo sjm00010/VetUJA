@@ -134,7 +134,7 @@ class modifMascotaCtrl {
 }
 
 //Ventana emergente borrado cliente
-function borrar(event) {
+function borrar_m(event) {
     console.log("Confirma borrado");
     let opcion = confirm("¿Estás seguro de borrar la mascota?");
     console.log(opcion);
@@ -144,7 +144,7 @@ function borrar(event) {
     }
 }
 //Ventana emergente modificado cliente
-function modifica(event) {
+function modifica_m(event) {
     console.log("Confirma modificar mascota");
     let opcion = confirm("¿Estás seguro de modificar la mascota?");
     console.log(opcion);

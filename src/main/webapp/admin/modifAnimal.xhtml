@@ -27,7 +27,7 @@
             </f:metadata>
         </h:head>
 
-        <b:form id="fModifMascotaMM" >
+        <b:form id="fModifMascotaMM" onsubmit="modifica_m(event)">
             <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
 
             <b:panel rendered="#{not empty facesContext.messageList}">

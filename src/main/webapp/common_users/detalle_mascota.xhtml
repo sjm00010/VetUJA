@@ -5,15 +5,14 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:b="http://bootsfaces.net/ui"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="nomPag">
         Detalle Mascota
     </ui:define>
 
     <ui:define name="cuerpo">
+         <h:outputScript library="js" name="validaModificaMascota.js"/>
         <h:head>
             <f:metadata>
                 <f:viewParam name="ci" required="true"
@@ -63,11 +62,11 @@
 
         <c:if test="#{prefs.isLogin()=='ADMIN'}">
 
-            <h:form>
-                <h:button class=" btn btn-outline-secondary btn-lg mb-3" outcome="modifAnimal.xhtml" value="     ✏     ">
+            <h:form class="col-sm-4 mb-3 px-0" onsubmit="borrar_m(event)">
+                <h:button class=" btn btn-outline-secondary btn-lg mb-3" outcome="/admin/modifAnimal.xhtml" value="     ✏     ">
                     <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
                 </h:button>
-                <h:commandButton class=" btn btn-outline-danger btn-lg mb-3 ml-2" action="#{ctrlMasc.borraMascota()}" value="  🗑  "/>
+                <h:commandButton class=" btn btn-outline-danger btn-lg mb-3 ml-2" action="#{ctrlMasc.borraMascota()}" value="  🗑  "  />
             </h:form>
 
             <div class="card mb-3" style="max-width: 100%;">

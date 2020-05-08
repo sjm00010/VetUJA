@@ -13,6 +13,10 @@
     </ui:define>
 
     <ui:define name="cuerpo">
+
+        <h:outputScript library="js" name="validaModificaMascota.js"/>
+        <h:outputScript library="js" name="visualizaDuenio.js"/>
+
         <h:head>
             <f:metadata>
                 <f:viewParam name="ci" required="true"
@@ -24,7 +28,7 @@
             </f:metadata>
         </h:head>
 
-        <b:form>
+        <b:form id="form" onsubmit="modifica_m(event)">
             <h1 class="text-center display-3"><u>Modificar datos de mascotas</u></h1>
 
             <b:panel rendered="#{not empty facesContext.messageList}">
@@ -52,20 +56,27 @@
                                             <h:inputText class="form-control" id="ci" a:placeholder="15 dígitos" a:value="#{ctrlMasc.mascota.ci}" readonly="true"/>
                                         </div>
                                         <div class="col">
-                                            <label for="nombre">Nombre</label>
-                                            <h:inputText class="form-control" id="nombre" a:placeholder="Ej. Firulais" a:value="#{ctrlMasc.mascota.nombre}"/>
+                                            <label for="nombreMM">Nombre</label>
+                                            <h:inputText class="form-control" id="nombreMM" a:placeholder="Ej. Firulais" a:value="#{ctrlMasc.mascota.nombre}"/>
+                                            <div class="mt-3" id= "errNombreMM"></div>
+                                            <b:message for="nombreMM"/>
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 my-2">
                                     <div class="row row-cols-1 row-cols-md-2">
                                         <div class="col mb-2">
-                                            <label for="especie">Especie</label>
-                                            <h:inputText class="form-control" id="especie" a:placeholder="Ej. Perro" a:value="#{ctrlMasc.mascota.especie}"/>
+                                            <label for="especieMM">Especie</label>
+                                            <h:inputText class="form-control" id="especieMM" a:placeholder="Ej. Perro" a:value="#{ctrlMasc.mascota.especie}"/>
+                                            <div class="mt-3" id= "errEspecieMM"></div>
+                                            <b:message for="especieMM"/>
                                         </div>
                                         <div class="col">
-                                            <label for="raza">Raza</label>
-                                            <h:inputText class="form-control" id="raza" a:placeholder="Ej. Gran danés" a:value="#{ctrlMasc.mascota.raza}"/>
+                                            <label for="razaMM">Raza</label>
+                                            <h:inputText class="form-control" id="razaMM" a:placeholder="Ej. Gran danés" a:value="#{ctrlMasc.mascota.raza}"/>
+                                            <div class="mt-3" id= "errRazaMM"></div>
+                                            <b:message for="razaMM"/>
                                         </div>
                                     </div>
                                 </div>
@@ -73,17 +84,21 @@
                                     <div class="row row-cols-1 row-cols-md-2">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="sexo">Sexo</label>
-                                                <h:selectOneMenu class="form-control" id="sexo" a:value="#{ctrlMasc.mascota.sexo}">
+                                                <label for="sexoMM">Sexo</label>
+                                                <h:selectOneMenu class="form-control" id="sexoMM" a:value="#{ctrlMasc.mascota.sexo}">
                                                     <f:selectItem itemValue="Macho" itemLabel="Macho" />
                                                     <f:selectItem itemValue="Hembra" itemLabel="Hembra" />
+                                                    <div class="mt-3" id= "errSexoMM"></div>
+                                                    <b:message for="sexoMM"/>
                                                 </h:selectOneMenu>
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <label for="fnac">Fecha de nacimiento</label>
-                                            <h:inputText class="form-control" a:type="date" id="fnac" value="#{ctrlMasc.mascota.fechanac}">
+                                            <label for="fechanacMM">Fecha de nacimiento</label>
+                                            <h:inputText class="form-control" a:type="date" id="fechanacMM" value="#{ctrlMasc.mascota.fechanac}">
                                                 <f:convertDateTime pattern="yyyy-MM-dd" />
+                                                <div class="mt-3" id= "errFechanacMM"></div>
+                                                <b:message for="fechanacMM"/>
                                             </h:inputText>
                                         </div>
                                     </div>
@@ -91,23 +106,29 @@
                                 <div class="col-12 mb-2">
                                     <div class="row row-cols-1 row-cols-md-2">
                                         <div class="col mb-2">
-                                            <label for="altura">Altura (en cm)</label>
-                                            <h:inputText class="form-control"  id="altura"  a:type="number" a:placeholder="Altura en cm" a:value="#{ctrlMasc.mascota.altura}"/>
+                                            <label for="alturaMM">Altura (en cm)</label>
+                                            <h:inputText class="form-control"  id="alturaMM"  a:type="number" a:placeholder="Altura en cm" a:value="#{ctrlMasc.mascota.altura}"/>
+                                            <div class="mt-3" id= "errAlturaMM"></div>
+                                            <b:message for="alturaMM"/>
                                         </div>
                                         <div class="col">
-                                            <label for="peso">Peso (en g)</label>
-                                            <h:inputText class="form-control" id="peso" a:type="number" a:placeholder="Peso en g" a:value="#{ctrlMasc.mascota.peso}"/>
+                                            <label for="pesoMM">Peso (en g)</label>
+                                            <h:inputText class="form-control" id="pesoMM" a:type="number" a:placeholder="Peso en g" a:value="#{ctrlMasc.mascota.peso}"/>
+                                            <div class="mt-3" id= "errPesoMM"></div>
+                                            <b:message for="pesoMM"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mb-2">
                                     <div class="row">
                                         <div class="col ">
-                                            <label for="foto">Foto</label>
+                                            <label for="fotoMM">Foto</label>
                                             <h:graphicImage value="#{resource['img/iconos/info.png']}" alt="info"
                                                             a:data-toggle="tooltip" a:data-placement="right" title="Tamaño recomendado 300 x 300 píxeles"
                                                             style="margin-left: 0.5rem;" height="18"/>
-                                            <h:inputText class="form-control" id="foto" a:placeholder="URL" a:value="#{ctrlMasc.mascota.foto}"/>
+                                            <h:inputText class="form-control" id="fotoMM" a:placeholder="URL" a:value="#{ctrlMasc.mascota.foto}"/>
+                                            <div class="mt-3" id= "errFotoMM"></div>
+                                            <b:message for="fotoMM"/>
                                         </div>
                                     </div>
                                 </div>
@@ -116,12 +137,22 @@
                     </div>
                 </div>
                 <div class="col col-md-2">
+                    <div class="row card text-white bg-dark mb-3 mx-2" style="width: auto; min-width: 18rem">
+                        <h2 class="mb-2 card-header"><small>Datos del veterinario</small></h2>
+                        <div class="row">
+                            <div class="col mx-3 my-2">
+                                <p><b>Cod. Colegiado</b> : #{prefs.vet.codCol}</p>
+                                <p><b>Nombre</b> : #{ctrlUser.getNombreVet(prefs.vet.codCol)}</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row card my-3 mx-2" style="width: auto; min-width: 18rem">
-                        <h2 class="mb-2 card-header"><small>Datos del dueño</small></h2>
+                        <h2 class="mb-2 card-header"><small>Seleccione un dueño</small></h2>
                         <div class="row">
                             <div class="col mx-3 my-2">
                                 <label for="dni">DNI</label>
-                                <h:selectOneMenu class="form-control" id="dni" a:value="#{ctrlMasc.mascota.cliDNI}">
+                                <h:selectOneMenu class="form-control" id="dni" a:value="#{ctrlMasc.mascota.cliDNI}"
+                                                 onchange="ctrl.detalleDuenio(this.value)">
                                     <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
                                     <f:selectItems value="#{ctrlUser.clientes}" var="cli" 
                                                    itemValue="#{cli.DNI}" itemLabel="#{cli.DNI}" />
@@ -129,20 +160,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row card mb-3 mx-2" style="width: auto; min-width: 18rem">
-                        <h2 class="mb-2 card-header"><small>Datos del veterinario</small></h2>
-                        <div class="row">
-                            <div class="col mx-3 my-2">
-                                <label for="cc">Cod. Colegiado</label>
-                                <h:selectOneMenu class="form-control" id="cc" a:value="#{ctrlMasc.mascota.vetCC}">
-                                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecciona uno --" />
-                                    <f:selectItems value="#{ctrlUser.veterinarios}" var="vet" 
-                                                   itemValue="#{vet.codCol}" itemLabel="#{vet.codCol}" />
-                                </h:selectOneMenu>
+                </div>
+                <h:panelGroup class="col col-md-2" id="paneldetalle" style="display: none">
+                    <div class="card border-success my-3 mx-2" style="min-width: 27rem">
+                        <div class="row no-gutters">
+                            <div class="col-md-4" id="fotoDuenio">
+                                <!--Foto del dueño-->
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">Datos del dueño</h5>
+                                    <p class="card-text"><strong>Nombre : </strong><p id="detalleNom"></p></p>
+                                    <p class="card-text"><strong>Dirección : </strong><p id="detalleDir"></p></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </h:panelGroup>
             </div>
             <div class="row row-cols-1 row-cols-md-2">
                 <!--para el formulario hace falta boton type="submit"-->
@@ -152,11 +186,11 @@
                     </h:commandButton>
                 </div>
                 <div class="col">
-                    <h:button class="eBoton btn btn-danger btn-lg btn-block" outcome="detalle_mascota.jsf" value="Cancelar">
+                    <h:button class="eBoton btn btn-danger btn-lg btn-block" outcome="/common_users/detalle_mascota.jsf" value="Cancelar">
                         <f:param name="ci" value="#{ctrlMasc.mascota.ci}" />
                     </h:button>
                 </div>
             </div>
-        </h:form>
+        </b:form>
     </ui:define>
 </ui:composition>
